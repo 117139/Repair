@@ -1,114 +1,42 @@
 <!--index.wxml-->
 <wxs src="../../utils/filter.wxs" module="filter" />
 <view class="container">
-  <image class='dig_bg' src='../../static/images/index_02.png'></image>
 	<view class="main">
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
 		 indicator-active-color='#fff' circular="{{circular}}">
 			<block wx:for="{{bannerimg}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-				<swiper-item>
+				<swiper-item class="swiper_item">
 					<!-- <image src="{{item}}" class="slide-image" width="355" height="150" /> -->
 					<!-- <image wx:if="{{item.pic}}" lazy-load='true' src="{{filter.imgIP(item.pic)}}" class="slide-image"/> -->
-					<image wx:if="{{item.pic}}" lazy-load='true' src="{{item.pic}}" class="slide-image"/>
-		
+					<image wx:if="{{item.pic}}" lazy-load='true' src="{{item.pic}}" class="slide-image" />
+
 				</swiper-item>
 			</block>
 		</swiper>
-    <view class='index_dzbtn dis_flex ju_c'>
-      <image src='../../static/images/index_07.png'></image>
-    </view>
-		<view class="mk_mdd">
-			<view class="mk_tit">
-				<image class="i_tit1" src="../../static/images/images/index_tit_03.png"></image>
+		<view class="fw_box">
+			<view class="fw_one" wx:for="{{fw_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+				<image src="{{item.pic}}"></image>
+				<text>{{item.name}}</text>
 			</view>
-			<view class="mk_box">
-				<view class="mk_one" wx:for="{{mdd_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+		</view>
+		<view class="w100">
+			<view class="hot_tit">热门服务</view>
+			<view class="w100 hot_box">
+				<view class="hot_one" wx:for="{{hot_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
 					<image src="{{item.pic}}"></image>
 					<text>{{item.name}}</text>
 				</view>
 			</view>
 		</view>
-		<view class="w100 mb20">
-			<view class="mk_tit">
-				<view><image class="i_tit1" src="../../static/images/images/index_tit_07.png"></image></view>
-				<view class="index_more">更多<text class="iconfont iconnext"></text></view>
-			</view>
-			<view class="mk_box2">
-				<view class="i_zt1">
-					<image src="../../static/images/index_39.png"></image>
-					<view class="z_zt1">世界奇景</view>
-					<view class="z_zt1">海岛度假</view>
-					<view class="z_zt1">美食购物</view>
-					<view class="z_zt1">庆典赛事</view>
-				</view>
-				<view class="i_zt1 i_zt2">
-					<image src="../../static/images/index_41.png"></image>
-					<view class="z_zt1">世界奇景</view>
-					<view class="z_zt1">海岛度假</view>
-					<view class="z_zt1">美食购物</view>
-					<view class="z_zt1">世界奇景</view>
-				</view>
-				<view class="i_zt1">
-					<image src="../../static/images/index_06.png"></image>
-					<view class="z_zt2">
-						<view>签证</view>
-						<view class="z_tip">专业</view>
-					</view>
-					<view class="z_zt2">
-						<view>酒店</view>
-						<view class="z_tip">奢华</view>
-					</view>
-					<view class="z_zt2">
-						<view>自由行</view>
-						<view class="z_tip">随心</view>
-					</view>
+		<view class="w100">
+			<view class="hot_tit">猜你喜欢<image class="caicon" src="../../static/images/index_38.png"></image></view>
+			<view class="w100 cai_box">
+				<view class="cai_one" wx:for="{{cai_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+					<image src="{{item.pic}}"></image>
 				</view>
 			</view>
 		</view>
-    <view class='w100 mb20'>
-      <view class='m_tit'><image class="i_tit2" src="../../static/images/images/index_tit_11.png"></image></view>
-      <view class='w100 dis_flex i_shzx ju_b'>
-				<view class="i_shzx_one">
-					<image src="../../static/images/index_43.png"></image>
-					<view class="i_shxz_tip">
-						<view class="xz_tit">夏威夷海岛奢华游</view>
-						<view clas>
-							<text class="xz_name">避暑秘境</text>
-							<text class="xz_pri">￥8万起</text>
-						</view>
-					</view>
-				</view>
-				<view class="i_shzx_one">
-					<image src="../../static/images/index_45.png"></image>
-					<view class="i_shxz_tip">
-						<view class="xz_tit">夏威夷海岛奢华游</view>
-						<view clas>
-							<text class="xz_name">避暑秘境</text>
-							<text class="xz_pri">￥8万起</text>
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="w100 i_shzx2">
-				<image src="../../static/images/index_48.png"></image>
-				<view class="i_shxz_tip">
-					<view class="xz_tit">夏威夷海岛奢华游</view>
-					<view clas>
-						<text class="xz_name">避暑秘境</text>
-						<text class="xz_pri">￥8万起</text>
-					</view>
-				</view>
-			</view>
-    </view>
-    <view class='w100 mb20'>
-      <view class='mk_tit'><image class="i_tit2" src="../../static/images/images/index_tit_15.png"></image></view>
-      <view class='tj_one'  wx:for="{{mdd_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-				<image class="tj_img" src="../../static/images/index_50.png"></image>
-				<view class=" tj_msg">
-					<view class="tj_name">马尔代夫双人游私人订制</view>
-					<view class="tj_pri"><text class="fz24 cE0BF91">￥</text><text class="fz32 cE0BF91">2</text><text class="fz28 cE0BF91">万</text><text class="fz28 c9">起</text></view>
-				</view>
-      </view>
-    </view>
+		
+		
 	</view>
 </view>

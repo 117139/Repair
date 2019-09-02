@@ -2,7 +2,7 @@
 <view class="container">
 	<scroll-view scroll-y class="dest_l" >
 		<view class="dest_1 oh1 {{idx==dest_type? 'cur':''}}"
-		 wx:for="{{mdd_data}}"
+		 wx:for="{{fw_data}}"
 			wx:for-index="idx"
 			 wx:for-item="item"
 				wx:key="idx"

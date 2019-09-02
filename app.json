@@ -13,32 +13,32 @@
     "navigationBarTextStyle":"black"
   },
 	"tabBar": {
-		"color": "#999999",
-		"selectedColor": "#75cec6",
+		"color": "#333333",
+		"selectedColor": "#388df1",
 		"list": [
 			{
 			  "pagePath": "pages/index/index",
 			  "text": "首页",
-			  "iconPath": "/static/images/index_53.png",
+			  "iconPath": "/static/images/index1_53.png",
 			  "selectedIconPath": "/static/images/index_53.png"
 			},
 			{
-			  "pagePath": "pages/DEST/DEST",
+			  "pagePath": "pages/fuwu/fuwu",
 			  "text": "下单",
 			  "iconPath": "/static/images/index_55.png",
-			  "selectedIconPath": "/static/images/index_55.png"
+			  "selectedIconPath": "/static/images/index1_55.png"
 			},
 			{
 			  "pagePath": "pages/index/index",
 			  "text": "签证",
 			  "iconPath": "/static/images/index_58.png",
-			  "selectedIconPath": "/static/images/index_58.png"
+			  "selectedIconPath": "/static/images/index1_58.png"
 			},
 			{
 			  "pagePath": "pages/index/index",
 			  "text": "我的",
 			  "iconPath": "/static/images/index_60.png",
-			  "selectedIconPath": "/static/images/index_60.png"
+			  "selectedIconPath": "/static/images/index1_60.png"
 			}
 		]
 	}
