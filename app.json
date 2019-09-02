@@ -1,0 +1,45 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/fuwu/fuwu",
+    "pages/login/login",
+    "pages/index1/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#75cec6",
+		"list": [
+			{
+			  "pagePath": "pages/index/index",
+			  "text": "首页",
+			  "iconPath": "/static/images/index_53.png",
+			  "selectedIconPath": "/static/images/index_53.png"
+			},
+			{
+			  "pagePath": "pages/DEST/DEST",
+			  "text": "下单",
+			  "iconPath": "/static/images/index_55.png",
+			  "selectedIconPath": "/static/images/index_55.png"
+			},
+			{
+			  "pagePath": "pages/index/index",
+			  "text": "签证",
+			  "iconPath": "/static/images/index_58.png",
+			  "selectedIconPath": "/static/images/index_58.png"
+			},
+			{
+			  "pagePath": "pages/index/index",
+			  "text": "我的",
+			  "iconPath": "/static/images/index_60.png",
+			  "selectedIconPath": "/static/images/index_60.png"
+			}
+		]
+	}
+}

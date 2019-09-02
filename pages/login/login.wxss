@@ -1,0 +1,29 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100rpx 80rpx;
+}
+.header{
+  width: 150rpx;
+  height: 150rpx;
+}
+.header image{
+	width: 150rpx;
+	height: 150rpx;
+}
+.content{
+  margin-top: 80rpx;
+  padding: 40rpx 0;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  font-size: 30rpx;
+}
+.huqu{
+  font-size: 26rpx;
+  color: #999;
+}
+.bottom {
+  margin-top: 30rpx;
+  width: 100%;
+}

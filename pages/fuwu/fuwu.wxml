@@ -1,0 +1,31 @@
+<!--page/DEST/DEST.wxml-->
+<view class="container">
+	<scroll-view scroll-y class="dest_l" >
+		<view class="dest_1 oh1 {{idx==dest_type? 'cur':''}}"
+		 wx:for="{{mdd_data}}"
+			wx:for-index="idx"
+			 wx:for-item="item"
+				wx:key="idx"
+				data-idx="{{idx}}" bindtap="dest_fuc">{{item.name}}</view>
+		<!-- <view class="dest_1 oh1" wx:for="{{mdd_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">{{item.name}}</view> -->
+	</scroll-view>
+	<view class="dest_r">
+		<view class="w100 dest_box">
+			<view class="dest_one" wx:for="{{dest}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+				<image src="../../static/images/images/dest_03.jpg"></image>
+				<text>英国</text>
+			</view>
+		</view>
+		<view class="more">查看更多 <text class="iconfont iconnext-copy "></text></view>
+		<view class="w100">
+			<view class="dest_tit">推荐行程</view>
+			<view class='tj_one'  wx:for="{{mdd_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+				<image class="tj_img" src="../../static/images/index_50.png"></image>
+				<view class=" tj_msg">
+					<view class="tj_name">马尔代夫双人游私人订制</view>
+					<view class="tj_pri"><text class="fz24 cE0BF91">￥</text><text class="fz32 cE0BF91">2</text><text class="fz28 cE0BF91">万</text><text class="fz28 c9">起</text></view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
