@@ -1,0 +1,24 @@
+<!--pages/my/my.wxml-->
+
+<view class="container">
+	<view class="header">
+		<image class="mybg" src="../../static/images/my_02.png"></image>
+		<text class="iconfont iconshezhi" data-url="/pages/mymsg/mymsg" bindtap="jump"></text>
+		<view class="tx_box"></view>
+		<view class="user_name">小小米</view>
+	</view>
+	<view class="my_list" data-url="/pages/orderList/orderList" bindtap="jump">
+		<view class="list_name">
+			<image class="list_icon" src="../../static/images/my_05.png"></image>
+			我的订单
+		</view>
+		<text class="iconfont iconnext"></text>
+	</view>
+	<view class="my_list" data-url="/pages/myaddress/myaddress" bindtap="jump">
+		<view class="list_name">
+			<image class="list_icon" src="../../static/images/my_08.png"></image>
+			地址管理
+		</view>
+		<text class="iconfont iconnext"></text>
+	</view>
+</view>

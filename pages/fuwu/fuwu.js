@@ -57,6 +57,20 @@ Page({
 			 name:'德国'
 		 },
 		],
+		type1:[
+			{
+				pic:'../../static/images/fuwu_03.jpg',
+				name:'房屋电路维修'
+			},
+			{
+				pic:'../../static/images/fuwu_05.jpg',
+				name:'灯具维修'
+			},
+			{
+				pic:'../../static/images/fuwu_07.jpg',
+				name:'灯具安装'
+			},
+		],
 		dest_type:0,
   },
 

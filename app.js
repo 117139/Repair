@@ -33,6 +33,12 @@ App({
       }
     })
   },
+	jump(e){
+		console.log(e)
+		wx.navigateTo({
+			url:e.currentTarget.dataset.url
+		})
+	},
   globalData: {
     userInfo: null
   }

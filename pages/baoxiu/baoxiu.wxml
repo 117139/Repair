@@ -1,0 +1,30 @@
+<!--pages/baoxiu/baoxiu.wxml-->
+<view class="container">
+	
+	<view class="baoxiu_box" wx:for="{{bx_data}}"
+				wx:for-index="idx"
+				wx:for-item="item"
+				wx:key="idx">
+		<image src="../../static/images/baoxiu_03.png"></image>
+		<view class="bx_titi">保修卡</view>
+		<view class="bx_msg">
+			<view class="msg_one">
+				<view class="msg_name"><text>产品</text> :</view>
+				<view>{{item.cp}}</view>
+			</view>
+			<view class="msg_one">
+				<view class="msg_name"><text>客服电话</text> :</view>
+				<view> {{item.tel}}</view>
+			</view>
+			<view class="msg_one">
+				<view class="msg_name"><text>订单编号</text> :</view>
+				<view>{{item.id}}</view>
+			</view>
+			<view class="msg_one">
+				<view class="msg_name"><text>期限</text> :</view>
+				<view>至{{item.time}}</view>
+			</view>
+			
+		</view>
+	</view>
+</view>

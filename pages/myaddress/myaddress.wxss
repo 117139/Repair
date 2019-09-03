@@ -1,0 +1,89 @@
+.container{
+	min-height: 100vh;
+	background: #eeeeee;padding-top: 17rpx;
+	padding-bottom: 180rpx;
+}
+.addressOne{
+	width: 100%;
+	padding: 24rpx 28rpx 24rpx;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: #fff;
+	margin-bottom: 20rpx;
+}
+.addp1{
+	font-size: 30rpx;
+	color: #3c3c3c;
+	display: flex;
+	/* justify-content: space-between; */
+}
+.addp2{
+	font-size: 24rpx;
+	color: #aaa;
+	height: 80rpx;
+	display: flex;
+	align-items: center;
+	padding-bottom: 25rpx;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 20rpx;
+}
+.addsetting{
+	width: 100%;
+	display: flex;
+	font-size: 24rpx;
+	color: #b2b2b2;
+	justify-content: space-between;
+}
+.setcz{
+	display: flex;
+	align-items: center;
+}
+.setting1{
+	width: 150rpx;
+	display: flex;
+	align-items: center;
+}
+
+.setting3{
+	margin-left: 40rpx;
+}
+.mricon{
+	width: 24rpx;
+	height: 24rpx;
+	border:1px solid #bababa;
+	/* border-radius: 50%; */
+	margin-right: 20rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.iconduigou{
+	font-size: 22rpx;
+	color: #3c3c3c;
+}
+.fixbottom{
+	width: 100%;
+	padding: 0 28rpx;
+	box-sizing: border-box;
+	height: 140rpx;
+	background-color: #eeeeee;
+	display: flex;
+	justify-content: center;
+	margin-top: 150rpx;
+}
+.addbtn{
+	width: 480rpx;
+	height: 80rpx;
+	background-image: linear-gradient(90deg, 
+		#59cafe 0%, 
+		#5ebdff 50%, 
+		#63b1ff 100%);
+	border-radius: 40rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 28rpx;
+	color: #fff;
+}

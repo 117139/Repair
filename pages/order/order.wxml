@@ -1,0 +1,54 @@
+<!--pages/order/order.wxml-->
+<view class="container">
+	<view class="order_address">
+		<view class="address_null">请选择地址</view>
+		<text class="iconfont iconnext"></text>
+	</view>
+	<view class="order_msg">
+		<picker  class="w100" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+		  <view class="order_fw">
+		  	<view class="fuwu_type">服务类别</view>
+		  	<view class="dis_flex aic">
+					<text class="fz28 c6">{{array[index]}}</text>
+					<text class="iconfont iconnext"></text>
+				</view>
+		  </view>
+		</picker>
+		<view class="w100 dis_flex wtms">
+			<view class="fuwu_type">问题描述</view>
+			<textarea class="fuwu_text" placeholder="请输入问题描述"></textarea>
+		</view>
+		<view class="scimg_tip">上传现场图片，师傅可以更好的了解您的问题~</view>
+		<view class="imgbox mb40">
+			<view class="addimg1" wx:for="{{imgb}}" 
+					 wx:for-index="idx"
+					 wx:for-item="item"
+					 wx:key="idx"
+					 data-idx="{{idx}}"
+					 bindtap="imgdel">
+				<image  src="{{filter.imgIP(item)}}" data-src="{{filter.imgIP(item)}}"
+					 mode="aspectFill"></image>
+			</view>
+			
+			<view wx:if="{{imgb.length<9}}" class="addimg" bindtap="scpic">
+				
+				<image src="../../static/images/upload_03.jpg"></image>
+			</view>
+		</view>
+		
+	</view>
+	<view class="order_address">
+		<picker class="w100" mode="date" bindchange="bindTimeChange" value="{{date}}">
+		  <view class="order_fw">
+		  	<view class="fuwu_type">预约时间</view>
+		  	<view class="dis_flex aic">
+					<text class="fz28 c6">{{date}}</text>
+					<text class="iconfont iconnext"></text>
+				</view>
+		  </view>
+		</picker>
+	</view>
+	<view class="w100 dis_flex ju_c">
+		<view class="sub_btn">提交</view>
+	</view>
+</view>

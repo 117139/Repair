@@ -1,0 +1,161 @@
+<!--pages/details/details.wxml-->
+<view class="container">
+	<view class="banner">
+		<text>房屋电路维修</text>
+		<image src="../../static/images/xq_03.png"></image>
+	</view>
+	<view class="xq_titi">
+		<view class="fz28 c9">
+			房屋电路维修，师傅上门服务
+		</view>
+		<view class="dis_flex ju_b">
+			<view class="fz24 c6">
+				<text class="mr5">热度:</text>
+				<text class="iconfont iconredu"></text>
+				<text class="iconfont iconredu"></text>
+				<text class="iconfont iconredu"></text>
+			</view>
+			<view class="fz24 c9">80人预约</view>
+		</view>
+	</view>
+	<view class="xq_msg">
+		<view class="xq_header">
+			<view class="hx1"></view>
+			<view class="xq_msg_name">材料配件</view>
+			<view class="hx1"></view>
+		</view>
+		<view class="w100 table">
+			 <view class="w100 tr">
+				 <view class="td th td1">房屋电路维修</view>
+				 <view class="td th td2">材料价格</view>
+				 <view class="td th td3">人工费</view>
+			 </view>
+			 <view class="w100 tr">
+				 <view class="td td1">开关更换</view>
+				 <view class="td td2">20元/个</view>
+				 <view class="td td3">50元/起</view>
+			 </view>
+			 <view class="w100 tr">
+				 <view class="td td1">空气开关拆换维修</view>
+				 <view class="td td2">25元/个</view>
+				 <view class="td td3">40元/起</view>
+			 </view>
+			 <view class="w100 tr">
+				 <view class="td td1">地插更换维修</view>
+				 <view class="td td2">25元/个</view>
+				 <view class="td td3">40元/起</view>
+			 </view>
+			 <view class="w100 tr">
+				 <view class="td td1">开关更换</view>
+				 <view class="td td2">20元/个</view>
+				 <view class="td td3">50元/起</view>
+			 </view>
+			 <view class="w100 tr">
+				 <view class="td td1">开关更换</view>
+				 <view class="td td2">20元/个</view>
+				 <view class="td td3">50元/起</view>
+			 </view>
+		</view>
+		<view class="table_tip">温馨提示:材料配件用户可自备</view>
+	</view>
+	<view class="xq_msg">
+		<view class="xq_header">
+			<view class="hx1"></view>
+			<view class="xq_msg_name">服务流程</view>
+			<view class="hx1"></view>
+		</view>
+		<view class="w100">
+			<view class="dis_flex ju_b mb37">
+				<view class="msg1_one">
+					<image src="../../static/images/xqmsg_10.jpg"></image>
+					<view class="msg1_msg">
+						<view class="m_v1">在线预约</view>
+						<view>选择您需要的</view>
+						<view>服务，点击预约</view>
+					</view>
+				</view>
+				<view class="msg1_one">
+					<image src="../../static/images/xqmsg_10.jpg"></image>
+					<view class="msg1_msg">
+						<view class="m_v1">双方沟通</view>
+						<view>选择您需要的</view>
+						<view>服务，点击预约</view>
+					</view>
+				</view>
+				<view class="msg1_one">
+					<image src="../../static/images/xqmsg_14.jpg"></image>
+					<view class="msg1_msg">
+						<view class="m_v1">师傅上门</view>
+						<view>师傅根据您的</view>
+						<view>期望上门时间，</view>
+						<view>上门服务</view>
+					</view>
+				</view>
+			</view>
+			<view class="dis_flex ju_b mb37">
+				<view class="msg1_one">
+					<image src="../../static/images/xqmsg_10.jpg"></image>
+					<view class="msg1_msg">
+						<view class="m_v1">进行维修</view>
+						<view class="c9">师傅进入现场</view>
+						<view class="c9">按照行业规范进行</view>
+						<view class="c9">标准作业</view>
+					</view>
+				</view>
+				<view class="msg1_one">
+					<image src="../../static/images/xqmsg_10.jpg"></image>
+					<view class="msg1_msg">
+						<view class="m_v1">结果确认</view>
+						<view class="c9">请您对服务结果</view>
+						<view class="c9">进行验收确认</view>
+					</view>
+				</view>
+				<view class="msg1_one">
+					<image src="../../static/images/xqmsg_14.jpg"></image>
+					<view class="msg1_msg">
+						<view class="m_v1">维修评价</view>
+						<view class="c9">确认订单完成</view>
+						<view class="c9">请对师傅服务</view>
+						<view class="c9">进行评价</view>
+					</view>
+				</view>
+			</view>
+			<!-- <image lazy-load="true" class="fwlc" src="../../static/images/xq_10.jpg"></image> -->
+		</view>
+	</view>
+	<view class="xq_msg">
+		<view class="xq_header">
+			<view class="hx1"></view>
+			<view class="xq_msg_name">服务保障</view>
+			<view class="hx1"></view>
+		</view>
+		<view class="w100 ">
+			<view class="dis_flex ju_a">
+				<view class="bzone">
+					<image src="../../static/images/xqmsg_26.jpg"></image>
+					<view class="bztiti">专业服务</view>
+					<view class="fz22 c9">师傅经专业训练</view>
+					<view class="fz22 c9">考核通过后上岗</view>
+				</view>
+				<view class="bzone">
+					<image src="../../static/images/xqmsg_29.jpg"></image>
+					<view class="bztiti">标准价格</view>
+					<view class="fz22 c9">价格公开透明</view>
+					<view class="fz22 c9">统一收费标准</view>
+				</view>
+				<view class="bzone">
+					<image src="../../static/images/xqmsg_32.jpg"></image>
+					<view class="bztiti">专业服务</view>
+					<view class="fz22 c9">针对非人为引发</view>
+					<view class="fz22 c9">的售后问题</view>
+				</view>
+			</view>
+			<!-- <image lazy-load="true" class="fwbz" src="../../static/images/xq_13.jpg"></image> -->
+		</view>
+	</view>  
+	 <view class="caoz_bot">
+		 <view class="lxkf_btn">联系客服</view>
+		 <view class="yy_btn" bindtap="yyfuc">立即预约</view>
+	 </view>
+</view>
+

@@ -1,0 +1,138 @@
+/* pages/order/order.wxss */
+page{
+	overflow-y: auto!important;
+	background: #f7f7f7;
+}
+.container{
+	width: 100%;
+	min-height: 100vh;
+	padding: 16rpx 24rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background: #f7f7f7;
+}
+.order_address{
+	width: 100%;
+	height: 100rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: #ffffff;
+	box-shadow: 0px 1rpx 3rpx 0px 
+		rgba(153, 153, 153, 0.19);
+	border-radius: 10rpx;
+	margin-bottom: 18rpx;
+}
+.iconnext{
+	font-size: 24rpx;
+	color: #bbbbbb;
+	margin-left: 10rpx;
+}
+.address_null{
+	font-family: PingFang-SC-Medium;
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #333333;
+}
+.order_msg{
+	width: 100%;
+	padding: 0 20rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: #fff;
+	border-radius: 10rpx;
+	box-shadow: 0px 1px 3px 0px 
+		rgba(153, 153, 153, 0.19);
+	margin-bottom: 18rpx;
+}
+.order_fw{
+	width: 100%;
+	height: 100rpx;
+	border-bottom: 1px solid #eee;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.fuwu_type{
+	font-family: PingFang-SC-Regular;
+	font-size: 28rpx;
+	color: #666666;
+	height: 100rpx;
+	display: flex;
+	align-items: center;
+}
+.fuwu_text{
+	flex: 1;
+	height: 200rpx;
+	padding-top: 35rpx;
+	padding-left: 10rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 28rpx;
+}
+.wtms{
+	
+	border-bottom: 1px solid #eee;
+}
+.scimg_tip{
+	font-family: PingFang-SC-Regular;
+	font-size: 24rpx;
+	color: #999999;
+	line-height: 80rpx;
+}
+.imgbox{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.addimg{
+	width: 200rpx;
+	height: 200rpx;
+	margin: 20rpx 1.5%;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+.addimg image{
+	width: 200rpx;
+	height: 200rpx;
+}
+.addimg1{
+	width: 200rpx;
+	height: 200rpx;
+	margin: 20rpx 1.5%;
+}
+.addimg1>image{
+	width: 100%;
+	height: 100%;
+	border-radius: 20rpx;
+}
+.fz100{
+	font-size: 100rpx;
+}
+.sub_btn{
+	margin-top: 78rpx;
+	width: 480rpx;
+	height: 80rpx;
+	background-image: linear-gradient(90deg, 
+		#59cafe 0%, 
+		#5ebdff 50%, 
+		#63b1ff 100%);
+	border-radius: 40rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: PingFang-SC-Medium;
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #ffffff;
+}

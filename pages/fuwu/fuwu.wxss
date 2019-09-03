@@ -1,13 +1,44 @@
 /* page/DEST/DEST.wxss */
+page{
+	background-color: #fff;
+}
 .container{
 	width: 100%;
 	min-height: 100vh;
 	position: relative;
 	background-color: #fff;
 }
+.ss_box{
+	width: 100%;
+	height: 98rpx;
+	border-top: 1rpx solid #eeeeee;
+	border-bottom: 1rpx solid #eee;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	background: #fff;
+}
+.ss_box1{
+	width: 710rpx;
+	height: 60rpx;
+	background-color: #f8f8f8;
+	border-radius: 30rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
 .dest_l{
 	width: 187rpx;
 	height: 100vh;
+	padding-top: 100rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -16,71 +47,57 @@
 }
 .dest_r{
 	width: 100%;
-	padding-top: 30rpx;
-	padding-left: 225rpx;
-	padding-right: 38rpx;
+	padding-top: 100rpx;
+	padding-left: 209rpx;
+	padding-right: 24rpx;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 .dest_1{
-	width:158rpx;
-	height:108rpx;
+	width:187rpx;
+	height:86rpx;
 	font-size:28rpx;
 	background-color: #f4f5f9;
 	font-family:Microsoft YaHei;
 	font-weight:400;
-	color:rgba(51,51,51,1);
+	color:#4a4a4a;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 .dest_1.cur{
-	color:rgba(94,204,194,1);
+	color:#2ea8fe;
 	background-color: #fff;
 }
-.dest_box{
+.type_name{
+	width: 100%;
+	height:86rpx;
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
+	font-size: 24rpx;
+	color: #646464;
 }
-.dest_one{
-	width: 260rpx;
+.type1_box{
+	flex-wrap: wrap;
+}
+.type1_one{
+	width: 140rpx;
+	margin: 0 16rpx 30rpx;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-.dest_one image{
-	width: 260rpx;
-	height: 260rpx;
-	border-radius: 10rpx;
+.type1_one image{
+	width: 140rpx;
+	height: 100rpx;
+	margin-bottom: 20rpx;
 }
-.dest_one text{
-	line-height: 67rpx;
-	font-size:30rpx;
+.type1_one view{
+	width: 4em;
+	font-size: 24rpx;
+	color: #666666;
 	text-align: center;
-	color: #333;
-}
-.more{
-	margin-top: 38rpx;
-	margin-bottom: 32rpx;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size:26rpx;
-	font-family:Microsoft YaHei;
-	font-weight:400;
-	color:#5ECCC2;
-}
-.more .iconfont{
-	color:#5ECCC2;
-	font-size: 16rpx;
-}
-.dest_tit{
-	font-size:36rpx;
-	font-family:FZDaBiaoSong-B06;
-	font-weight:bold;
-	color:#333333;
-	line-height: 50rpx;
+	height: 60rpx;
 }

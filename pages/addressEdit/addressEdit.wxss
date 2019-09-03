@@ -1,0 +1,60 @@
+.container{
+	width: 100%;
+	min-height: 100vh;
+	padding: 0 28rpx;
+	box-sizing: border-box;
+	background-color: #fff;
+	position: relative;
+}
+.addmsg{
+	width: 694rpx;
+	height: 90rpx;
+	border-bottom: 1px solid #e8e8e8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 26rpx;
+	color: #333;
+}
+.msgtit{
+	width: 138rpx;
+}
+.msgsrk{
+	flex: 1;
+}
+.definebtn{
+	margin-top: 140rpx;
+	width: 480rpx;
+	height: 80rpx;
+	background-image: linear-gradient(90deg, 
+		#59cafe 0%, 
+		#5ebdff 50%, 
+		#63b1ff 100%);
+	border-radius: 40rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 28rpx;
+	color: #fff;
+}
+.wx-switch-input{width:86rpx !important;height:50rpx !important;}
+.wx-switch-input::before{width:84rpx !important;height: 48rpx !important;}
+.wx-switch-input::after{width: 44rpx !important;height: 44rpx !important;}
+.moren{
+	width: 32rpx;
+	height: 32rpx;
+	border: solid 2rpx #999999;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-items: center;
+	background-color: #fff;
+}
+.moren.cur{
+	background-color: #63b1ff;
+}
+.iconduigou{
+	font-size: 22rpx;
+	color: #fff;
+}

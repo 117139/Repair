@@ -1,0 +1,25 @@
+<!--pages/mymsg/mymsg.wxml-->
+<view class="container">
+	<view class="tx_box">
+		<text>头像</text>
+		<image src="../../static/images/tx.png"></image>
+	</view>
+	<view class="msg_box">
+		<text>姓名</text>
+		<view class="dis_flex aic msg_val">李晓华</view>
+	</view>
+	<picker  class="w100" bindchange="bindPickerChange" value="{{index}}" range="{{sex}}">
+		<view class="msg_box">
+			<text>性别</text>
+			<view class="dis_flex aic msg_val">{{sex[index]}}<text class="iconfont iconnext"></text></view>
+		</view>
+	</picker>
+	<view class="msg_box">
+		<text>电话</text>
+		<view class="dis_flex aic msg_val">12456321458</view>
+	</view>
+	<view class="msg_box">
+		<text>现居住地</text>
+		<view class="dis_flex aic msg_val">北京 海淀 <text class="iconfont iconnext"></text></view>
+	</view>
+</view>

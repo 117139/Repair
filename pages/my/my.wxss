@@ -1,0 +1,84 @@
+/* pages/my/my.wxss */
+page{
+	overflow-y: auto!important;
+	background: #f7f7f7;
+}
+.container{
+	width: 100%;
+	min-height: 100vh;
+	
+	background: #f7f7f7;
+}
+.header{
+	width: 100%;
+	height: 306rpx;
+	position: relative;
+	margin-bottom: 25rpx;
+}
+.mybg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 306rpx;
+	z-index: 1;
+}
+.iconshezhi{
+	position: absolute;
+	top: 26rpx;
+	right: 42rpx;
+	font-size: 34rpx;
+	color: #fff;
+	z-index: 5;
+}
+.tx_box {
+	position: absolute;
+	top: 39rpx;
+	left: 310rpx;
+	width: 130rpx;
+	height: 130rpx;
+	border: solid 2px #ffffff;
+	z-index: 5;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.user_name{
+	position: absolute;
+	z-index: 5;
+	top: 190rpx;
+	width: 100%;
+	text-align: center;
+	font-size: 36rpx;
+	color: #ffffff;
+}
+.my_list{
+	display: flex;
+	width: 100%;
+	height: 100rpx;
+	padding: 0 43rpx;
+	background-color: #ffffff;
+	border-radius: 6rpx;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 32rpx;
+	color: #333333;
+	margin-bottom: 20rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.list_name{
+	display: flex;
+	align-items: center;
+	font-size: 32rpx;
+	color: #333;
+}
+.list_icon{
+	width: 45rpx;
+	height: 49rpx;
+	margin-right: 25rpx;
+}
+.iconnext{
+	font-size: 24rpx;
+	color: #bbb;
+}

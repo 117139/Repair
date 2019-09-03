@@ -1,0 +1,35 @@
+<!--pages/orderpl/orderpl.wxml-->
+<view class="container">
+	<view class="plbox">
+		<textarea name="" id="" placeholder="说说哪里好，鼓励一下师傅吧~" bindblur="bindTextAreaBlur"></textarea>
+		<text class="iconfont iconbianji1"></text>
+	</view>
+	<view class="pl_tit">师傅维修评分</view>
+	<view class="pl_fen">
+		<view class="fen_type">
+			<text class="fen_name">服务态度</text>
+			<text class="iconfont {{fw>idx? 'iconstar':'iconwujiaoxing'}}" 
+			wx:for="{{plf}}" 
+			wx:for-index="idx" 
+			wx:for-item="item" 
+			wx:key="idx"
+			data-type="1" 
+			data-fs="{{item}}" 
+			bindtap="pl"></text>
+		</view>
+		<view class="fen_type">
+			<text class="fen_name">专业程度</text>
+			<text class="iconfont {{zy>idx? 'iconstar':'iconwujiaoxing'}}" 
+			wx:for="{{plf}}" 
+			wx:for-index="idx" 
+			wx:for-item="item" 
+			wx:key="idx"
+			data-type="2" 
+			data-fs="{{item}}" 
+			bindtap="pl"></text>		
+		</view>
+	</view>
+	<view class="w100 dis_flex ju_c">
+		<view class="sub_btn" bindtap="sub">提交评价</view>
+	</view>
+</view>

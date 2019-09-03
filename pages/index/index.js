@@ -94,4 +94,7 @@ Page({
 	onLoad: function() {
 
 	},
+	jump(e){
+		app.jump(e)
+	}
 })

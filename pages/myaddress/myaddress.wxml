@@ -1,0 +1,36 @@
+<!--logs.wxml-->
+<!-- <import src="/utils/pageState/index.wxml" />
+<template is="pageState" data="{{...pageState}}" /> -->
+<view class="container log-list">
+  <view class="addressOne" wx:for="{{addresslist}}" wx:for-index="idx"          
+          wx:for-item="item" 
+          wx:key="idx">
+		<view class="addp1">
+			<text class="mr20">{{item.user_name}}</text>
+			<text class="fz28">{{item.phone}}</text>
+		</view>
+		<view class="addp2 oh2">{{item.address}}</view>
+		<view class="addsetting">
+			<view class="setting1 flex_1 c3" data-id="{{item.id}}" bindtap="selecmr">
+				<view class="mricon">
+					<text  wx:if="{{item.is_default==1}}"  class="iconfont iconduigou"></text>
+
+				</view>
+				默认地址
+			</view>
+			<view class="setcz c3">
+				<view class="setting2" data-id="{{idx}}" bindtap="addressEdit">
+					<text class="iconfont iconbianji fz26 mr5"></text>编辑
+				</view>
+				<view class="setting3" data-id="{{item.id}}" bindtap="addressDel">
+					<text class="iconfont iconshanchu fz26 mr5"></text>删除
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="fixbottom">
+		<view class="addbtn" data-url="/pages/addAdd/addAdd" bindtap="jump">
+			添加新地址
+		</view>
+	</view>
+</view>

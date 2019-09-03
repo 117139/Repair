@@ -14,7 +14,13 @@
 			</block>
 		</swiper>
 		<view class="fw_box">
-			<view class="fw_one" wx:for="{{fw_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+			<view class="fw_one" 
+			wx:for="{{fw_data}}" 
+			wx:for-index="idx" 
+			wx:for-item="item" 
+			wx:key="idx"
+			data-url="/pages/fuwu/fuwu"
+			bindtap="jump">
 				<image src="{{item.pic}}"></image>
 				<text>{{item.name}}</text>
 			</view>
@@ -22,7 +28,13 @@
 		<view class="w100">
 			<view class="hot_tit">热门服务</view>
 			<view class="w100 hot_box">
-				<view class="hot_one" wx:for="{{hot_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+				<view class="hot_one"
+					wx:for="{{hot_data}}" 
+					wx:for-index="idx" 
+					wx:for-item="item" 
+					wx:key="idx"
+					data-url="/pages/fuwu/fuwu"
+					bindtap="jump">
 					<image src="{{item.pic}}"></image>
 					<text>{{item.name}}</text>
 				</view>
@@ -31,7 +43,13 @@
 		<view class="w100">
 			<view class="hot_tit">猜你喜欢<image class="caicon" src="../../static/images/index_38.png"></image></view>
 			<view class="w100 cai_box">
-				<view class="cai_one" wx:for="{{cai_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+				<view class="cai_one" 
+				wx:for="{{cai_data}}" 
+				wx:for-index="idx" 
+				wx:for-item="item" 
+				wx:key="idx"
+				data-url="/pages/fuwu/fuwu"
+				bindtap="jump">
 					<image src="{{item.pic}}"></image>
 				</view>
 			</view>

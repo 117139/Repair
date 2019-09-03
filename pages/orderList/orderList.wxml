@@ -1,0 +1,43 @@
+<!--logs.wxml-->
+<!-- <import src="/utils/pageState/index.wxml" /> -->
+<wxs src="../../utils/filter.wxs" module="filter" />
+<!-- <template is="pageState" data="{{...pageState}}" /> -->
+<!-- <view wx:if="{{htmlReset==1}}" class="chongshi" bindtap='cload'>重试</view> -->
+<view class="container">
+	<!-- <view class="hengxian"></view> -->
+	<view class='dis_flex ju_a w100 pb40 pt20 bgfff'>
+		<block wx:for="{{datalist}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+			<view class="{{type==idx?'fz28 typecur':'c9 fz28'}}" data-type="{{idx}}" bindtap='bindcur'>{{item}}</view>
+		</block>
+	</view>
+	
+	<view class="goodsBox w100" 
+		wx:if="{{type==idx0}}" 
+		wx:for="{{datalist}}" 
+		wx:for-index="idx0" 
+		wx:for-item="item0" 
+		wx:key="idx0">
+		<view class="zanwu" wx:if="{{goods[idx0].length==0}}">暂无内容</view>
+		<view class="orderOne" wx:for="{{goods[idx0]}}"
+			wx:for-index="idx"
+			wx:for-item="item" 
+			wx:key="idx"
+			data-url="/pages/order_xq/order_xq?id=1" bindtap="jump">
+			<view class="dis_flex ju_b aic">
+				<view class="dis_flex aic fz32 c6">
+					<text class="mr10">{{item.type}}</text>
+					<text>{{item.type1}}</text>
+				</view>
+				<view wx:if="{{item.status==1}}" class="fz28 ceb2a2a">未接单</view>
+				<view wx:if="{{item.status==2}}" class="c13c700 fz28">进行中</view>
+				<view wx:if="{{item.status==3}}" class="c9 fz28">已完成</view>
+			</view>
+			<view class="dis_flex ju_b aic fz28 c9">
+				<view>{{item.content}}</view>
+				<view>{{item.time}}</view>
+			</view>
+		</view>
+	</view>
+	
+	
+</view>

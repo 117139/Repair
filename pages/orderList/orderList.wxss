@@ -1,0 +1,37 @@
+.container{
+	min-height: 100vh;
+	background: #eeeeee;
+	border-top: 1px solid #eee;
+	/* padding-top: 17rpx; */
+}
+.typecur{
+  padding-bottom: 12rpx;
+  border-bottom: 3rpx solid #3ea5ff;
+	color: #3ea5ff;
+}
+.orderOne{
+	margin-top: 18rpx;
+	width: 100%;
+	height: 160rpx;
+	padding: 38rpx 24rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.zanwu {
+	text-align: center;
+	font-size:24rpx;
+	color:#999;
+	line-height:140rpx;
+
+}
+.ceb2a2a{
+	color: #eb2a2a;
+}
+.c13c700{
+	color: #13c700;
+}

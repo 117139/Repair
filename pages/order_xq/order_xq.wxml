@@ -1,0 +1,33 @@
+<!--pages/order_xq/order_xq.wxml-->
+<view class="container">
+	<view class="o_tit">
+		订单信息
+	</view>
+	<view class="o_msg">
+		<view>空调维修</view>
+		<view>空调不制冷,噪音大</view>
+	</view>
+	<view class="o_address">
+		<text class="iconfont icontubiaozhizuomoban_fuzhi"></text>
+		<view class="fz28">浙江省杭州市滨江区远方科技中心</view>
+	</view>
+	<view class="o_msg1">订单编号：23009495950</view>
+	<view class="o_msg1">下单时间：2017-07-25</view>
+	<view class="o_msg1">订单状态：进行中</view>
+	<view class="o_msg1 mb20">维修师傅：王师傅</view>
+	<view class="o_tit">
+		交易信息
+	</view>
+	<view class="o_msg">
+		<view class="dis_flex w100 ju_b fz28 c6">
+			<view>配件</view>
+			<view>¥50</view>
+		</view>
+		<view class="dis_flex w100 ju_b fz28 c6">
+			<view>维修费</view>
+			<view>¥80</view>
+		</view>
+	</view>
+	
+</view>
+ 
