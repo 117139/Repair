@@ -9,6 +9,7 @@ Page({
 			'男',
 			'女',
 		],
+		region: [],
 		index:0,
   },
 
@@ -73,4 +74,15 @@ Page({
 	    index: e.detail.value
 	  })
 	},
+	//选择地区
+	bindRegionChange(e) {
+	  console.log('picker发送选择改变，携带值为', e.detail.value)
+		this.data.region=e.detail.value
+	  this.setData({
+	    region: this.data.region
+	  })
+	},
+	formSubmit: function(e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+  },
 })

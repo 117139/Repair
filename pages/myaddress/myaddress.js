@@ -21,11 +21,38 @@ Page({
     mridx:0
   },
   onLoad: function (option) {
-  
+		var that =this
+		if(option.type==1){
+			that.setData({
+				addresback:true
+			})
+		}else{
+			that.setData({
+				addresback:false
+			})
+		}
   },
 	onShow(){
 
 		this.getaddlist()
+	},
+	toback(e){
+		var that =this
+		if(that.data.addresback==true){
+			console.log(e.currentTarget.dataset.idx)
+			var idx= e.currentTarget.dataset.idx
+			var pages = getCurrentPages();   //当前页面
+			var prevPage = pages[pages.length - 2];   //上一页面
+			prevPage.setData({
+			       //直接给上一个页面赋值
+			      addresschose: that.data.addresslist[idx],
+			});
+			 
+			wx.navigateBack({
+			     //返回
+			     delta: 1
+			})
+		}
 	},
 	jump(e){
 		app.jump(e)

@@ -358,3 +358,6 @@
 	font-size: 28rpx;
 	/* color: #8e8e8e; */
 }
+.hidden{
+	display: none;
+}

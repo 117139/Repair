@@ -1,16 +1,16 @@
 {
   "pages": [
+    "pages/mymsg/mymsg",
     "pages/my/my",
+    "pages/order/order",
     "pages/orderpl/orderpl",
     "pages/order_xq/order_xq",
     "pages/details/details",
 		"pages/myaddress/myaddress",
 		"pages/addAdd/addAdd",
 		"pages/addressEdit/addressEdit",
-    "pages/mymsg/mymsg",
     "pages/orderList/orderList",
     "pages/baoxiu/baoxiu",
-    "pages/order/order",
     "pages/index/index",
     "pages/fuwu/fuwu",
     "pages/login/login",

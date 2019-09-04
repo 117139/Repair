@@ -4,13 +4,13 @@ page{
 	background: #f7f7f7;
 }
 .container{
-	width: 100%;
+	width: 750rpx;
 	min-height: 100vh;
 	
 	background: #f7f7f7;
 }
 .tx_box{
-	width: 100%;
+	width: 750rpx;
 	height: 140rpx;
 	border-bottom: 1px solid #eee;
 	display: flex;
@@ -44,6 +44,9 @@ page{
 	box-sizing: border-box;
 	background-color: #fff;
 }
+.msg_name{
+	width: 4em;
+}
 .msg_val{
 	color: #9c9c9c;
 }
@@ -51,4 +54,46 @@ page{
 	font-size: 24rpx;
 	color: #919191;
 	margin-left: 10px;
+}
+.sub_btn{
+	margin-top:78rpx;
+	margin-bottom: 100rpx;
+width:480rpx;
+height:80rpx;
+background-image:linear-gradient(90deg, #59cafe 0%, #5ebdff 50%, #63b1ff 100%);
+border-radius:40rpx;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:PingFang-SC-Medium;
+font-size:28rpx;
+font-weight:bold;
+color:#ffffff;
+border: 0;
+
+}
+.msg_name{
+	width: 4em;
+}
+.msg_int{
+	flex: 1;
+	padding: 0 10rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.msg_box1{
+	height: auto;
+	align-items: flex-start;
+}
+.msg_box1 .msg_name{
+	line-height: 110rpx;
+}
+.msgsrk{
+	padding:40rpx 20rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 200rpx;
+	flex: 1;
 }

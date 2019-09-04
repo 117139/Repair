@@ -28,6 +28,8 @@
 			<view>¥80</view>
 		</view>
 	</view>
-	
+	<view class="w100 dis_flex ju_c">
+		<view class="sub_btn">确定</view>
+	</view>
 </view>
  

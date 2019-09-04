@@ -11,6 +11,7 @@ Page({
 		index:0,
 		imgb:[],
 		date:'',
+		address:''
   },
 
   /**
@@ -31,7 +32,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+		let pages = getCurrentPages();
+		let currPage = pages[pages.length - 1];
+		if (currPage.data.addresschose) {
+        this.setData({
+            //将携带的参数赋值
+            address: currPage.data.addresschose,
+            addressBack: true
+      });
+ 
+		console.log(this.data.address, '地址')
+ 
+		}
   },
 
   /**
@@ -68,6 +80,9 @@ Page({
   onShareAppMessage: function () {
 
   },
+	jump(e){
+		app.jump(e)
+	},
 	bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({

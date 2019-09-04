@@ -136,3 +136,9 @@ page{
 	font-weight: bold;
 	color: #ffffff;
 }
+.addressbox{
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}

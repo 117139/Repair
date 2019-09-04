@@ -1,7 +1,16 @@
 <!--pages/order/order.wxml-->
 <view class="container">
-	<view class="order_address">
-		<view class="address_null">请选择地址</view>
+	<view class="order_address"
+		data-url="/pages/myaddress/myaddress?type=1"
+		bindtap="jump">
+		<view wx:if="{{address==''}}" class="address_null">请选择地址</view>
+		<view wx:if="{{address!==''}}" class="addressbox">
+			<view class="dis_flex aic fz26 c3">
+				<text class="mr10">{{address.user_name}}</text>
+				<text>{{address.phone}}</text>
+			</view>
+			<view class="oh1 fz24 c9">{{address.address}}</view>
+		</view>
 		<text class="iconfont iconnext"></text>
 	</view>
 	<view class="order_msg">

@@ -70,3 +70,19 @@ page{
 	margin-bottom: 2rpx;
 	background-color: #fff;
 }
+.sub_btn{
+	margin-top:78rpx;
+	margin-bottom: 100rpx;
+width:480rpx;
+height:80rpx;
+background-image:linear-gradient(90deg, #59cafe 0%, #5ebdff 50%, #63b1ff 100%);
+border-radius:40rpx;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:PingFang-SC-Medium;
+font-size:28rpx;
+font-weight:bold;
+color:#ffffff;
+
+}
