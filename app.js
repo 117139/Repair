@@ -39,6 +39,27 @@ App({
 			url:e.currentTarget.dataset.url
 		})
 	},
+	retry(tit){
+		wx.setNavigationBarTitle({
+		  title: '加载中...',
+		  success: function(res) {},
+		  fail: function(res) {},
+		  complete: function(res) {},
+		})
+		wx.showToast({
+			icon:'none',
+			title:'调用重试方法'
+		})
+		if (getCurrentPages().length != 0) {
+		  getCurrentPages()[getCurrentPages().length - 1].onLoad()
+		  getCurrentPages()[getCurrentPages().length - 1].onShow()
+		}
+		setTimeout(function(){
+			wx.setNavigationBarTitle({
+			  title: tit,
+			})
+		},1000)
+	},
   globalData: {
     userInfo: null
   }

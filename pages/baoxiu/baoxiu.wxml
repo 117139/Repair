@@ -1,6 +1,9 @@
 <!--pages/baoxiu/baoxiu.wxml-->
+<import src="/utils/htmlStatus/index.wxml" />
+<template is="htmlStatus" data="{{...htmlStatus}}" />
 <view class="container">
-	
+	<!-- <view class="zanwu">暂无数据</view>
+	<view class="zanwu" bindtap="retry">加载失败,请点击重试</view> -->
 	<view class="baoxiu_box" wx:for="{{bx_data}}"
 				wx:for-index="idx"
 				wx:for-item="item"

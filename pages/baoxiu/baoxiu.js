@@ -1,4 +1,6 @@
 // pages/baoxiu/baoxiu.js
+var htmlStatus = require('../../utils/htmlStatus/index.js')
+const app=getApp()
 Page({
 
   /**
@@ -31,9 +33,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('onload')
+		this.getdata()
   },
-
+	retry(){
+		app.retry('保修')
+	},
+		
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -45,7 +51,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+		console.log('onShow')
+		
   },
 
   /**
@@ -81,5 +88,9 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+	getdata(){
+		const htmlStatus1 = htmlStatus.default(this)
+		htmlStatus1.error()    // 切换为error状态
+	}
 })

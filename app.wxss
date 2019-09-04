@@ -361,3 +361,9 @@
 .hidden{
 	display: none;
 }
+.zanwu{
+	line-height: 140rpx;
+	text-align: center;
+	font-size: 28rpx;
+	color: #999;
+}

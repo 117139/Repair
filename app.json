@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/mymsg/mymsg",
     "pages/my/my",
+    "pages/mymsg/mymsg",
     "pages/order/order",
     "pages/orderpl/orderpl",
     "pages/order_xq/order_xq",

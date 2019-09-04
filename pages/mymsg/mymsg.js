@@ -84,5 +84,28 @@ Page({
 	},
 	formSubmit: function(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+		var fs=e.detail.value
+		if(fs.tel==""){
+			wx.showToast({
+				icon:'none',
+				title:'请输入手机号'
+			})
+			return
+		}
+		
+		if(fs.address=="  "){
+			wx.showToast({
+				icon:'none',
+				title:'请选择居住地'
+			})
+			return
+		}
+		if(fs.xxaddress==""){
+			wx.showToast({
+				icon:'none',
+				title:'请输入详情地址'
+			})
+			return
+		}
   },
 })

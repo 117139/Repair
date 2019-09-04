@@ -94,6 +94,25 @@ Page({
 	onLoad: function() {
 
 	},
+  retry() {
+    wx.setNavigationBarTitle({
+      title: '加载中...',
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+    wx.showToast({
+      icon: 'none',
+      title: '调用重试方法'
+    })
+    if (getCurrentPages().length != 0) {
+      getCurrentPages()[getCurrentPages().length - 1].onLoad()
+      getCurrentPages()[getCurrentPages().length - 1].onShow()
+    }
+    wx.setNavigationBarTitle({
+      title: '保修',
+    })
+  },
 	jump(e){
 		app.jump(e)
 	}
