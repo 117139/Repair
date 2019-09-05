@@ -78,7 +78,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+		if(options.type){
+			console.log("type: " + options.type);
+			this.setData({
+				dest_type:options.type
+			})
+		}
   },
 
   /**
@@ -137,5 +142,8 @@ Page({
 		that.setData({
 			dest_type:e.currentTarget.dataset.idx
 		})
+	},
+	jump(e){
+		app.jump(e)
 	}
 })

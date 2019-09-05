@@ -4,7 +4,7 @@ page{
 	background: #f7f7f7;
 }
 .container{
-	width: 100%;
+	width: 750rpx;
 	min-height: 100vh;
 	padding: 16rpx 24rpx;
 	-webkit-box-sizing: border-box;
@@ -13,7 +13,7 @@ page{
 	background: #f7f7f7;
 }
 .order_address{
-	width: 100%;
+	width: 750rpx;
 	height: 100rpx;
 	display: flex;
 	justify-content: space-between;
@@ -63,9 +63,12 @@ page{
 	font-family: PingFang-SC-Regular;
 	font-size: 28rpx;
 	color: #666666;
-	height: 100rpx;
+	/* height: 100rpx; */
+	
 	display: flex;
 	align-items: center;
+	border: 0;
+	/* line-height: 40rpx; */
 }
 .fuwu_text{
 	flex: 1;
@@ -78,8 +81,17 @@ page{
 	font-size: 28rpx;
 }
 .wtms{
-	
+	align-items: flex-start;
 	border-bottom: 1px solid #eee;
+	
+}
+.wtms .fuwu_type{
+	padding-top: 35rpx;
+	line-height: 40rpx;
+}
+.wtms .fuwu_text{
+	border: 0;
+	line-height: 40rpx;
 }
 .scimg_tip{
 	font-family: PingFang-SC-Regular;
@@ -127,6 +139,7 @@ page{
 		#59cafe 0%, 
 		#5ebdff 50%, 
 		#63b1ff 100%);
+		border: 0;
 	border-radius: 40rpx;
 	display: flex;
 	justify-content: center;

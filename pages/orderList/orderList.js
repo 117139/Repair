@@ -1,5 +1,5 @@
 //logs.js
-// var pageState = require('../../utils/pageState/index.js')
+var htmlStatus = require('../../utils/htmlStatus/index.js')
 const app = getApp()
 
 Page({
@@ -75,27 +75,33 @@ Page({
 		// 	pages:pages,
 		// 	goods:this.data.goods
 		// })
-  //   if (this.data.btnkg==1){
-		// 	that.setData({
-		// 		btnkg:0
-		// 	})
-		// }
+		if (this.data.btnkg==1){
+			that.setData({
+				btnkg:0
+			})
+		}
 		console.log('我显示了')
-		// this.getOrderList('onshow')
+		this.getOrderList('onshow')
 	},
-	cload(){
-		var pages=[1,1,1,1,1]
-		var goods=[ [],[],[],[],[], ]
-		this.data.goods=goods
-		this.setData({
-			pages:pages,
-			goods:this.data.goods
-		})
-		console.log('我显示了')
-		// this.getOrderList('onshow')
+	retry(){
+		// var pages=[1,1,1,1,1]
+		// var goods=[ [],[],[],[],[], ]
+		// this.data.goods=goods
+		// this.setData({
+		// 	pages:pages,
+		// 	goods:this.data.goods
+		// })
+		// console.log('我显示了')
+		this.getOrderList()
 	},
 	onReady(){
 		
+	},
+	 /**
+	 * 页面上拉触底事件的处理函数
+	 */
+	onReachBottom: function () {
+		this.getOrderList()
 	},
 	jump(e){
 		app.jump(e)
@@ -120,7 +126,9 @@ Page({
 	getOrderList(ttype){
 	
 		let that = this
-		return
+		const htmlStatus1 = htmlStatus.default(that)
+		console.log('获取列表')
+		// return
 		wx.request({
 			url:  app.IPurl+'/api/orderList',
 			data:{
@@ -135,13 +143,7 @@ Page({
 			dataType:'json',
 			method:'get',
 			success(res) {
-				if(res.data.code==1){
-					wx.setNavigationBarTitle({
-						title:'订单列表'
-					})
-					that.setData({
-						htmlReset:0
-					})
+				if(res.data.code==1){   //成功
 						console.log(ttype)
 						let resultd=res.data.data
 						if(ttype=='onshow'){
@@ -149,7 +151,18 @@ Page({
 							var goods=[ [],[],[],[],[], ]
 							that.data.goods=goods
 						}
-						if(resultd.length>0){
+						
+						if(res.data.data.length==0){  //数据为空
+							if(that.data.page==1){      //第一次加载
+								htmlStatus1.dataNull()    // 切换为空数据状态
+							}else{
+								wx.showToast({
+									icon:'none',
+									title:'暂无更多数据'
+								})
+							}
+							
+						}else{                           //数据不为空
 							that.data.goods[that.data.type]=that.data.goods[that.data.type].concat(resultd)
 							that.data.pages[that.data.type]++
 							that.setData({
@@ -157,38 +170,41 @@ Page({
 								pages:that.data.pages,
 							})
 							console.log(that.data.goods)
-						}else{
-							wx.showToast({
-								icon:"none",
-								title:"没有更多数据了"
-							})
+								htmlStatus1.finish()    // 切换为finish状态
 						}
 						// console.log(res.data.list)
 						
 						
-				}else{
-					wx.showToast({
-						icon:"none",
-						title:"获取失败"
-					})
-					that.setData({
-						htmlReset:1
-					})
-					console.log(res.data)
+				}else{  //失败
+					if(res.data.msg){
+						wx.showToast({
+							icon:'none',
+							title:res.data.msg
+						})
+					}else{
+						wx.showToast({
+							icon:'none',
+							title:'加载失败'
+						})
+					}
+					htmlStatus1.error()    // 切换为error状态
 				}
 				
-				// pageState1.finish()    // 切换为finish状态
+				// htmlStatus1.error()    // 切换为error状态
 			},
 			fail(err) {
 				wx.showToast({
 					icon:"none",
-					title:"获取失败"
+					title:"加载失败"
 				})
-				that.setData({
-					htmlReset:1
-				})
+				
 				console.log(err)
-				 // pageState1.error()    // 切换为error状态
+				 htmlStatus1.error()    // 切换为error状态
+			},
+			complete() {
+				wx.setNavigationBarTitle({
+					title:'订单列表'
+				})
 			}
 		})
 	},

@@ -84,7 +84,8 @@ page{
 }
 .type1_one{
 	width: 140rpx;
-	margin: 0 16rpx 30rpx;
+	height: 220rpx;
+	margin: 0 16rpx;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -99,5 +100,5 @@ page{
 	font-size: 24rpx;
 	color: #666666;
 	text-align: center;
-	height: 60rpx;
+	/* height: 60rpx; */
 }

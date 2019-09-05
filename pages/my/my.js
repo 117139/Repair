@@ -6,14 +6,56 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+			userInfo:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+		var usermsg=wx.getStorageSync('userInfo')
+		
+		if(!usermsg){
+			// 获取用户信息
+			wx.getSetting({
+			  success: res => {
+			    console.log('16app'+JSON.stringify(res))
+			    if (res.authSetting['scope.userInfo']==true) {
+			      // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+						wx.getUserInfo({
+							success(res) {
+								app.globalData.userInfo = res.userInfo
+								console.log(app.globalData.userInfo)
+								wx.setStorageSync('userInfo', res.userInfo)
+								if(!app.globalData.userInfo){
+									wx.reLaunch({
+									  url: '/pages/login/login',
+									  fail: (err) => {
+									    console.log("失败: " + JSON.stringify(err));
+									  }
+									})
+								}else{
+									app.dologin()
+								}
+							}
+						})
+						
+			    }else{
+			      wx.reLaunch({
+			        url: '/pages/login/login',
+			        fail: (err) => {
+			          console.log("失败: " + JSON.stringify(err));
+			        }
+						})
+			    }
+			  }
+			})
+			
+		}else{
+			this.setData({
+				userInfo:usermsg
+			})
+		}
   },
 
   /**

@@ -1,5 +1,5 @@
 <!--pages/order/order.wxml-->
-<view class="container">
+<form class="container"  bindsubmit="formSubmit">
 	<view class="order_address"
 		data-url="/pages/myaddress/myaddress?type=1"
 		bindtap="jump">
@@ -12,6 +12,7 @@
 			<view class="oh1 fz24 c9">{{address.address}}</view>
 		</view>
 		<text class="iconfont iconnext"></text>
+		<input class="hidden" type="text" name="address" value="{{address.id}}" />
 	</view>
 	<view class="order_msg">
 		<picker  class="w100" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
@@ -22,10 +23,11 @@
 					<text class="iconfont iconnext"></text>
 				</view>
 		  </view>
+			<input class="hidden" type="text" name="fw" value="{{array[index]}}" />
 		</picker>
 		<view class="w100 dis_flex wtms">
 			<view class="fuwu_type">问题描述</view>
-			<textarea class="fuwu_text" placeholder="请输入问题描述"></textarea>
+			<textarea class="fuwu_text" name="wt" placeholder="请输入问题描述" value="1"></textarea>
 		</view>
 		<view class="scimg_tip">上传现场图片，师傅可以更好的了解您的问题~</view>
 		<view class="imgbox mb40">
@@ -55,9 +57,11 @@
 					<text class="iconfont iconnext"></text>
 				</view>
 		  </view>
+			<input class="hidden" type="text" name="yytime" value="{{date}}" />
 		</picker>
 	</view>
 	<view class="w100 dis_flex ju_c">
-		<view class="sub_btn">提交</view>
+		<!-- <view class="sub_btn">提交</view> -->
+		 <button class="sub_btn" form-type="submit">提交</button>
 	</view>
-</view>
+</form>

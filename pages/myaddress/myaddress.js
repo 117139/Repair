@@ -1,5 +1,5 @@
 //myaddress.js
-// var pageState = require('../../utils/pageState/index.js')
+var htmlStatus = require('../../utils/htmlStatus/index.js')
 const app = getApp()
 
 Page({
@@ -9,21 +9,27 @@ Page({
 			{
 				user_name:'包小橙',
 				phone:'18300000000',
-				address:'此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情'
+				address:'此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情',
+				id:1,
 			},
 			{
 				is_default:1,
 				user_name:'包小橙',
 				phone:'18300000000',
-				address:'此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情'
+				address:'此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情',
+				id:2,
 			}
 		],
     mridx:0
   },
   onLoad: function (option) {
 		var that =this
+		wx.setNavigationBarTitle({
+			title:'加载中...'
+		})
 		if(option.type==1){
 			that.setData({
+				btnkg:0,
 				addresback:true
 			})
 		}else{
@@ -36,9 +42,24 @@ Page({
 
 		this.getaddlist()
 	},
+	
+	retry(){
+		wx.setNavigationBarTitle({
+			title:'加载中...'
+		})
+		this.getaddlist()
+		// app.retry('保修')
+	},
 	toback(e){
 		var that =this
 		if(that.data.addresback==true){
+			if(that.data.btnkg==1){
+				return
+			}else{
+				that.setData({
+					btnkg:1
+				})
+			}
 			console.log(e.currentTarget.dataset.idx)
 			var idx= e.currentTarget.dataset.idx
 			var pages = getCurrentPages();   //当前页面
@@ -196,8 +217,9 @@ Page({
 		})
 	},
 	getaddlist(){
+		const htmlStatus1 = htmlStatus.default(this)
 		let that =this
-		return
+		// return
 		//http://water5100.800123456.top/WebService.asmx/useraddress
 		wx.request({
 			url:  app.IPurl+'/api/userAddressList',
@@ -216,11 +238,44 @@ Page({
 					that.setData({
 						addresslist:res.data.data
 					})
+					// if(res.data.data.length==0){  //数据为空
+					// 	if(that.data.page==1){      //第一次加载
+					// 		htmlStatus1.dataNull()    // 切换为空数据状态
+					// 	}else{
+					// 		wx.showToast({
+					// 			icon:'none',
+					// 			title:'暂无更多数据'
+					// 		})
+					// 	}
+					// 	
+					// }else{                           //数据不为空
+					// 	that.data.page++
+					// 	that.setData({
+					// 		addresslist:res.data.data,
+					// 		page:that.data.page
+					// 	})
+							htmlStatus1.finish()    // 切换为finish状态
+					// }
+				}else{
+					wx.showToast({
+						icon:'none',
+						title:'加载失败'
+					})
+					 htmlStatus1.error()    // 切换为error状态
 				}
 				
 			},
 			fail() {
-				
+				wx.showToast({
+					icon:'none',
+					title:'加载失败'
+				})
+				 htmlStatus1.error()    // 切换为error状态
+			},
+			complete() {
+				wx.setNavigationBarTitle({
+					title:'我的地址'
+				})
 			}
 		})
 	},

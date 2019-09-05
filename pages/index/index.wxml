@@ -19,7 +19,7 @@
 			wx:for-index="idx" 
 			wx:for-item="item" 
 			wx:key="idx"
-			data-url="/pages/fuwu/fuwu"
+			data-url="/pages/fuwu/fuwu?type={{idx}}"
 			bindtap="jump">
 				<image src="{{item.pic}}"></image>
 				<text>{{item.name}}</text>
@@ -27,18 +27,31 @@
 		</view>
 		<view class="w100">
 			<view class="hot_tit">热门服务</view>
-			<view class="w100 hot_box">
+			<swiper class="swiper swiper1" display-multiple-items='3'>
+				<block wx:for="{{hot_data}}" 
+					wx:for-index="idx" 
+					wx:for-item="item" 
+					wx:key="idx">
+					<swiper-item class="swiper_item hot_one" 
+						data-url="/pages/details/details"
+						bindtap="jump">
+						<image src="{{item.pic}}"></image>
+						<text>{{item.name}}</text>
+					</swiper-item>
+				</block>
+			</swiper>
+			<!-- <view class="w100 hot_box">
 				<view class="hot_one"
 					wx:for="{{hot_data}}" 
 					wx:for-index="idx" 
 					wx:for-item="item" 
 					wx:key="idx"
-					data-url="/pages/fuwu/fuwu"
+					data-url="/pages/details/details"
 					bindtap="jump">
 					<image src="{{item.pic}}"></image>
 					<text>{{item.name}}</text>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		<view class="w100">
 			<view class="hot_tit">猜你喜欢<image class="caicon" src="../../static/images/index_38.png"></image></view>
@@ -48,7 +61,7 @@
 				wx:for-index="idx" 
 				wx:for-item="item" 
 				wx:key="idx"
-				data-url="/pages/fuwu/fuwu"
+				data-url="/pages/details/details"
 				bindtap="jump">
 					<image src="{{item.pic}}"></image>
 				</view>

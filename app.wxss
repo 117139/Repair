@@ -51,7 +51,9 @@
     content:"\e6b3";
 }
 
-
+view{
+  -webkit-overflow-scrolling: touch;
+}
 
 
 
@@ -334,6 +336,9 @@
 
 .pb100{
 	padding-bottom: 100rpx;
+}
+.pb160{
+	padding-bottom: 160rpx;
 }
 /**/
 .lh50{

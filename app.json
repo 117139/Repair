@@ -1,20 +1,20 @@
 {
   "pages": [
+    "pages/order/order",
+    "pages/index/index",
+    "pages/orderList/orderList",
+    "pages/orderpl/orderpl",
+    "pages/baoxiu/baoxiu",
     "pages/my/my",
     "pages/mymsg/mymsg",
-    "pages/order/order",
-    "pages/orderpl/orderpl",
     "pages/order_xq/order_xq",
     "pages/details/details",
 		"pages/myaddress/myaddress",
 		"pages/addAdd/addAdd",
 		"pages/addressEdit/addressEdit",
-    "pages/orderList/orderList",
-    "pages/baoxiu/baoxiu",
-    "pages/index/index",
+    "pages/index1/index",
     "pages/fuwu/fuwu",
     "pages/login/login",
-    "pages/index1/index",
     "pages/logs/logs"
   ],
   "window": {

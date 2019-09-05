@@ -24,7 +24,8 @@
 	width: 138rpx;
 }
 .addmsg1 .msgtit{
-	line-height: 90rpx;
+	/* line-height: 90rpx; */
+	padding-top: 30rpx;
 }
 .msgsrk{
 	flex: 1;

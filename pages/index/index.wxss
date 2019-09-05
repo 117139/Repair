@@ -1,7 +1,7 @@
 /**index.wxss**/
 page{
 	width: 100%;
-	overflow-y: auto!important;
+	/* overflow-y: auto!important; */
 	background-color: #fff;
 }
 .container{
@@ -107,4 +107,11 @@ page{
 .cai_one image{
 	width: 340rpx;
 	height: 114rpx;
+}
+.swiper1{
+	height: 226rpx;
+	margin-bottom: 23rpx;
+}
+.swiper1 image{
+	border-radius: 0;
 }

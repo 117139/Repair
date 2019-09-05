@@ -1,8 +1,17 @@
 <!--pages/details/details.wxml-->
-<view class="container">
+<view class="container pb160">
 	<view class="banner">
-		<text>房屋电路维修</text>
-		<image src="../../static/images/xq_03.png"></image>
+	<!-- 	<text>房屋电路维修</text>
+		<image src="../../static/images/xq_03.png"></image> -->
+		<swiper class="swiper" indicator-dots="true" circular='true'>
+			<block wx:for="{{bannerimg}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+				<swiper-item class="swiper_item">
+					<!-- <image wx:if="{{item.pic}}" lazy-load='true' src="{{filter.imgIP(item.pic)}}" class="slide-image"/> -->
+					<image wx:if="{{item.pic}}" lazy-load='true' src="{{item.pic}}" class="slide-image" />
+		
+				</swiper-item>
+			</block>
+		</swiper>
 	</view>
 	<view class="xq_titi">
 		<view class="fz28 c9">

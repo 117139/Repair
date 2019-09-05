@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+		btnkg:0,
 		array: ['美国', '中国', '巴西', '日本'],
 		index:0,
 		imgb:[],
@@ -167,5 +168,116 @@ Page({
 			}
 		})
 	},
-	
+	formSubmit: function(e) {
+		var that =this
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+		var fs=e.detail.value
+		if(!fs.address){
+			wx.showToast({
+				icon:'none',
+				title:'请选择地址'
+			})
+			return
+		}
+		if(!fs.fw){
+			wx.showToast({
+				icon:'none',
+				title:'请选择服务类别'
+			})
+			return
+		}
+		if(!fs.wt){
+			wx.showToast({
+				icon:'none',
+				title:'请输入问题描述'
+			})
+			return
+		}
+		if(!fs.yytime){
+			wx.showToast({
+				icon:'none',
+				title:'请选择预约时间'
+			})
+			return
+		}
+		wx.showModal({
+			title: '提示',
+			content: '是否要提交该订单',
+			success (res) {
+				if (res.confirm) {
+					console.log('用户点击确定')
+					wx.showLoading({
+						title:'正在提交。。'
+					})
+					// 'Authorization':wx.getStorageSync('usermsg').user_token
+					// var dztime
+					// if(that.data.zhidingcur==-1){
+					// 	dztime=0
+					// }else{
+					// 	dztime=that.data.zhiding[that.data.zhidingcur].id
+					// }
+					var imbox=that.data.imgb
+					imbox=imbox.join(',')
+		     
+					wx.request({
+						url:  app.IPurl+'/api/community/save',
+						data:{
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						dataType:'json',
+						method:'POST',
+						success(res) {
+							wx.hideLoading()
+							console.log(res.data)
+						
+							
+							if(res.data.errcode==0){
+								
+								wx.showToast({
+									 icon:'none',
+									 title:'提交成功',
+									 duration:2000
+								})
+								setTimeout(function(){
+									wx.navigateTo({
+										url:'pages/orderList/orderList'
+									})
+									// wx.switchTab({
+									// 	url: "/pages/shequ/shequ"
+									// })
+								},1000)
+								
+							}else{
+		            if (res.data.ertips){
+		              wx.showToast({
+		                icon: 'none',
+		                title: res.data.ertips
+		              })
+		            }else{
+		              wx.showToast({
+		                icon: 'none',
+		                title: '操作失败'
+		              })
+		            }
+							}
+							
+							 
+						},
+						fail() {
+							wx.hideLoading()
+							wx.showToast({
+								 icon:'none',
+								 title:'操作失败'
+							})
+						}
+					})
+					
+				} else if (res.cancel) {
+					console.log('用户点击取消')
+				}
+			}
+		})
+  },
 })

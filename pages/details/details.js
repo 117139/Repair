@@ -5,7 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+		bannerimg: [{
+				pic: '/static/images/details_02.jpg'
+			},
+			{
+				pic: '/static/images/details_02.jpg'
+			},
+			{
+				pic: '/static/images/details_02.jpg'
+			},
+		],
   },
 
   /**

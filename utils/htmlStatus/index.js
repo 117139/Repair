@@ -1,3 +1,13 @@
+const finish = (that) => {
+  return () => {
+    that.setData({
+      htmlStatus: {
+        state: 'finish',
+        message: '加载完成'
+      }
+    })
+  }
+}
 const loading = (that) => {
   return () => {
     that.setData({
