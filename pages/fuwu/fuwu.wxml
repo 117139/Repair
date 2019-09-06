@@ -1,6 +1,6 @@
 <!--page/DEST/DEST.wxml-->
 <import src="/utils/htmlStatus/index.wxml" />
-<template is="htmlStatus" data="{{...htmlStatus}}" />
+
 <view class="container">
 	<view class="ss_box">
 		<form bindsubmit="formSubmit" class="ss_box1">
@@ -36,4 +36,5 @@
 			</view>
 		</view>
 	</view>
+	<template is="htmlStatus" data="{{...htmlStatus}}" />
 </view>

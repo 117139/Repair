@@ -1,6 +1,7 @@
 //app.js
 App({
-	IPurl:'',
+  IPurl: 'http://smwx.800123456.top/api.aspx',
+  IPurl1:'http://smwx.800123456.top/',
   onLaunch: function () {
     let that=this
     // 获取用户信息

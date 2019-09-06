@@ -85,6 +85,7 @@ Page({
 				dest_type:options.type
 			})
 		}
+    this.gettype()
   },
 
   /**
@@ -154,7 +155,7 @@ Page({
 			data:  {
 				apipage: "shop", 
 				op: "grouplist",
-				tokenstr:wx.getStorageSync('token')
+				// tokenstr:wx.getStorageSync('token')
 			},
 			header: {
 				'content-type': 'application/x-www-form-urlencoded' 
