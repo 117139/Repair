@@ -1,4 +1,5 @@
 // page/DEST/DEST.js
+var htmlStatus = require('../../utils/htmlStatus/index.js')
 const app=getApp()
 Page({
 
@@ -145,5 +146,70 @@ Page({
 	},
 	jump(e){
 		app.jump(e)
+	},
+	gettype(){
+		const htmlStatus1 = htmlStatus.default(this)
+		wx.request({
+			url:  app.IPurl,
+			data:  {
+				apipage: "shop", 
+				op: "grouplist",
+				tokenstr:wx.getStorageSync('token')
+			},
+			header: {
+				'content-type': 'application/x-www-form-urlencoded' 
+			},
+			dataType:'json',
+			method:'get',
+			success(res) {
+				console.log(res.data)
+				
+				if(res.data.code==1){
+					
+					if(res.data.list.length==0){  //数据为空
+						
+							htmlStatus1.dataNull()    // 切换为空数据状态
+					
+							wx.showToast({
+								icon:'none',
+								title:'暂无分类'
+							})
+						
+						
+					}else{                           //数据不为空
+						
+						that.setData({
+							fw_data:res.data.data
+						})
+							htmlStatus1.finish()    // 切换为finish状态
+					}
+				}else{
+					if(res.data.returnstr){
+						wx.showToast({
+							icon:'none',
+							title:res.data.returnstr
+						})
+					}else{
+						wx.showToast({
+							icon:'none',
+							title:'加载失败'
+						})
+					}
+					htmlStatus1.error()    // 切换为error状态
+				}
+			},
+			fail() {
+				wx.showToast({
+					icon:'none',
+					title:'加载失败'
+				})
+				 htmlStatus1.error()    // 切换为error状态
+			},
+			complete() {
+				wx.setNavigationBarTitle({
+				  title: '服务',
+				})
+			}
+		})
 	}
 })

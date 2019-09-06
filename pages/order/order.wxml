@@ -25,9 +25,19 @@
 		  </view>
 			<input class="hidden" type="text" name="fw" value="{{array[index]}}" />
 		</picker>
+		<picker  class="w100" bindchange="bindPickerChange1" value="{{index1}}" range="{{array1}}">
+		  <view class="order_fw">
+		  	<view class="fuwu_type">服务名称</view>
+		  	<view class="dis_flex aic">
+					<text class="fz28 c6">{{array1[index1]}}</text>
+					<text class="iconfont iconnext"></text>
+				</view>
+		  </view>
+			<input class="hidden" type="text" name="fw" value="{{array[index]}}" />
+		</picker>
 		<view class="w100 dis_flex wtms">
 			<view class="fuwu_type">问题描述</view>
-			<textarea class="fuwu_text" name="wt" placeholder="请输入问题描述" value="1"></textarea>
+			<textarea class="fuwu_text" name="wt" placeholder="请输入问题描述" value="" auto-height="true"></textarea>
 		</view>
 		<view class="scimg_tip">上传现场图片，师傅可以更好的了解您的问题~</view>
 		<view class="imgbox mb40">

@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/order/order",
     "pages/index/index",
+		"pages/myaddress/myaddress",
+		"pages/addAdd/addAdd",
+    "pages/order/order",
     "pages/orderList/orderList",
     "pages/orderpl/orderpl",
     "pages/baoxiu/baoxiu",
@@ -9,8 +11,6 @@
     "pages/mymsg/mymsg",
     "pages/order_xq/order_xq",
     "pages/details/details",
-		"pages/myaddress/myaddress",
-		"pages/addAdd/addAdd",
 		"pages/addressEdit/addressEdit",
     "pages/index1/index",
     "pages/fuwu/fuwu",

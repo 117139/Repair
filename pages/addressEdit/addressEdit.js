@@ -17,17 +17,18 @@ Page({
   onLoad: function (option) {
     if(option.address){
 			console.log(option.address)
+			this.setData({
+				editaddress:JSON.parse(option.address)
+			})
+			var area=this.data.editaddress.area.split(' ')
+			this.data.region=area
+			this.setData({
+				region:this.data.region,
+				moren:this.data.editaddress.is_default
+			})
+			console.log(this.data.region)
 		}
-		this.setData({
-			editaddress:JSON.parse(option.address)
-		})
-		var area=this.data.editaddress.area.split(' ')
-		this.data.region=area
-		this.setData({
-			region:this.data.region,
-			moren:this.data.editaddress.is_default
-		})
-		console.log(this.data.region)
+		
   },
 	//选择地区
 	bindRegionChange(e) {

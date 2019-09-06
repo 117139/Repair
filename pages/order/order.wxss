@@ -13,7 +13,7 @@ page{
 	background: #f7f7f7;
 }
 .order_address{
-	width: 750rpx;
+	width: 100%;
 	height: 100rpx;
 	display: flex;
 	justify-content: space-between;
@@ -67,32 +67,32 @@ page{
 	
 	display: flex;
 	align-items: center;
-	border: 0;
+	/* border: 0; */
 	/* line-height: 40rpx; */
+}
+
+.wtms{
+	/* align-items: flex-start; */
+	/* align-items: baseline; */
+	border-bottom: 1px solid #eee;
+	font-size: 28rpx;
+}
+.wtms .fuwu_type{
+	padding-top: 36rpx;
+	padding-bottom: 36rpx;
+	/* border: 0; */
+	line-height: 1;
 }
 .fuwu_text{
 	flex: 1;
-	height: 200rpx;
-	padding-top: 35rpx;
+	padding-top: 36rpx;
+	padding-bottom: 36rpx;
 	padding-left: 10rpx;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	font-size: 28rpx;
-}
-.wtms{
-	align-items: flex-start;
-	border-bottom: 1px solid #eee;
 	
+	
+	line-height: 1;
 }
-.wtms .fuwu_type{
-	padding-top: 35rpx;
-	line-height: 40rpx;
-}
-.wtms .fuwu_text{
-	border: 0;
-	line-height: 40rpx;
-}
+
 .scimg_tip{
 	font-family: PingFang-SC-Regular;
 	font-size: 24rpx;

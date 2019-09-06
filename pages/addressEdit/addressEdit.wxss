@@ -1,15 +1,20 @@
 .container{
 	width: 100%;
 	min-height: 100vh;
-	padding: 0 28rpx;
+	padding: 18rpx 0 17rpx;
 	box-sizing: border-box;
-	background-color: #fff;
+	background-color: #f7f7f7;
 	position: relative;
 }
 .addmsg{
-	width: 694rpx;
+	width: 750rpx;
 	height: 90rpx;
+	padding: 0 24rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	border-bottom: 1px solid #e8e8e8;
+	background-color: #fff;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -17,8 +22,18 @@
 	color: #333;
 }
 .addmsg1{
-	height: auto;
-	align-items: flex-start;
+	width: 750rpx;
+	padding: 0 24rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+		border-bottom: 1px solid #e8e8e8;
+	display: flex;
+	font-size: 26rpx;
+	background-color: #fff;
+	color: #333;
+	align-items: stretch;
+	/* align-items: flex-start; */
 }
 .msgtit{
 	width: 138rpx;
@@ -26,6 +41,8 @@
 .addmsg1 .msgtit{
 	/* line-height: 90rpx; */
 	padding-top: 30rpx;
+	padding-bottom: 30rpx;
+	line-height: 1;
 }
 .msgsrk{
 	flex: 1;
@@ -33,7 +50,8 @@
 .addmsg1 .msgsrk{
 	padding-top: 30rpx;
 	padding-bottom: 30rpx;
-	height: 200rpx;
+	/* height: 200rpx; */
+	line-height: 1;
 }
 .definebtn{
 	margin-top: 140rpx;

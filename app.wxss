@@ -266,6 +266,9 @@ view{
 	font-size: 120rpx;
 }
 /*margin*/
+.mt15{
+	margin-top: 15rpx;
+}
 .mr5{
 	margin-right: 5rpx; 
 }

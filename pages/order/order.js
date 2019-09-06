@@ -10,6 +10,8 @@ Page({
 		btnkg:0,
 		array: ['美国', '中国', '巴西', '日本'],
 		index:0,
+		array1: ['服务名称1', '服务名称2', '服务名称3', '服务名称4'],
+		index1:0,
 		imgb:[],
 		date:'',
 		address:''
@@ -88,6 +90,12 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
+    })
+  },
+	bindPickerChange1: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index1: e.detail.value
     })
   },
 	bindTimeChange: function(e) {
