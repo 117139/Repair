@@ -23,7 +23,7 @@ App({
     						  }
     						})
     					}else{
-								// that.dologin()
+								that.dologin()
 							}
     				}
     			})
@@ -44,14 +44,19 @@ App({
 		wx.login({
 		  success: function (res) {
 				// 发送 res.code 到后台换取 openId, sessionKey, unionId
+        var uinfo = that.globalData.userInfo
 		    let data = {
 					key:'server_mima',
-					code:res.code
+					code:res.code,
+          apipage:'login',
+          nickname: uinfo.nickName,
+          headpicurl: uinfo.avatarUrl,
+          homeid: 0   //0用户端，1师傅端
 		    }
 				let rcode=res.code
 				console.log(res.code)
 				wx.request({
-					url:  that.IPurl1+'login',
+					url:  that.IPurl,
 					data: data,
 					header: {
 						'content-type': 'application/x-www-form-urlencoded' 
@@ -61,13 +66,12 @@ App({
 					success(res) {
 						console.log(res.data)
 						if(res.data.error==0){
-							// var login = wx.getStorageSync('login')
-							// wx.reLaunch({
-							//   url: '/pages/index/index',
-							//   fail: (err) => {
-							//     console.log("失败: " + JSON.stringify(err));
-							//   }
-							// })
+              console.log('登录成功')
+              wx.setStorageSync('tokenstr', res.data.tokenstr)
+              wx.setStorageSync('member', res.data.member)
+              // wx.setStorageSync('login', 'login')
+              // wx.setStorageSync('morenaddress', res.data.user_member_shopping_address)
+              // wx.setStorageSync('appcode', rcode)
 							if(type=='shouquan'){
 								wx.reLaunch({
 								  url: '/pages/index/index',
@@ -76,32 +80,16 @@ App({
 								  }
 								})
 							}
-							console.log('登录成功')
-	            wx.setStorageSync('login', 'login')
-							wx.setStorageSync('tokenstr', res.data.tokenstr)
-							wx.setStorageSync('morenaddress', res.data.user_member_shopping_address)
-							/*
-								address:"2321231323"
-								city:"北京市"
-								county:"东城区"
-								create_time:"05/14/2019 15:50:41"
-								default_add:1
-								mobile:"18334774129"
-								name:"苏鑫"
-								province:"北京市"
-								update_time:"05/14/2019 15:50:41"
-								user_member_id:2
-								user_member_shopping_address_id:3
-							*/
-							wx.setStorageSync('appcode', rcode)
-						}
-						if(res.data.error==2){
-							wx.setStorageSync('tokenstr', res.data.tokenstr)
-							wx.setStorageSync('appcode', rcode)
-							// wx.reLaunch({
-							// 	url:'/pages/login/login'
-							// })
-						}
+							
+							
+							
+						}else{
+              wx.showToast({
+                icon:'none',
+                title: '登录失败',
+              })
+            }
+					
 					},
 					fail() {
 						wx.showToast({

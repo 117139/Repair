@@ -77,8 +77,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that =this
-    that.gettype1()
+    if(options.id){
+      this.setData({
+        id:options.id,
+        groupid: options.groupid
+      })
+    }
+    this.getType()
   },
 
   /**
@@ -145,12 +150,9 @@ Page({
 	},
 	bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    var idx=e.detail.value
     this.setData({
-      index: idx,
-      type1:[]
+      index: e.detail.value
     })
-    this.getgoods(idx, this.data.fw_data[idx].id)
   },
 	bindPickerChange1: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -165,7 +167,7 @@ Page({
     })
   },
 
-  gettype1() {
+  gettype(id) {
     var that = this
     const htmlStatus1 = htmlStatus.default(that)
     wx.request({
@@ -190,6 +192,16 @@ Page({
           })
         } else if (res.data.list.length > 0) {                           //数据不为空
           var rlist = res.data.list
+          if(id){
+            for (var i = 0; i < rlist.length; i++) {
+              if (id == rlist[i].id) {
+                that.setData({
+                  index: 0
+                })
+                break;
+              }
+            }
+          }
           that.setData({
             fw_data: rlist
           })
@@ -329,31 +341,31 @@ Page({
 						break;
 					}
 					wx.uploadFile({
-							url: app.IPurl, //仅为示例，非真实的接口地址
-							filePath: tempFilePaths[i],
-              name: 'upfile',
-							formData: {
-                'apipage': 'uppic',
-                // "tokenstr": wx.getStorageSync('tokenstr').tokenstr, 
-							},
-							success (res){
-								console.log(res.data)
-								var ndata=JSON.parse(res.data)
-								console.log(ndata)
-                console.log(ndata.error==0)
-                if (ndata.error==0){
-                  that.data.imgb.push(ndata.url)
-									that.setData({
-										imgb:that.data.imgb
-									})
-								}else{
-									wx.showToast({
-										icon:"none",
-										title:"上传失败"
-									})
-								}
+						url: app.IPurl, //仅为示例，非真实的接口地址
+						filePath: tempFilePaths[i],
+						name: 'upfile',
+						formData: {
+							'apipage': 'uppic',
+							// "tokenstr": wx.getStorageSync('tokenstr').tokenstr, 
+						},
+						success (res){
+							console.log(res.data)
+							var ndata=JSON.parse(res.data)
+							console.log(ndata)
+							console.log(ndata.error==0)
+							if (ndata.error==0){
+								that.data.imgb.push(ndata.url)
+								that.setData({
+									imgb:that.data.imgb
+								})
+							}else{
+								wx.showToast({
+									icon:"none",
+									title:"上传失败"
+								})
 							}
-						})
+						}
+					})
 					
 				}
 			}
@@ -369,21 +381,14 @@ Page({
 				title:'请选择地址'
 			})
 			return
-    }
-    if (!fs.fw_type) {
-      wx.showToast({
-        icon: 'none',
-        title: '请选择服务类别'
-      })
-      return
-    }
-    if (!fs.fw_name) {
-      wx.showToast({
-        icon: 'none',
-        title: '请选择服务名称'
-      })
-      return
-    }
+		}
+		if(!fs.fw){
+			wx.showToast({
+				icon:'none',
+				title:'请选择服务类别'
+			})
+			return
+		}
 		if(!fs.wt){
 			wx.showToast({
 				icon:'none',
@@ -407,23 +412,19 @@ Page({
 					wx.showLoading({
 						title:'正在提交。。'
 					})
-				
+					// 'Authorization':wx.getStorageSync('usermsg').user_token
+					// var dztime
+					// if(that.data.zhidingcur==-1){
+					// 	dztime=0
+					// }else{
+					// 	dztime=that.data.zhiding[that.data.zhidingcur].id
+					// }
 					var imbox=that.data.imgb
 					imbox=imbox.join(',')
 		     
 					wx.request({
 						url:  app.IPurl+'/api/community/save',
 						data:{
-              apipage:'smwx',
-              op:'orderpub_user',  //用户下单
-              shopid: that.data.type1[that.data.index1].id,//(按需传递)
-              name: '',
-              description: fs.wt,
-              addressid: that.data.address.ID,//(地址id)
-              pics: imbox,//(描述图片)
-              yuyuetime: fs.yytime,  //（预约时间，标准时间格式2019-9 - 9）
-              shopgroupid: that.data.fw_data[that.data.index].id,  //（分类id）
-              "tokenstr": wx.getStorageSync('tokenstr').tokenstr
 						},
 						header: {
 							'content-type': 'application/x-www-form-urlencoded'
@@ -435,7 +436,7 @@ Page({
 							console.log(res.data)
 						
 							
-							if(res.data.error==0){
+							if(res.data.errcode==0){
 								
 								wx.showToast({
 									 icon:'none',
@@ -446,14 +447,16 @@ Page({
 									wx.navigateTo({
 										url:'/pages/orderList/orderList'
 									})
-								
+									// wx.switchTab({
+									// 	url: "/pages/shequ/shequ"
+									// })
 								},1000)
 								
 							}else{
-                if (res.data.returnstr){
+		            if (res.data.ertips){
 		              wx.showToast({
 		                icon: 'none',
-                    title: res.data.returnstr
+		                title: res.data.ertips
 		              })
 		            }else{
 		              wx.showToast({

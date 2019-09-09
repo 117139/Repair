@@ -76,14 +76,17 @@ Page({
 		}
 	//http://water5100.800123456.top/WebService.asmx/useraddress
 		wx.request({
-			url:  app.IPurl+'/api/userAddress',
+			url:  app.IPurl,
 			data:  {
-					token:wx.getStorageSync('token'),
-					area:that.data.region[0]+' '+that.data.region[1]+' '+that.data.region[2], 
-					address:formresult.xxaddress,
-					user_name: formresult.name,
-					phone:formresult.tel,
-					is_default:formresult.moren ? 1:0
+				'apipage': 'address', 
+          'contact_province_code': that.data.region[2], 
+          'contact_city_code': that.data.region[1], 
+          'contact_area_code': that.data.region[0], 
+          'details_info': formresult.xxaddress, 
+          'consignee': formresult.name, 
+          'consignee_tel': formresult.tel, 
+          'op': 'edit', 
+					"tokenstr": wx.getStorageSync('tokenstr').tokenstr
 		    },
 			header: {
 				'content-type': 'application/x-www-form-urlencoded' 
@@ -93,7 +96,7 @@ Page({
 			success(res) {
 				console.log(res.data)
 				
-				if(res.data.code==1){
+				if(res.data.error==0){
 					wx.showToast({
 						title:'保存成功'
 					})

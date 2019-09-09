@@ -90,32 +90,35 @@ Page({
 			})
 		}
 		wx.request({
-			url:  app.IPurl+'/api/userAddressDefaultStatus/'+id,
+			url:  app.IPurl,
 			data:  {
-				token:wx.getStorageSync('token')
+        'op': 'moren',
+        'id': id,
+        'apipage': 'address', 
+        "tokenstr": wx.getStorageSync('tokenstr').tokenstr
 		  },
 			header: {
 				'content-type': 'application/x-www-form-urlencoded' 
 			},
 			dataType:'json',
-			method:'put',
+      method:'get',
 			success(res) {
 				console.log(res.data)
 				that.setData({
 					btnkg:0
 				})
-				if(res.data.code==1){
+				if(res.data.error==0){
 					that.getaddlist()
 				}else{
-					if(res.data.msg){
+          if (res.data.returnstr){
 						wx.showToast({
-							title: res.data.msg,
+              title: res.data.returnstr,
 							duration: 2000,
 							icon:'none'
 						});
 					}else{
 						wx.showToast({
-							title: '网络异常',
+							title: '操作失败',
 							duration: 2000,
 							icon:'none'
 						});
@@ -125,7 +128,7 @@ Page({
 			fail(err){
 				console.log(err)
 				wx.showToast({
-					title: '网络异常',
+          title: '操作失败',
 					duration: 2000,
 					icon:'none'
 				});
@@ -161,31 +164,33 @@ Page({
 						})
 					}
 					wx.request({
-						url:  app.IPurl+'/api/userAddress/'+e.currentTarget.dataset.id,
+						url:  app.IPurl,
 						data:  {
-								token:wx.getStorageSync('token')
+              'op': 'del', 
+                'id': id,
+              'apipage': 'address',
+              "tokenstr": wx.getStorageSync('tokenstr').tokenstr
 					    },
 						header: {
 							'content-type': 'application/x-www-form-urlencoded' 
 						},
 						dataType:'json',
-						method:'DELETE',
+						method:'get',
 						success(res) {
 							console.log(res.data)
 							that.setData({
 								btnkg:0
 							})
-							if(res.data.code==1){
+							if(res.data.error==0){
 								wx.showToast({
 									title:'操作成功'
 								})
-								setTimeout(function(){
-									that.getaddlist()
-								},1000)
+                  that.getaddlist()
+
 							}else{
-								if(res.data.msg){
+                if (res.data.returnstr){
 									wx.showToast({
-										title: res.data.msg,
+                    title: res.data.returnstr,
 										duration: 2000,
 										icon:'none'
 									});
@@ -224,8 +229,10 @@ Page({
 		wx.request({
 			url:  app.IPurl+'/api/userAddressList',
 			data:  {
-					token:wx.getStorageSync('token')
-				},
+          "op":'list',
+					'apipage': 'address',
+          "tokenstr": wx.getStorageSync('tokenstr').tokenstr
+			},
 			header: {
 				'content-type': 'application/x-www-form-urlencoded' 
 			},
@@ -234,28 +241,14 @@ Page({
 			success(res) {
 				console.log(res.data)
 				
-				if(res.data.code==1){
+				if(res.data.error==0){
+          that.data.addresslist= res.data.list
 					that.setData({
-						addresslist:res.data.data
+						addresslist:res.data.list
 					})
-					// if(res.data.data.length==0){  //数据为空
-					// 	if(that.data.page==1){      //第一次加载
-					// 		htmlStatus1.dataNull()    // 切换为空数据状态
-					// 	}else{
-					// 		wx.showToast({
-					// 			icon:'none',
-					// 			title:'暂无更多数据'
-					// 		})
-					// 	}
-					// 	
-					// }else{                           //数据不为空
-					// 	that.data.page++
-					// 	that.setData({
-					// 		addresslist:res.data.data,
-					// 		page:that.data.page
-					// 	})
-							htmlStatus1.finish()    // 切换为finish状态
-					// }
+					
+          htmlStatus1.finish()    // 切换为finish状态
+
 				}else{
 					wx.showToast({
 						icon:'none',

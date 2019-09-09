@@ -1,5 +1,10 @@
 <!--pages/details/details.wxml-->
-<view class="container pb160">
+<import src="/utils/htmlStatus/index.wxml" />
+<import src="../../vendor/wxParse/wxParse.wxml" />
+<wxs src="../../utils/filter.wxs" module="filter" />
+	<template is="htmlStatus" data="{{...htmlStatus}}" />
+<view  wx:if="{{xqData}}" class="container pb160">
+
 	<view class="banner">
 	<!-- 	<text>房屋电路维修</text>
 		<image src="../../static/images/xq_03.png"></image> -->
@@ -15,7 +20,7 @@
 	</view>
 	<view class="xq_titi">
 		<view class="fz28 c9">
-			房屋电路维修，师傅上门服务
+			{{xqData.name}}，师傅上门服务
 		</view>
 		<view class="dis_flex ju_b">
 			<view class="fz24 c6">
@@ -33,7 +38,10 @@
 			<view class="xq_msg_name">材料配件</view>
 			<view class="hx1"></view>
 		</view>
-		<view class="w100 table">
+    <view class='w100'>
+		  <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+		<!-- <view class="w100 table">
 			 <view class="w100 tr">
 				 <view class="td th td1">房屋电路维修</view>
 				 <view class="td th td2">材料价格</view>
@@ -64,7 +72,7 @@
 				 <view class="td td2">20元/个</view>
 				 <view class="td td3">50元/起</view>
 			 </view>
-		</view>
+		</view> -->
 		<view class="table_tip">温馨提示:材料配件用户可自备</view>
 	</view>
 	<view class="xq_msg">

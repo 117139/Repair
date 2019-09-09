@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+var htmlStatus = require('../../utils/htmlStatus/index.js')
 const app = getApp()
 
 Page({
@@ -104,7 +105,7 @@ Page({
 		})
 	},
 	onLoad: function() {
-
+    this.gettype()
 	},
   retry() {
     wx.setNavigationBarTitle({
@@ -128,66 +129,54 @@ Page({
 	jump(e){
 		app.jump(e)
 	},
-	getdata(){
-		let that =this
-		wx.request({
-			url:  app.IPurl+'',
-			data:  {
-				token:wx.getStorageSync('token')
-			},
-			header: {
-				'content-type': 'application/x-www-form-urlencoded' 
-			},
-			dataType:'json',
-			method:'get',
-			success(res) {
-				console.log(res.data)
-				
-				if(res.data.code==1){   //成功
-					
-					if(res.data.data.length==0){  //数据为空
-						if(that.data.page==1){      //第一次加载
-							htmlStatus1.dataNull()    // 切换为空数据状态
-						}else{
-							wx.showToast({
-								icon:'none',
-								title:'暂无更多数据'
-							})
-						}
-						
-					}else{                           //数据不为空
-						that.setData({
-							fw_data:res.data.data
-						})
-							// htmlStatus1.finish()    // 切换为finish状态
-					}
-				}else{ //失败
-					if(res.data.msg){
-						wx.showToast({
-							icon:'none',
-							title:res.data.msg
-						})
-					}else{
-						wx.showToast({
-							icon:'none',
-							title:'加载失败'
-						})
-					}
-					// htmlStatus1.error()    // 切换为error状态
-				}
-			},
-			fail() {
-				wx.showToast({
-					icon:'none',
-					title:'加载失败'
-				})
-				 // htmlStatus1.error()    // 切换为error状态
-			},
-			complete() {
-				wx.setNavigationBarTitle({
-				  title: '上门维修',
-				})
-			}
-		})
-	}
+  gettype() {
+    var that = this
+    const htmlStatus1 = htmlStatus.default(that)
+    wx.request({
+      url: app.IPurl,
+      data: {
+        apipage: "shop",
+        op: "grouplist",
+        // tokenstr:wx.getStorageSync('token')
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'get',
+      success(res) {
+        console.log(res.data)
+        if (res.data.list.length == 0) {  //数据为空
+          htmlStatus1.dataNull()    // 切换为空数据状态
+          wx.showToast({
+            icon: 'none',
+            title: '暂无分类'
+          })
+        } else if (res.data.list.length > 0) {                           //数据不为空
+          that.setData({
+            fw_data: res.data.list
+          })
+          htmlStatus1.finish()    // 切换为finish状态
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '加载失败'
+          })
+          htmlStatus1.error()    // 切换为error状态
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '加载失败'
+        })
+        htmlStatus1.error()    // 切换为error状态
+      },
+      complete() {
+        wx.setNavigationBarTitle({
+          title: '上门服务',
+        })
+      }
+    })
+  },
 })

@@ -1,5 +1,7 @@
 <!--index.wxml-->
+<import src="/utils/htmlStatus/index.wxml" />
 <wxs src="../../utils/filter.wxs" module="filter" />
+<template is="htmlStatus" data="{{...htmlStatus}}" />
 <view class="container">
 	<view class="main">
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
@@ -21,7 +23,7 @@
 			wx:key="idx"
 			data-url="/pages/fuwu/fuwu?type={{idx}}"
 			bindtap="jump">
-				<image src="{{item.pic}}"></image>
+				<image src="{{filter.getgimg(item.pic)}}"></image>
 				<text>{{item.name}}</text>
 			</view>
 		</view>

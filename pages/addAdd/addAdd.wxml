@@ -27,14 +27,13 @@
 		<textarea class="msgsrk"  name="xxaddress" type="text" auto-height placeholder="街道、楼牌号等"></textarea>
 		<!-- <input class="msgsrk" name="xxaddress" type="text" placeholder="街道、楼牌号等"/> -->
 	</view>
-	<view class="addmsg mt15" bindtap="morenfuc">
+	<!-- <view class="addmsg mt15" bindtap="morenfuc">
 		<view class="">设置默认地址</view>
 		<view class="moren {{moren==true? 'cur':''}}">
 			<text class="iconfont iconduigou"></text>
 		</view>
-		<!-- <switch class="mrdz" checked bindchange="switch1Change" color="#f75852"/> -->
 		<input hidden type="text" name="moren"  value="{{moren}}"/>
-	</view>
+	</view> -->
 	<!-- <view class="definebtn">保存</view> -->
 	 <button class="definebtn" form-type="submit">保存</button>
 </form>

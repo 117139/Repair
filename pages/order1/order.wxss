@@ -72,23 +72,27 @@ page{
 }
 
 .wtms{
-  align-items: flex-start;
+	align-items: flex-start;
 	/* align-items: baseline; */
 	border-bottom: 1px solid #eee;
 	font-size: 28rpx;
 }
 .wtms .fuwu_type{
+  
 	padding-top: 36rpx;
 	padding-bottom: 36rpx;
+	/* border: 0; */
 	line-height: 1;
 }
 .fuwu_text{
 	flex: 1;
 	padding-top: 34rpx;
 	padding-bottom: 36rpx;
-	padding-left: 10rpx;	
-	line-height: 1;
+	padding-left: 10rpx;
+	border: 0;
+	
   font-size: 28rpx;
+	line-height: 1;
 }
 
 .scimg_tip{
@@ -153,9 +157,11 @@ page{
 	flex-direction: column;
 	justify-content: space-around;
 }
+
 .order_fw .oh1{
 	max-width: 500rpx;
 }
+
 .addressbox .mr{
   max-width: 50%
 }

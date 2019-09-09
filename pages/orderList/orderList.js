@@ -9,40 +9,50 @@ Page({
 		datalist:[
 			'全部',
 			'未接单',
-			'进行中',
+      '进行中',
+			'待确认',
+			'已确认',
 			'已完成',
-			'评价',
 		],
-		pages:[1,1,1,1,1],
+    status:[
+      '-99',
+      '0',
+      '1',
+      '2',
+      '3',
+      '4',
+    ],
+    pages: [1, 1, 1, 1, 1, 1],
 		type:0,
 		goods:[
-				[
-					{
-						status:1,
-						content:'家具损坏，进行修复',
-						type:'门窗家具维修',
-						type1:' 家具维修',
-						time:'2019-07-25'
-					},
-					{
-						status:2,
-						content:'家具损坏，进行修复',
-						type:'门窗家具维修',
-						type1:' 家具维修',
-						time:'2019-07-25'
-					},
-					{
-						status:3,
-						content:'家具损坏，进行修复',
-						type:'门窗家具维修',
-						type1:' 家具维修',
-						time:'2019-07-25'
-					}
-				],
-				[],
-				[],
-				[],
-				[],
+      [
+        {
+          status:1,
+          content:'家具损坏，进行修复',
+          type:'门窗家具维修',
+          type1:' 家具维修',
+          time:'2019-07-25'
+        },
+        {
+          status:2,
+          content:'家具损坏，进行修复',
+          type:'门窗家具维修',
+          type1:' 家具维修',
+          time:'2019-07-25'
+        },
+        {
+          status:3,
+          content:'家具损坏，进行修复',
+          type:'门窗家具维修',
+          type1:' 家具维修',
+          time:'2019-07-25'
+        }
+      ],
+      [],
+      [],
+      [],
+      [],
+      [],
 		],
 		shopNum:[],
 		sum:0,
@@ -129,13 +139,20 @@ Page({
 		const htmlStatus1 = htmlStatus.default(that)
 		console.log('获取列表')
 		// return
+    /*0 未接单   （用户刚发布）
+    1 进行中  （师傅接单后）
+    2 待确认  （师傅提交报价）
+    3 已确认   （用户同意此报价）
+    4 已完成   （师傅点完成）*/
 		wx.request({
-			url:  app.IPurl+'/api/orderList',
+			url:  app.IPurl,
 			data:{
-				token:wx.getStorageSync('token'),
-				status_code:that.data.type,
-				page:that.data.pages[that.data.type],
-				page_length:10
+        apipage:'smwx',
+        "tokenstr": wx.getStorageSync('tokenstr').tokenstr,
+        op:'orderlist_user',
+        "pageindex": that.data.pages[that.data.type],
+        "pagesize": "20",
+        "status": that.data.status[that.data.type]
 			},
 			header: {
 				'content-type': 'application/x-www-form-urlencoded' 
@@ -143,16 +160,16 @@ Page({
 			dataType:'json',
 			method:'get',
 			success(res) {
-				if(res.data.code==1){   //成功
+				if(res.data.error==0){   //成功
 						console.log(ttype)
-						let resultd=res.data.data
+						let resultd=res.data.list
 						if(ttype=='onshow'){
-							var pages=[1,1,1,1,1]
-							var goods=[ [],[],[],[],[], ]
+              var pages = [1, 1, 1, 1, 1, 1]
+              var goods = [[], [], [], [], [], [] ]
 							that.data.goods=goods
 						}
 						
-						if(res.data.data.length==0){  //数据为空
+						if(res.data.list.length==0){  //数据为空
 							if(that.data.page==1){      //第一次加载
 								htmlStatus1.dataNull()    // 切换为空数据状态
 							}else{
@@ -176,10 +193,10 @@ Page({
 						
 						
 				}else{  //失败
-					if(res.data.msg){
+          if (res.data.returnstr){
 						wx.showToast({
 							icon:'none',
-							title:res.data.msg
+              title: res.data.returnstr
 						})
 					}else{
 						wx.showToast({

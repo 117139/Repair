@@ -4,8 +4,8 @@
 	<view class="header">
 		<image class="mybg" src="../../static/images/my_02.png"></image>
 		<text class="iconfont iconshezhi" data-url="/pages/mymsg/mymsg" bindtap="jump"></text>
-		<view class="tx_box"></view>
-		<view class="user_name">小小米</view>
+		<view class="tx_box"><image src='{{userInfo.avatarUrl}}'></image></view>
+		<view class="user_name">{{userInfo.nickName}}</view>
 	</view>
 	<view class="my_list" data-url="/pages/orderList/orderList" bindtap="jump">
 		<view class="list_name">

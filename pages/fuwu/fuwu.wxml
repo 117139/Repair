@@ -1,6 +1,7 @@
 <!--page/DEST/DEST.wxml-->
 <import src="/utils/htmlStatus/index.wxml" />
 
+<wxs src="../../utils/filter.wxs" module="filter" />
 <view class="container">
 	<view class="ss_box">
 		<form bindsubmit="formSubmit" class="ss_box1">
@@ -18,7 +19,7 @@
 			wx:for-index="idx"
 			 wx:for-item="item"
 				wx:key="idx"
-				data-idx="{{idx}}" bindtap="dest_fuc">{{item.name}}</view>
+				data-idx="{{idx}}" bindtap="qhType">{{item.name}}</view>
 		<!-- <view class="dest_1 oh1" wx:for="{{mdd_data}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">{{item.name}}</view> -->
 	</scroll-view>
 	<view class="dest_r">
@@ -29,9 +30,9 @@
 				wx:for-index="idx"
 				wx:for-item="item"
 				wx:key="idx"
-				data-url="/pages/details/details"
+				data-url="/pages/details/details?id={{item.id}}"
 				bindtap="jump">
-				<image src="{{item.pic}}"></image>
+				<image src="{{filter.getgimg(item.pics)}}"></image>
 				<view class="oh2">{{item.name}}</view>
 			</view>
 		</view>

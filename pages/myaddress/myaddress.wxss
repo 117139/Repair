@@ -20,16 +20,21 @@
 	/* justify-content: space-between; */
 }
 .addp2{
+  margin-top: 18rpx;
 	font-size: 24rpx;
 	color: #aaa;
-	height: 80rpx;
+	/* height: 80rpx;
 	display: flex;
 	align-items: center;
-	padding-bottom: 25rpx;
-	border-bottom: 1px solid #eee;
+	padding-bottom: 25rpx; */
+	
 	margin-bottom: 20rpx;
+  word-wrap:break-word;
+word-break:break-all;
 }
 .addsetting{
+  border-top: 1px solid #eee;
+  padding-top: 20rpx;
 	width: 100%;
 	display: flex;
 	font-size: 24rpx;

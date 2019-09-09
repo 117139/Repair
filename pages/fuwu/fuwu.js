@@ -9,54 +9,44 @@ Page({
   data: {
 		fw_data: [{
 				pic: '../../static/images/index_07.png',
-				name: '管道疏通'
+				name: '管道疏通',
+        id:1
 			},
 			{
 				pic: '../../static/images/index_09.png',
-				name: '家电维修'
+        name: '家电维修',
+        id: 1
 			},
 			{
 				pic: '../../static/images/index_11.png',
-				name: '灯具电路'
+        name: '灯具电路',
+        id: 1
 			},
 			{
 				pic: '../../static/images/index_13.png',
-				name: '卫浴洁具'
+        name: '卫浴洁具',
+        id: 1
 			},
 			{
 				pic: '../../static/images/index_19.png',
-				name: '门窗维修'
+        name: '门窗维修',
+        id: 1
 			},
 			{
 				pic: '../../static/images/index_20.png',
-				name: '门锁开换'
+        name: '门锁开换',
+        id: 1
 			},
 			{
 				pic: '../../static/images/index_21.png',
-				name: '家具安装'
+        name: '家具安装',
+        id: 1
 			},
 			{
 				pic: '../../static/images/index_22.png',
-				name: '家电清洗'
+        name: '家电清洗',
+        id: 1
 			},
-		],
-		dest:[
-		 {
-			 pic:'../../static/images/images/dest_03.jpg',
-			 name:'英国'
-		 },
-		 {
-			 pic:'../../static/images/images/dest_05.jpg',
-			 name:'法国'
-		 },
-		 {
-			 pic:'../../static/images/images/dest_10.jpg',
-			 name:'瑞士'
-		 },
-		 {
-			 pic:'../../static/images/images/dest_11.png',
-			 name:'德国'
-		 },
 		],
 		type1:[
 			{
@@ -72,7 +62,9 @@ Page({
 				name:'灯具安装'
 			},
 		],
-		dest_type:0,
+		dest_type:-1,
+    page:1,
+    pagesize:10
   },
 
   /**
@@ -136,81 +128,141 @@ Page({
   onShareAppMessage: function () {
 
   },
-	dest_fuc(e){
-		var that =this
-		if(e.currentTarget.dataset.idx==that.data.dest_type){
-			return
-		}
-		that.setData({
-			dest_type:e.currentTarget.dataset.idx
-		})
-	},
 	jump(e){
 		app.jump(e)
-	},
-	gettype(){
-		const htmlStatus1 = htmlStatus.default(this)
-		wx.request({
-			url:  app.IPurl,
-			data:  {
-				apipage: "shop", 
-				op: "grouplist",
-				// tokenstr:wx.getStorageSync('token')
-			},
-			header: {
-				'content-type': 'application/x-www-form-urlencoded' 
-			},
-			dataType:'json',
-			method:'get',
-			success(res) {
-				console.log(res.data)
-				
-				if(res.data.code==1){
-					
-					if(res.data.list.length==0){  //数据为空
-						
-							htmlStatus1.dataNull()    // 切换为空数据状态
-					
-							wx.showToast({
-								icon:'none',
-								title:'暂无分类'
-							})
-						
-						
-					}else{                           //数据不为空
-						
-						that.setData({
-							fw_data:res.data.data
-						})
-							htmlStatus1.finish()    // 切换为finish状态
-					}
-				}else{
-					if(res.data.returnstr){
-						wx.showToast({
-							icon:'none',
-							title:res.data.returnstr
-						})
-					}else{
-						wx.showToast({
-							icon:'none',
-							title:'加载失败'
-						})
-					}
-					htmlStatus1.error()    // 切换为error状态
-				}
-			},
-			fail() {
-				wx.showToast({
-					icon:'none',
-					title:'加载失败'
-				})
-				 htmlStatus1.error()    // 切换为error状态
-			},
-			complete() {
-				wx.setNavigationBarTitle({
-				  title: '服务',
-				})
-			}
-		})
-	}
+  },
+  gettype() {
+    var that=this
+    const htmlStatus1 = htmlStatus.default(that)
+    wx.request({
+      url: app.IPurl,
+      data: {
+        apipage: "shop",
+        op: "grouplist",
+        // tokenstr:wx.getStorageSync('token')
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'get',
+      success(res) {
+        console.log(res.data)
+        if (res.data.list.length == 0) {  //数据为空
+          htmlStatus1.dataNull()    // 切换为空数据状态
+          wx.showToast({
+            icon: 'none',
+            title: '暂无分类'
+          })
+        } else if (res.data.list.length> 0){                           //数据不为空
+          that.setData({
+            fw_data: res.data.list
+          })
+          that.getgoods(that.data.dest_type, res.data.list[that.data.dest_type].id)
+          htmlStatus1.finish()    // 切换为finish状态
+        }else{
+          wx.showToast({
+            icon: 'none',
+            title: '加载失败'
+          })
+          htmlStatus1.error()    // 切换为error状态
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '加载失败'
+        })
+        htmlStatus1.error()    // 切换为error状态
+      },
+      complete() {
+        wx.setNavigationBarTitle({
+          title: '服务',
+        })
+      }
+    })
+  },
+  qhType(e){
+    // console.log(e.currentTarget.dataset.idx)
+    var that =this
+    var idx = e.currentTarget.dataset.idx
+    // console.log(that.data.dest_type)
+    if (idx == that.data.dest_type){
+      // console.log(1)
+      return
+    }else{
+      // console.log(2)
+      that.setData({
+        dest_type: idx,
+        type1:[]
+      })
+      that.getgoods(idx, that.data.fw_data[idx].id)
+    }
+  },
+  getgoods(index, id) {
+    const htmlStatus1 = htmlStatus.default(this)
+    var that= this
+    
+    wx.request({
+      url: app.IPurl,
+      data: {
+        "apipage": "shop",
+        "op": "groupshoplist",
+        "groupid": id,
+        "type": '',
+        "pageindex": that.data.page,
+        "pagesize": that.data.pagesize
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'get',
+      success(res) {
+        console.log(res.data)
+        if (res.data.list.length == 0) {  //数据为空
+
+          if(that.data.page){
+            htmlStatus1.dataNull()    // 切换为空数据状态
+          }else{
+            wx.showToast({
+              icon: 'none',
+              title: '已经到底了'
+            })
+          }
+
+          // wx.showToast({
+          //   icon: 'none',
+          //   title: 'z'
+          // })
+
+
+        } else if (res.data.list.length>0) {                           //数据不为空
+
+          that.setData({
+            type1: res.data.list
+          })
+          htmlStatus1.finish()    // 切换为finish状态
+        }else {
+          wx.showToast({
+            icon: 'none',
+            title: '加载失败'
+          })
+          htmlStatus1.error()    // 切换为error状态
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '加载失败'
+        })
+        htmlStatus1.error()    // 切换为error状态
+      },
+      complete() {
+        wx.setNavigationBarTitle({
+          title: '服务',
+        })
+      }
+    })
+  }
 })

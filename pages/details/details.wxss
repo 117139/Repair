@@ -1,4 +1,6 @@
 /* pages/details/details.wxss */
+@import '/vendor/wxParse/wxParse.wxss';
+
 page{
 	overflow-y: auto!important;
 	background: #f7f7f7;

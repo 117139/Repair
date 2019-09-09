@@ -90,10 +90,19 @@ border: 0;
 	line-height: 110rpx;
 }
 .msgsrk{
-	padding:40rpx 20rpx;
+	/* padding:40rpx 20rpx;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	height: 200rpx;
 	flex: 1;
+}
+.fuwu_text{ */
+	flex: 1;
+	padding-top: 38rpx;
+	padding-bottom: 38rpx;
+	padding-left: 10rpx;
+	
+	
+	line-height: 1;
 }

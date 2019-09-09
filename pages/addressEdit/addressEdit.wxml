@@ -2,11 +2,11 @@
 <form class="container" bindsubmit="formSubmit">
   <view class="addmsg">
 		<view class="msgtit">收货人</view>
-		<input class="msgsrk" name="name" value="{{editaddress.user_name}}" type="text" placeholder="请填写收货人姓名"/>
+		<input class="msgsrk" name="name" value="{{editaddress.Name}}" type="text" placeholder="请填写收货人姓名"/>
 	</view>
   <view class="addmsg">
 		<view class="msgtit">手机号码</view>
-		<input class="msgsrk" name="tel" value="{{editaddress.phone}}" type="text" placeholder="请填写收货人手机号码"/>
+		<input class="msgsrk" name="tel" value="{{editaddress.Telephone}}" type="text" placeholder="请填写收货人手机号码"/>
 	</view>
   
 	 <picker class="w100"
@@ -24,17 +24,15 @@
   </picker>
   <view class="addmsg1">
 		<view class="msgtit">详细地址</view>
-		<textarea class="msgsrk" name="xxaddress" auto-height value="{{editaddress.address}}" placeholder="街道、楼牌号等"></textarea>
-		<!-- <input class="msgsrk" name="xxaddress" value="{{editaddress.address}}" type="text" placeholder="街道、楼牌号等"/> -->
+		<textarea class="msgsrk" name="xxaddress" auto-height value="{{editaddress.Description}}" placeholder="街道、楼牌号等"></textarea>
 	</view>
-  <view class="addmsg mt15">
+  <!-- <view class="addmsg mt15">
 		<view class="">设置默认地址</view>
 		<view class="moren {{editaddress.is_default==1? 'cur':''}}">
 			<text class="iconfont iconduigou"></text>
 		</view>
-		<!-- <switch checked="{{editaddress.is_default==1}}" class="mrdz" bindchange="switch1Change" color="#f75852"/> -->
 		<input hidden type="text" name="moren"  value="{{moren}}"/>
-	</view>
+	</view> -->
 	<!-- <view class="definebtn">保存</view> -->
 	 <button class="definebtn" form-type="submit">保存</button>
 </form>

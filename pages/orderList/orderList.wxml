@@ -22,19 +22,21 @@
 			wx:for-index="idx"
 			wx:for-item="item" 
 			wx:key="idx"
-			data-url="/pages/order_xq/order_xq?id=1" bindtap="jump">
+			data-url="/pages/order_xq/order_xq?id={{item.out_trade_no}}" bindtap="jump">
 			<view class="dis_flex ju_b aic">
 				<view class="dis_flex aic fz32 c6">
-					<text class="mr10">{{item.type}}</text>
-					<text>{{item.type1}}</text>
+					<text class="mr10 mw250 oh1">{{item.shopgroupname}}</text>
+					<text class='mw250 oh1'>{{item.shopname}}</text>
 				</view>
-				<view wx:if="{{item.status==1}}" class="fz28 ceb2a2a">未接单</view>
-				<view wx:if="{{item.status==2}}" class="c13c700 fz28">进行中</view>
-				<view wx:if="{{item.status==3}}" class="c9 fz28">已完成</view>
+				<view wx:if="{{item.statusname=='未接单'}}" class="fz28 ceb2a2a">未接单</view>
+				<view wx:if="{{item.statusname=='进行中'}}" class="c13c700 fz28">进行中</view>
+				<view wx:if="{{item.statusname=='待确认'}}" class="c13c700 fz28">待确认</view>
+				<view wx:if="{{item.statusname=='已确认'}}" class="c13c700 fz28">已确认</view>
+				<view wx:if="{{item.statusname=='已完成'}}" class="c9 fz28">已完成</view>
 			</view>
 			<view class="dis_flex ju_b aic fz28 c9">
-				<view>{{item.content}}</view>
-				<view>{{item.time}}</view>
+				<view>{{item.description}}</view>
+				<view>{{filter.getTime(item.yuyuetime)}}</view>
 			</view>
 		</view>
 		<template is="htmlStatus" data="{{...htmlStatus}}" />

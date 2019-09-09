@@ -6,9 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    'member': wx.getStorageSync('member'),
 		sex:[
-			'男',
-			'女',
+      { name: '男', value: '1' },
+      { name: '女', value: '2' },
 		],
 		region: [],
 		index:0,
@@ -85,15 +86,30 @@ Page({
 	},
 	formSubmit: function(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
-		var fs=e.detail.value
-		if(fs.tel==""){
-			wx.showToast({
-				icon:'none',
-				title:'请输入手机号'
-			})
-			return
-		}
-		
+    var that =this
+    var fs = e.detail.value
+    if (fs.name == "") {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入您的姓名'
+      })
+      return
+    }
+    if (fs.tel == "") {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入手机号'
+      })
+      return
+    }
+    if (!(/^1\d{10}$/.test(fs.tel))) {
+      wx.showToast({
+        title: '手机号码有误',
+        duration: 2000,
+        icon: 'none'
+      });
+      return false;
+    }
 		if(fs.address=="  "){
 			wx.showToast({
 				icon:'none',
@@ -104,72 +120,86 @@ Page({
 		if(fs.xxaddress==""){
 			wx.showToast({
 				icon:'none',
-				title:'请输入详情地址'
+        title:'请输入详细地址'
 			})
 			return
 		}
+    wx.showModal({
+      title: '提示',
+      content: '信息提交后将不可更改，请确认无误后进行提交',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: app.IPurl,
+            data: {
+              apipage:'edituserinfo',
+              realname:fs.name,
+              sex:fs.sex,
+              phone:fs.tel,
+              province: that.data.region[2],
+              city: that.data.region[1],
+              country: that.data.region[0],
+              address:fs.xxaddress,
+              "tokenstr": wx.getStorageSync('tokenstr').tokenstr
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            dataType: 'json',
+            method: 'POST',
+            success(res) {
+              wx.hideLoading()
+              console.log(res.data)
+
+
+              if (res.data.error == 0) {
+
+                wx.showToast({
+                  icon: 'none',
+                  title: '提交成功',
+                  duration: 2000
+                })
+                app.dologin()
+                setTimeout(function () {
+                  wx.navigateBack()
+                }, 1000)
+
+              } else {
+                that.setData({
+                  btnkg: 0
+                })
+                if (res.data.returnstr) {
+                  wx.showToast({
+                    icon: 'none',
+                    title: res.data.returnstr
+                  })
+                } else {
+                  wx.showToast({
+                    icon: 'none',
+                    title: '操作失败'
+                  })
+                }
+              }
+
+
+            },
+            fail() {
+              that.setData({
+                btnkg: 0
+              })
+              wx.hideLoading()
+              wx.showToast({
+                icon: 'none',
+                title: '操作失败'
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
 		
-		if(that.data.btnkg==1){
-			return
-		}else{
-			that.setData({
-				btnkg:1
-			})
-		}
-		wx.request({
-			url:  app.IPurl+'/api/community/save',
-			data:{
-			},
-			header: {
-				'content-type': 'application/x-www-form-urlencoded'
-			},
-			dataType:'json',
-			method:'POST',
-			success(res) {
-				wx.hideLoading()
-				console.log(res.data)
-			
-				
-				if(res.data.errcode==0){
-					
-					wx.showToast({
-						 icon:'none',
-						 title:'提交成功',
-						 duration:2000
-					})
-					setTimeout(function(){
-						wx.navigateBack()
-					},1000)
-					
-				}else{
-					that.setData({
-						btnkg:0
-					})
-		      if (res.data.ertips){
-		        wx.showToast({
-		          icon: 'none',
-		          title: res.data.ertips
-		        })
-		      }else{
-		        wx.showToast({
-		          icon: 'none',
-		          title: '操作失败'
-		        })
-		      }
-				}
-				
-				 
-			},
-			fail() {
-				that.setData({
-					btnkg:0
-				})
-				wx.hideLoading()
-				wx.showToast({
-					 icon:'none',
-					 title:'操作失败'
-				})
-			}
-		})
   },
 })

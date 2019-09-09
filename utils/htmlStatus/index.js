@@ -40,6 +40,7 @@ const error = (that) => {
 }
 export default (that) => {
   return {
+    finish: finish(that),
     loading: loading(that),
     error: error(that),
     dataNull: dataNull(that)

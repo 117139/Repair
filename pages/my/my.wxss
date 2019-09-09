@@ -42,6 +42,10 @@ page{
 	border-radius: 50%;
 	overflow: hidden;
 }
+.tx_box image{
+  width: 130rpx;
+	height: 130rpx;
+}
 .user_name{
 	position: absolute;
 	z-index: 5;

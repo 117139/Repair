@@ -35,3 +35,6 @@
 .c13c700{
 	color: #13c700;
 }
+.mw250{
+  max-width: 250rpx;
+}

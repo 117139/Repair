@@ -1,5 +1,4 @@
-var imgip ='http://xie.800123456.top:8000/'
-// var imgip='https://yidong-sport.com/'
+var imgip ='http://smwx.800123456.top/'
 // filter.wxs
 var dateFormat = function(date) {
     var dates = date.split('/');
@@ -15,11 +14,22 @@ var moneyFormat = function(money) {
     // return money.toFixed(2);
     return money.toFixed(0);
 }
-var getgimg = function(img) {
-	var img1=img.split(",")
-	// console.log(img1[0])
-    return imgip+img1[0]
+var getgimg = function (pic){
+  if (!pic) {
+    return
+  }
+  var arr = []
+  arr = pic.split(",");
+  var arr1 = []
+  arr1 = arr[0].split("|");
+  // console.log(imgurl+arr1[1])
+  return imgip + arr1[1]
 }
+// var getgimg = function(img) {
+// 	var img1=img.split(",")
+// 	// console.log(img1[0])
+//     return imgip+img1[0]
+// }
 var getgimgarr = function (img) {
   var img1 = img.split(",")
   // console.log(img1[0])

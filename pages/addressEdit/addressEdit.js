@@ -20,12 +20,16 @@ Page({
 			this.setData({
 				editaddress:JSON.parse(option.address)
 			})
-			var area=this.data.editaddress.area.split(' ')
-			this.data.region=area
-			this.setData({
-				region:this.data.region,
-				moren:this.data.editaddress.is_default
-			})
+      this.data.region[0] = this.data.editaddress.Province
+      this.data.region[1] = this.data.editaddress.City
+      this.data.region[2] = this.data.editaddress.County
+      this.setData({
+        region: this.data.region
+      })
+			// this.setData({
+			// 	region:this.data.region,
+			// 	moren:this.data.editaddress.is_default
+			// })
 			console.log(this.data.region)
 		}
 		
@@ -95,24 +99,27 @@ Page({
 			})
 		}
 		wx.request({
-			url: app.IPurl+'/api/userAddress/'+that.data.editaddress.id,
+			url: app.IPurl,
 			data:  {
-					
-					token:wx.getStorageSync('token'),
-					area:areaz, 
-					address:formresult.xxaddress,
-					user_name: formresult.name,
-					phone:formresult.tel,
-					is_default:formresult.moren
+        'id': that.data.editaddress.ID,
+          'apipage': 'address',
+        'contact_province_code': that.data.region[2],
+        'contact_city_code': that.data.region[1],
+        'contact_area_code': that.data.region[0],
+        'details_info': formresult.xxaddress,
+        'consignee': formresult.name,
+        'consignee_tel': formresult.tel,
+        'op': 'edit',
+        "tokenstr": wx.getStorageSync('tokenstr').tokenstr
 			},
 			header: {
 				'content-type': 'application/x-www-form-urlencoded' 
 			},
 			dataType:'json',
-			method:'PUT',
+			method:'get',
 			success(res) {
 				console.log(res.data)
-				if(res.data.code==1){
+				if(res.data.error==0){
 					wx.showToast({
 						title:'操作成功'
 					})
