@@ -9,61 +9,8 @@ Page({
    */
   data: {
 		btnkg:0,
-    fw_data: [{
-        pic: '../../static/images/index_07.png',
-        name: '管道疏通',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_09.png',
-        name: '家电维修',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_11.png',
-        name: '灯具电路',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_13.png',
-        name: '卫浴洁具',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_19.png',
-        name: '门窗维修',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_20.png',
-        name: '门锁开换',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_21.png',
-        name: '家具安装',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_22.png',
-        name: '家电清洗',
-        id: 1
-      },
-    ],
-    type1: [
-      {
-        pic: '../../static/images/fuwu_03.jpg',
-        name: '房屋电路维修'
-      },
-      {
-        pic: '../../static/images/fuwu_05.jpg',
-        name: '灯具维修'
-      },
-      {
-        pic: '../../static/images/fuwu_07.jpg',
-        name: '灯具安装'
-      },
-    ],
+    fw_data: [],
+    type1: [],
 		index:0,
 		index1:0,
     page:1,
@@ -141,7 +88,14 @@ Page({
 
   },
 	jump(e){
-		app.jump(e)
+    if (!wx.getStorageSync('userInfo')) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else {
+      app.jump(e)
+    }
+		
 	},
 	bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -362,6 +316,29 @@ Page({
 	formSubmit: function(e) {
 		var that =this
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    if (!wx.getStorageSync('userInfo')) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+      return
+    }
+    if (!wx.getStorageSync('member').Phone) {
+      wx.showModal({
+        title: '提示',
+        content: '请先绑定用户信息',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.navigateTo({
+              url: "/pages/mymsg/mymsg"
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+    }
 		var fs=e.detail.value
 		if(!fs.address){
 			wx.showToast({

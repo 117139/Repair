@@ -130,6 +130,9 @@ Page({
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定')
+          wx.showLoading({
+            title: '正在提交',
+          })
           wx.request({
             url: app.IPurl,
             data: {
@@ -149,9 +152,8 @@ Page({
             dataType: 'json',
             method: 'POST',
             success(res) {
-              wx.hideLoading()
               console.log(res.data)
-
+              
 
               if (res.data.error == 0) {
 
@@ -166,9 +168,6 @@ Page({
                 }, 1000)
 
               } else {
-                that.setData({
-                  btnkg: 0
-                })
                 if (res.data.returnstr) {
                   wx.showToast({
                     icon: 'none',
@@ -185,14 +184,13 @@ Page({
 
             },
             fail() {
-              that.setData({
-                btnkg: 0
-              })
-              wx.hideLoading()
               wx.showToast({
                 icon: 'none',
                 title: '操作失败'
               })
+            },
+            complete(){
+              wx.hideLoading()
             }
           })
         } else if (res.cancel) {

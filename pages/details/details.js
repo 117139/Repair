@@ -11,16 +11,8 @@ Page({
   data: {
     goods_id:0,
     xqData:{},
-		bannerimg: [{
-				pic: '/static/images/details_02.jpg'
-			},
-			{
-				pic: '/static/images/details_02.jpg'
-			},
-			{
-				pic: '/static/images/details_02.jpg'
-			},
-		],
+		bannerimg: [],
+    kefu:''
   },
 
   /**
@@ -119,6 +111,7 @@ Page({
           }
           that.setData({
             xqData: res.data.model,
+            kefu: res.data.fxset,
             bannerimg: arr1
           })
          var article = res.data.model.description
@@ -156,5 +149,11 @@ Page({
 		wx.navigateTo({
       url: '/pages/order1/order?id=' + xqData.id + '&groupid=' + xqData.groupid
 		})
-	}
+	},
+  call(){
+    var that=this
+    wx.makePhoneCall({
+      phoneNumber: that.data.kefu.str1
+    })
+  }
 })

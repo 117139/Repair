@@ -25,29 +25,7 @@ Page({
     pages: [1, 1, 1, 1, 1, 1],
 		type:0,
 		goods:[
-      [
-        {
-          status:1,
-          content:'家具损坏，进行修复',
-          type:'门窗家具维修',
-          type1:' 家具维修',
-          time:'2019-07-25'
-        },
-        {
-          status:2,
-          content:'家具损坏，进行修复',
-          type:'门窗家具维修',
-          type1:' 家具维修',
-          time:'2019-07-25'
-        },
-        {
-          status:3,
-          content:'家具损坏，进行修复',
-          type:'门窗家具维修',
-          type1:' 家具维修',
-          time:'2019-07-25'
-        }
-      ],
+      [],
       [],
       [],
       [],
@@ -94,14 +72,6 @@ Page({
 		this.getOrderList('onshow')
 	},
 	retry(){
-		// var pages=[1,1,1,1,1]
-		// var goods=[ [],[],[],[],[], ]
-		// this.data.goods=goods
-		// this.setData({
-		// 	pages:pages,
-		// 	goods:this.data.goods
-		// })
-		// console.log('我显示了')
 		this.getOrderList()
 	},
 	onReady(){
@@ -122,6 +92,8 @@ Page({
 	  that.setData({
 	    type: e.currentTarget.dataset.type
 	  })
+    const htmlStatus1 = htmlStatus.default(that)
+    htmlStatus1.finish()
 		// that.getOrderList()
 		if(that.data.goods[that.data.type].length==0){
 			that.getOrderList()
@@ -170,7 +142,7 @@ Page({
 						}
 						
 						if(res.data.list.length==0){  //数据为空
-							if(that.data.page==1){      //第一次加载
+              if (that.data.pages[that.data.type]==1){      //第一次加载
 								htmlStatus1.dataNull()    // 切换为空数据状态
 							}else{
 								wx.showToast({

@@ -29,12 +29,12 @@ App({
     			})
     			
         }else{
-          wx.reLaunch({
-            url: '/pages/login/login',
-            fail: (err) => {
-              console.log("失败: " + JSON.stringify(err));
-            }
-    			})
+          // wx.reLaunch({
+          //   url: '/pages/login/login',
+          //   fail: (err) => {
+          //     console.log("失败: " + JSON.stringify(err));
+          //   }
+    			// })
         }
       }
     })
@@ -69,6 +69,7 @@ App({
               console.log('登录成功')
               wx.setStorageSync('tokenstr', res.data.tokenstr)
               wx.setStorageSync('member', res.data.member)
+              wx.setStorageSync('kefu', res.data.fxset)
               // wx.setStorageSync('login', 'login')
               // wx.setStorageSync('morenaddress', res.data.user_member_shopping_address)
               // wx.setStorageSync('appcode', rcode)

@@ -4,8 +4,13 @@
 	<view class="header">
 		<image class="mybg" src="../../static/images/my_02.png"></image>
 		<text class="iconfont iconshezhi" data-url="/pages/mymsg/mymsg" bindtap="jump"></text>
-		<view class="tx_box"><image src='{{userInfo.avatarUrl}}'></image></view>
-		<view class="user_name">{{userInfo.nickName}}</view>
+		<view  class="tx_box">
+      <image wx:if="{{!userInfo.nickName}}" class="user_tx" src="/static/images/tx.jpg"></image>
+      <image wx:if="{{userInfo.nickName}}" class="user_tx" src='{{userInfo.avatarUrl}}'></image>
+    </view>
+		<view wx:if="{{userInfo.nickName}}" class="user_name">{{userInfo.nickName}}</view>
+		<view wx:if="{{!userInfo.nickName}}" class="user_name"
+    data-url="/pages/login/login" bindtap='jump'>点击登录</view>
 	</view>
 	<view class="my_list" data-url="/pages/orderList/orderList" bindtap="jump">
 		<view class="list_name">

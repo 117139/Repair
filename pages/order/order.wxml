@@ -37,7 +37,7 @@
 			<input class="hidden" type="text" name="fw_name" value="{{type1[index].id}}" />
 		</picker>
 		<view class="w100 dis_flex wtms">
-			<view class="fuwu_type">问题描述</view>
+			<!-- <view class="fuwu_type">问题描述</view> -->
 			<textarea class="fuwu_text" name="wt" placeholder="请输入问题描述" value="" auto-height="true"></textarea>
 		</view>
 		<view class="scimg_tip">上传现场图片，师傅可以更好的了解您的问题~</view>

@@ -35,7 +35,7 @@
 				<view wx:if="{{item.statusname=='已完成'}}" class="c9 fz28">已完成</view>
 			</view>
 			<view class="dis_flex ju_b aic fz28 c9">
-				<view>{{item.description}}</view>
+				<view class='w300 oh1'>{{item.description}}</view>
 				<view>{{filter.getTime(item.yuyuetime)}}</view>
 			</view>
 		</view>

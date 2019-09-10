@@ -41,7 +41,7 @@ page{
 .bx_msg{
 	position: absolute;
 	top: 157rpx;
-	padding-left: 74rpx;
+	padding:0 74rpx;
 	width: 100%;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

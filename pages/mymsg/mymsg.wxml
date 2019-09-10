@@ -1,6 +1,7 @@
 <!--pages/mymsg/mymsg.wxml-->
-<form class="container"  bindsubmit="formSubmit">
-	<view class="tx_box">
+<form class="w100"  bindsubmit="formSubmit">
+	<view class='container'>
+    <view class="tx_box">
 		<text class="msg_name">头像</text>
 		<image src="{{member.HeadPicUrl}}"></image>
 	</view>
@@ -20,12 +21,12 @@
 	</picker>
   <view  wx:if="{{member.RealName}}" class="msg_box">
 			<text class="msg_name">性别</text>
-			<view class="dis_flex aic msg_val">{{sex[index].name}}</view>
+			<view class="dis_flex aic msg_val">{{member.Sex==1? '男':'女'}}</view>
 		</view>
 	<view class="msg_box">
 		<text class="msg_name">电话</text>
 		<input wx:if="{{!member.RealName}}" class="msg_int" type="text" name="tel" placeholder="请输入手机号" />
-		<view wx:if="{{member.RealName}}" class="dis_flex aic msg_val">{{member.RealName}}</view>
+		<view wx:if="{{member.RealName}}" class="dis_flex aic msg_val">{{member.Phone}}</view>
 	</view>
 	 <picker wx:if="{{!member.RealName}}" class="w100"
 	  mode="region"
@@ -55,4 +56,5 @@
 	<view wx:if="{{!member.RealName}}" class="w100 dis_flex ju_c">
 		<button class="sub_btn" form-type="submit">保存</button>
 	</view>
+  </view>
 </form>

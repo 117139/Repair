@@ -36,6 +36,7 @@
 				<view class="oh2">{{item.name}}</view>
 			</view>
 		</view>
+    <template is="htmlStatus" data="{{...htmlStatus}}" />
 	</view>
-	<template is="htmlStatus" data="{{...htmlStatus}}" />
+	
 </view>

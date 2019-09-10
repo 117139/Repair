@@ -5,92 +5,13 @@ const app = getApp()
 
 Page({
 	data: {
-		bannerimg: [{
-				pic: '/static/images/index_03.png'
-			},
-			{
-				pic: '/static/images/index_03.png'
-			},
-			{
-				pic: '/static/images/index_03.png'
-			},
+		bannerimg: [
 		],
-		fw_data: [{
-				pic: '../../static/images/index_07.png',
-				name: '管道疏通'
-			},
-			{
-				pic: '../../static/images/index_09.png',
-				name: '家电维修'
-			},
-			{
-				pic: '../../static/images/index_11.png',
-				name: '灯具电路'
-			},
-			{
-				pic: '../../static/images/index_13.png',
-				name: '卫浴洁具'
-			},
-			{
-				pic: '../../static/images/index_19.png',
-				name: '门窗维修'
-			},
-			{
-				pic: '../../static/images/index_20.png',
-				name: '门锁开换'
-			},
-			{
-				pic: '../../static/images/index_21.png',
-				name: '家具安装'
-			},
-			{
-				pic: '../../static/images/index_22.png',
-				name: '家电清洗'
-			},
+		fw_data: [
 		],
-
-		hot_data: [{
-				pic: '../../static/images/index_28.jpg',
-				name: '水龙头维修'
-			},
-			{
-				pic: '../../static/images/index_31.jpg',
-				name: '空调维修'
-			},
-			{
-				pic: '../../static/images/index_33.jpg',
-				name: '家电维修'
-			},
-			{
-				pic: '../../static/images/index_28.jpg',
-				name: '水龙头维修'
-			},
-			{
-				pic: '../../static/images/index_31.jpg',
-				name: '空调维修'
-			},
-			{
-				pic: '../../static/images/index_33.jpg',
-				name: '家电维修'
-			},
-		],
+    page:1,
+		hot_data: [],
 		cai_data:[
-			{
-					pic: '../../static/images/index_42.jpg',
-					name: '水龙头维修'
-				},
-				{
-					pic: '../../static/images/index_43.jpg',
-					name: '空调维修'
-				},
-				{
-					pic: '../../static/images/index_47.jpg',
-					name: '家电维修'
-				},
-				{
-					pic: '../../static/images/index_48.jpg',
-					name: '家电维修'
-				},
 		],
 		indicatorDots: true,
 		autoplay: true,
@@ -105,6 +26,7 @@ Page({
 		})
 	},
 	onLoad: function() {
+    this.getbanner()
     this.gettype()
 	},
   retry() {
@@ -129,6 +51,58 @@ Page({
 	jump(e){
 		app.jump(e)
 	},
+  getbanner(){
+    /* "apipage": "imagelist",
+          "type": 1 */
+    var that =this
+    wx.request({
+      url: app.IPurl,
+      data: {
+        apipage: "imagelist",
+        type: 1
+        // tokenstr:wx.getStorageSync('token')
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'get',
+      success(res) {
+        console.log(res.data)
+        if (res.data.datalist.length == 0) {  //数据为空
+          htmlStatus1.dataNull()    // 切换为空数据状态
+          wx.showToast({
+            icon: 'none',
+            title: '暂无banner'
+          })
+        } else if (res.data.datalist.length > 0) {                           //数据不为空
+         
+          for (var i = 0; i < res.data.datalist.length; i++) {
+            that.data.bannerimg.push(res.data.datalist[i].Image1)
+          }
+          that.setData({
+            bannerimg: that.data.bannerimg
+          })
+         
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '加载失败'
+          })
+          
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '加载失败'
+        })
+        
+      },
+      complete() {
+      }
+    })
+  },
   gettype() {
     var that = this
     const htmlStatus1 = htmlStatus.default(that)
@@ -153,6 +127,7 @@ Page({
             title: '暂无分类'
           })
         } else if (res.data.list.length > 0) {                           //数据不为空
+          that.getHot()
           that.setData({
             fw_data: res.data.list
           })
@@ -179,4 +154,59 @@ Page({
       }
     })
   },
+  getHot(){
+    /*apipage=shop
+    op = indexlist
+    pageindex
+    pagesize*/
+    var that = this
+    const htmlStatus1 = htmlStatus.default(that)
+    wx.request({
+      url: app.IPurl,
+      data: {
+        apipage: "shop",
+        op: "indexlist",
+        pageindex: that.data.page,
+        pagesize:10,
+        // tokenstr:wx.getStorageSync('token')
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'get',
+      success(res) {
+        console.log(res.data)
+        that.setData({
+          cai_data:res.data.list3
+        })
+        if (res.data.list1.length == 0) {  //数据为空
+          htmlStatus1.dataNull()    // 切换为空数据状态
+          wx.showToast({
+            icon: 'none',
+            title: '暂无热门服务'
+          })
+        } else if (res.data.list1.length > 0) {                           //数据不为空
+          that.data.hot_data = that.data.hot_data.concat(res.data.list1)
+          that.setData({
+            hot_data: that.data.hot_data
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '加载失败'
+          })
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '加载失败'
+        })
+      },
+      complete() {
+        
+      }
+    })
+  }
 })

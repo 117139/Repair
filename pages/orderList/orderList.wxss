@@ -38,3 +38,6 @@
 .mw250{
   max-width: 250rpx;
 }
+.w300{
+  width: 410rpx;
+}

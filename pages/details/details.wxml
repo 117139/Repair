@@ -12,24 +12,23 @@
 			<block wx:for="{{bannerimg}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
 				<swiper-item class="swiper_item">
 					<!-- <image wx:if="{{item.pic}}" lazy-load='true' src="{{filter.imgIP(item.pic)}}" class="slide-image"/> -->
-					<image wx:if="{{item.pic}}" lazy-load='true' src="{{item.pic}}" class="slide-image" />
+					<image wx:if="{{item}}" lazy-load='true' src="{{item}}" class="slide-image" />
 		
 				</swiper-item>
 			</block>
 		</swiper>
 	</view>
 	<view class="xq_titi">
-		<view class="fz28 c9">
-			{{xqData.name}}，师傅上门服务
-		</view>
+		<view class="fz28 c9">{{xqData.name}}，师傅上门服务</view>
 		<view class="dis_flex ju_b">
 			<view class="fz24 c6">
 				<text class="mr5">热度:</text>
 				<text class="iconfont iconredu"></text>
-				<text class="iconfont iconredu"></text>
-				<text class="iconfont iconredu"></text>
+				<text wx:for="{{xqData.sellnum}}"wx:for-index="idx" 
+					wx:for-item="item" 
+					wx:key="idx" wx:if="{{idx>10&&idx<15}}" class="iconfont iconredu"></text>
 			</view>
-			<view class="fz24 c9">80人预约</view>
+			<view class="fz24 c9">{{xqData.sellnum}}人预约</view>
 		</view>
 	</view>
 	<view class="xq_msg">
@@ -171,7 +170,7 @@
 		</view>
 	</view>  
 	 <view class="caoz_bot">
-		 <view class="lxkf_btn">联系客服</view>
+		 <view class="lxkf_btn" bindtap='call'>联系客服</view>
 		 <view class="yy_btn" bindtap="yyfuc">立即预约</view>
 	 </view>
 </view>

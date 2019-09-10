@@ -43,7 +43,7 @@ page{
 	top: 0;
 	left: 0;
 	z-index: 9;
-	background: #fff;
+	background: #f4f5f9;
 }
 .dest_r{
 	width: 100%;

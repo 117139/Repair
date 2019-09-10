@@ -9,61 +9,8 @@ Page({
    */
   data: {
 		btnkg:0,
-    fw_data: [{
-        pic: '../../static/images/index_07.png',
-        name: '管道疏通',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_09.png',
-        name: '家电维修',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_11.png',
-        name: '灯具电路',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_13.png',
-        name: '卫浴洁具',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_19.png',
-        name: '门窗维修',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_20.png',
-        name: '门锁开换',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_21.png',
-        name: '家具安装',
-        id: 1
-      },
-      {
-        pic: '../../static/images/index_22.png',
-        name: '家电清洗',
-        id: 1
-      },
-    ],
-    type1: [
-      {
-        pic: '../../static/images/fuwu_03.jpg',
-        name: '房屋电路维修'
-      },
-      {
-        pic: '../../static/images/fuwu_05.jpg',
-        name: '灯具维修'
-      },
-      {
-        pic: '../../static/images/fuwu_07.jpg',
-        name: '灯具安装'
-      },
-    ],
+    fw_data: [],
+    type1: [],
 		index:0,
 		index1:0,
     page:1,
@@ -83,7 +30,7 @@ Page({
         groupid: options.groupid
       })
     }
-    this.getType()
+    this.gettype(options.groupid)
   },
 
   /**
@@ -146,15 +93,24 @@ Page({
 
   },
 	jump(e){
-		app.jump(e)
-	},
-	bindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
-    })
+    if (!wx.getStorageSync('userInfo')) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else {
+      app.jump(e)
+    }
   },
-	bindPickerChange1: function(e) {
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    var idx = e.detail.value
+    this.setData({
+      index: idx,
+      type1: []
+    })
+    this.getgoods(idx, this.data.fw_data[idx].id)
+  },
+  bindPickerChange1: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index1: e.detail.value
@@ -194,9 +150,10 @@ Page({
           var rlist = res.data.list
           if(id){
             for (var i = 0; i < rlist.length; i++) {
+              console.log(id, rlist[i].id)
               if (id == rlist[i].id) {
                 that.setData({
-                  index: 0
+                  index: i
                 })
                 break;
               }
@@ -262,11 +219,12 @@ Page({
           }
         } else if (res.data.list.length > 0) {                           //数据不为空
           var rlist = res.data.list
-          if (that.data.groupid!==0) {
+          if (that.data.id!==0) {
             for (var i = 0; i < rlist.length; i++) {
-              if (id == rlist[i].id) {
+              console.log(that.data.id, rlist[i].id)
+              if (that.data.id == rlist[i].id) {
                 that.setData({
-                  index1: 0
+                  index1: i
                 })
                 break;
               }
@@ -298,189 +256,221 @@ Page({
       }
     })
   },
-	imgdel(e){
-		var that =this
-		console.log(e.currentTarget.dataset.idx)
-		wx.showModal({
-			title: '提示',
-			content: '确定要删除这张图片吗',
-			success (res) {
-				if (res.confirm) {
-					console.log('用户点击确定')
-					that.data.imgb.splice(e.currentTarget.dataset.idx,1)
-					that.setData({
-						imgb:that.data.imgb
-					})
-				} else if (res.cancel) {
-					console.log('用户点击取消')
-				}
-			}
-		})
-		
-	},
-	scpic(){
-		var that=this
-		wx.chooseImage({
-			count: 9,
-			sizeType: ['original', 'compressed'],
-			sourceType: ['album', 'camera'],
-			success (res) {
-				// tempFilePath可以作为img标签的src属性显示图片
-				console.log(res)
-				const tempFilePaths = res.tempFilePaths
-				const imglen=that.data.imgb.length
-				for(var i=0;i<tempFilePaths.length;i++){
-					console.log(imglen)
-					var newlen=Number(imglen)+Number(i)
-					console.log(newlen)
-					if(newlen==9){
-						wx.showToast({
-							icon:'none',
-							title:'最多可上传九张'
-						})
-						break;
-					}
-					wx.uploadFile({
-						url: app.IPurl, //仅为示例，非真实的接口地址
-						filePath: tempFilePaths[i],
-						name: 'upfile',
-						formData: {
-							'apipage': 'uppic',
-							// "tokenstr": wx.getStorageSync('tokenstr').tokenstr, 
-						},
-						success (res){
-							console.log(res.data)
-							var ndata=JSON.parse(res.data)
-							console.log(ndata)
-							console.log(ndata.error==0)
-							if (ndata.error==0){
-								that.data.imgb.push(ndata.url)
-								that.setData({
-									imgb:that.data.imgb
-								})
-							}else{
-								wx.showToast({
-									icon:"none",
-									title:"上传失败"
-								})
-							}
-						}
-					})
-					
-				}
-			}
-		})
-	},
-	formSubmit: function(e) {
-		var that =this
+  imgdel(e) {
+    var that = this
+    console.log(e.currentTarget.dataset.idx)
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除这张图片吗',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.data.imgb.splice(e.currentTarget.dataset.idx, 1)
+          that.setData({
+            imgb: that.data.imgb
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+  },
+  scpic() {
+    var that = this
+    wx.chooseImage({
+      count: 9,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        console.log(res)
+        const tempFilePaths = res.tempFilePaths
+        const imglen = that.data.imgb.length
+        for (var i = 0; i < tempFilePaths.length; i++) {
+          console.log(imglen)
+          var newlen = Number(imglen) + Number(i)
+          console.log(newlen)
+          if (newlen == 9) {
+            wx.showToast({
+              icon: 'none',
+              title: '最多可上传九张'
+            })
+            break;
+          }
+          wx.uploadFile({
+            url: app.IPurl, //仅为示例，非真实的接口地址
+            filePath: tempFilePaths[i],
+            name: 'upfile',
+            formData: {
+              'apipage': 'uppic',
+              // "tokenstr": wx.getStorageSync('tokenstr').tokenstr, 
+            },
+            success(res) {
+              console.log(res.data)
+              var ndata = JSON.parse(res.data)
+              console.log(ndata)
+              console.log(ndata.error == 0)
+              if (ndata.error == 0) {
+                that.data.imgb.push(ndata.url)
+                that.setData({
+                  imgb: that.data.imgb
+                })
+              } else {
+                wx.showToast({
+                  icon: "none",
+                  title: "上传失败"
+                })
+              }
+            }
+          })
+
+        }
+      }
+    })
+  },
+  formSubmit: function (e) {
+    var that = this
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
-		var fs=e.detail.value
-		if(!fs.address){
-			wx.showToast({
-				icon:'none',
-				title:'请选择地址'
-			})
-			return
-		}
-		if(!fs.fw){
-			wx.showToast({
-				icon:'none',
-				title:'请选择服务类别'
-			})
-			return
-		}
-		if(!fs.wt){
-			wx.showToast({
-				icon:'none',
-				title:'请输入问题描述'
-			})
-			return
-		}
-		if(!fs.yytime){
-			wx.showToast({
-				icon:'none',
-				title:'请选择预约时间'
-			})
-			return
-		}
-		wx.showModal({
-			title: '提示',
-			content: '是否要提交该订单',
-			success (res) {
-				if (res.confirm) {
-					console.log('用户点击确定')
-					wx.showLoading({
-						title:'正在提交。。'
-					})
-					// 'Authorization':wx.getStorageSync('usermsg').user_token
-					// var dztime
-					// if(that.data.zhidingcur==-1){
-					// 	dztime=0
-					// }else{
-					// 	dztime=that.data.zhiding[that.data.zhidingcur].id
-					// }
-					var imbox=that.data.imgb
-					imbox=imbox.join(',')
-		     
-					wx.request({
-						url:  app.IPurl+'/api/community/save',
-						data:{
-						},
-						header: {
-							'content-type': 'application/x-www-form-urlencoded'
-						},
-						dataType:'json',
-						method:'POST',
-						success(res) {
-							wx.hideLoading()
-							console.log(res.data)
-						
-							
-							if(res.data.errcode==0){
-								
-								wx.showToast({
-									 icon:'none',
-									 title:'提交成功',
-									 duration:2000
-								})
-								setTimeout(function(){
-									wx.navigateTo({
-										url:'/pages/orderList/orderList'
-									})
-									// wx.switchTab({
-									// 	url: "/pages/shequ/shequ"
-									// })
-								},1000)
-								
-							}else{
-		            if (res.data.ertips){
-		              wx.showToast({
-		                icon: 'none',
-		                title: res.data.ertips
-		              })
-		            }else{
-		              wx.showToast({
-		                icon: 'none',
-		                title: '操作失败'
-		              })
-		            }
-							}
-							
-							 
-						},
-						fail() {
-							wx.hideLoading()
-							wx.showToast({
-								 icon:'none',
-								 title:'操作失败'
-							})
-						}
-					})
-					
-				} else if (res.cancel) {
-					console.log('用户点击取消')
-				}
-			}
-		})
+    if (!wx.getStorageSync('userInfo')) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+      return
+    }
+    if (!wx.getStorageSync('member').Phone) {
+      wx.showModal({
+        title: '提示',
+        content: '请先绑定用户信息',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.navigateTo({
+              url: "/pages/mymsg/mymsg"
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+    }
+    var fs = e.detail.value
+    if (!fs.address) {
+      wx.showToast({
+        icon: 'none',
+        title: '请选择地址'
+      })
+      return
+    }
+    if (!fs.fw_type) {
+      wx.showToast({
+        icon: 'none',
+        title: '请选择服务类别'
+      })
+      return
+    }
+    if (!fs.fw_name) {
+      wx.showToast({
+        icon: 'none',
+        title: '请选择服务名称'
+      })
+      return
+    }
+    if (!fs.wt) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入问题描述'
+      })
+      return
+    }
+    if (!fs.yytime) {
+      wx.showToast({
+        icon: 'none',
+        title: '请选择预约时间'
+      })
+      return
+    }
+    wx.showModal({
+      title: '提示',
+      content: '是否要提交该订单',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.showLoading({
+            title: '正在提交。。'
+          })
+
+          var imbox = that.data.imgb
+          imbox = imbox.join(',')
+
+          wx.request({
+            url: app.IPurl + '/api/community/save',
+            data: {
+              apipage: 'smwx',
+              op: 'orderpub_user',  //用户下单
+              shopid: that.data.type1[that.data.index1].id,//(按需传递)
+              name: '',
+              description: fs.wt,
+              addressid: that.data.address.ID,//(地址id)
+              pics: imbox,//(描述图片)
+              yuyuetime: fs.yytime,  //（预约时间，标准时间格式2019-9 - 9）
+              shopgroupid: that.data.fw_data[that.data.index].id,  //（分类id）
+              "tokenstr": wx.getStorageSync('tokenstr').tokenstr
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            dataType: 'json',
+            method: 'POST',
+            success(res) {
+              wx.hideLoading()
+              console.log(res.data)
+
+
+              if (res.data.error == 0) {
+
+                wx.showToast({
+                  icon: 'none',
+                  title: '提交成功',
+                  duration: 2000
+                })
+                setTimeout(function () {
+                  wx.navigateTo({
+                    url: '/pages/orderList/orderList'
+                  })
+
+                }, 1000)
+
+              } else {
+                if (res.data.returnstr) {
+                  wx.showToast({
+                    icon: 'none',
+                    title: res.data.returnstr
+                  })
+                } else {
+                  wx.showToast({
+                    icon: 'none',
+                    title: '操作失败'
+                  })
+                }
+              }
+
+
+            },
+            fail() {
+              wx.hideLoading()
+              wx.showToast({
+                icon: 'none',
+                title: '操作失败'
+              })
+            }
+          })
+
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 })

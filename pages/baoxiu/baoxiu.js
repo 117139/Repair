@@ -7,27 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    kefu:'',
 		page:1,
 		pagesize:10,
 		bx_data:[
-			{
-				cp:'空调维修',
-				tel:'03256426',
-				id:'374349358435',
-				time:'2019/12/3  23:59:59',
-			},
-			{
-				cp:'空调维修',
-				tel:'03256426',
-				id:'374349358435',
-				time:'2019/12/3  23:59:59',
-			},
-			{
-				cp:'空调维修',
-				tel:'03256426',
-				id:'374349358435',
-				time:'2019/12/3  23:59:59',
-			},
 		]
   },
 
@@ -40,6 +23,9 @@ Page({
 			title:'加载中...'
 		})
 		this.getdata()
+    this.setData({
+      kefu:wx.getStorageSync('kefu')
+    })
   },
 	retry(){
 		wx.setNavigationBarTitle({
@@ -102,12 +88,25 @@ Page({
 		const htmlStatus1 = htmlStatus.default(this)
 		// htmlStatus1.error()    // 切换为error状态
 		let that =this
+    console.log(wx.getStorageSync('tokenstr'))
+    if (!wx.getStorageSync('userInfo')){
+      htmlStatus1.dataNull()
+      return
+    }
+    /*0 未接单   （用户刚发布）
+    1 进行中  （师傅接单后）
+    2 待确认  （师傅提交报价）
+    3 已确认   （用户同意此报价）
+    4 已完成   （师傅点完成）*/
 		wx.request({
 			url:  app.IPurl+'',
 			data:  {
-				page:that.data.page,
-				pagesize:that.data.pagesize,
-				token:wx.getStorageSync('token')
+        apipage: 'smwx',
+        "tokenstr": wx.getStorageSync('tokenstr').tokenstr,
+          op: 'orderlist_user',
+        "pageindex": that.data.page,
+        "pagesize": that.data.pagesize,
+        "status": 4
 			},
 			header: {
 				'content-type': 'application/x-www-form-urlencoded' 
@@ -117,9 +116,9 @@ Page({
 			success(res) {
 				console.log(res.data)
 				
-				if(res.data.code==1){
+				if(res.data.error==0){
 					
-					if(res.data.data.length==0){  //数据为空
+          if (res.data.list.length==0){  //数据为空
 						if(that.data.page==1){      //第一次加载
 							htmlStatus1.dataNull()    // 切换为空数据状态
 						}else{
@@ -131,8 +130,9 @@ Page({
 						
 					}else{                           //数据不为空
 						that.data.page++
+            that.data.bx_data = that.data.bx_data.concat(res.data.list)
 						that.setData({
-							addresslist:res.data.data,
+              bx_data: that.data.bx_data,
 							page:that.data.page
 						})
 							htmlStatus1.finish()    // 切换为finish状态

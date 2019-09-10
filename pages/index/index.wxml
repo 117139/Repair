@@ -8,9 +8,7 @@
 		 indicator-active-color='#fff' circular="{{circular}}">
 			<block wx:for="{{bannerimg}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
 				<swiper-item class="swiper_item">
-					<!-- <image src="{{item}}" class="slide-image" width="355" height="150" /> -->
-					<!-- <image wx:if="{{item.pic}}" lazy-load='true' src="{{filter.imgIP(item.pic)}}" class="slide-image"/> -->
-					<image wx:if="{{item.pic}}" lazy-load='true' src="{{item.pic}}" class="slide-image" />
+          <image wx:if="{{item}}" lazy-load='true' src="{{filter.imgIP(item)}}" class="slide-image" />
 
 				</swiper-item>
 			</block>
@@ -23,7 +21,7 @@
 			wx:key="idx"
 			data-url="/pages/fuwu/fuwu?type={{idx}}"
 			bindtap="jump">
-				<image src="{{filter.getgimg(item.pic)}}"></image>
+				<image wx:if="{{item.pic}}" src="{{filter.getgimg(item.pic)}}"></image>
 				<text>{{item.name}}</text>
 			</view>
 		</view>
@@ -35,10 +33,10 @@
 					wx:for-item="item" 
 					wx:key="idx">
 					<swiper-item class="swiper_item hot_one" 
-						data-url="/pages/details/details"
+						data-url="/pages/details/details?id={{item.id}}"
 						bindtap="jump">
-						<image src="{{item.pic}}"></image>
-						<text>{{item.name}}</text>
+						<image wx:if="{{item.pics}}" src="{{filter.getgimg(item.pics)}}"></image>
+						<text class='oh1'>{{item.name}}</text>
 					</swiper-item>
 				</block>
 			</swiper>
@@ -63,9 +61,9 @@
 				wx:for-index="idx" 
 				wx:for-item="item" 
 				wx:key="idx"
-				data-url="/pages/details/details"
+				data-url="/pages/details/details?id={{item.id}}"
 				bindtap="jump">
-					<image src="{{item.pic}}"></image>
+					<image wx:if="{{item.rpics}}" src="{{filter.imgIP(item.rpics)}}"></image>
 				</view>
 			</view>
 		</view>
