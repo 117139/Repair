@@ -143,17 +143,19 @@ Page({
       keyword  (搜索时用) */
       
     var keyword = e.detail.value.keyword
-    const htmlStatus1 = htmlStatus.default(this)
+    
     var that = this
     that.setData({
       dest_type:-1,
       page:1,
+      type1:[],
       keyword: keyword
     })
     that.sousuo()
   },
   sousuo(){
     var that =this
+    const htmlStatus1 = htmlStatus.default(that)
     wx.request({
       url: app.IPurl,
       data: {
@@ -180,7 +182,7 @@ Page({
               title: '已经到底了'
             })
           }
-
+          
 
         } else if (res.data.list2.length > 0) {                           //数据不为空
           that.data.page++
