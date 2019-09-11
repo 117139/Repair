@@ -166,7 +166,7 @@ Page({
       },
       complete() {
         wx.setNavigationBarTitle({
-          title: '服务',
+          title: '下单',
         })
       }
     })

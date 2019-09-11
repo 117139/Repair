@@ -281,6 +281,7 @@ Page({
       // console.log(2)
       that.setData({
         dest_type: idx,
+        page:1,
         type1:[]
       })
       that.getgoods(idx, that.data.fw_data[idx].id)

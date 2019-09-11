@@ -36,7 +36,7 @@
 			</view>
 			<view class="dis_flex ju_b aic fz28 c9">
 				<view class='w300 oh1'>{{item.description}}</view>
-				<view>{{filter.getTime(item.yuyuetime)}}</view>
+				<view>{{filter.getTime(item.addtime)}}</view>
 			</view>
 		</view>
 		<template is="htmlStatus" data="{{...htmlStatus}}" />
