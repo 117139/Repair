@@ -147,7 +147,7 @@ Page({
           that.setData({
             fw_data: rlist
           })
-          that.getgoods(that.data.index,res.data.list[that.data.index].id)
+          // that.getgoods(that.data.index,res.data.list[that.data.index].id)
           htmlStatus1.finish()    // 切换为finish状态
         } else {
           wx.showToast({
@@ -260,59 +260,64 @@ Page({
 		})
 		
 	},
-	scpic(){
-		var that=this
-		wx.chooseImage({
-			count: 9,
-			sizeType: ['original', 'compressed'],
-			sourceType: ['album', 'camera'],
-			success (res) {
-				// tempFilePath可以作为img标签的src属性显示图片
-				console.log(res)
-				const tempFilePaths = res.tempFilePaths
-				const imglen=that.data.imgb.length
-				for(var i=0;i<tempFilePaths.length;i++){
-					console.log(imglen)
-					var newlen=Number(imglen)+Number(i)
-					console.log(newlen)
-					if(newlen==9){
-						wx.showToast({
-							icon:'none',
-							title:'最多可上传九张'
-						})
-						break;
-					}
-					wx.uploadFile({
-							url: app.IPurl, //仅为示例，非真实的接口地址
-							filePath: tempFilePaths[i],
-              name: 'upfile',
-							formData: {
-                'apipage': 'uppic',
-                // "tokenstr": wx.getStorageSync('tokenstr').tokenstr, 
-							},
-							success (res){
-								console.log(res.data)
-								var ndata=JSON.parse(res.data)
-								console.log(ndata)
-                console.log(ndata.error==0)
-                if (ndata.error==0){
-                  that.data.imgb.push(ndata.url)
-									that.setData({
-										imgb:that.data.imgb
-									})
-								}else{
-									wx.showToast({
-										icon:"none",
-										title:"上传失败"
-									})
-								}
-							}
-						})
-					
-				}
-			}
-		})
-	},
+  scpic() {
+    var that = this
+    wx.chooseImage({
+      count: 9,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        console.log(res)
+        const tempFilePaths = res.tempFilePaths
+        
+        const imglen = that.data.imgb.length
+        that.upimg(tempFilePaths, 0)
+       
+      }
+    })
+  },
+  upimg(imgs, i) {
+    var that = this
+    const imglen = that.data.imgb.length
+    var newlen = Number(imglen) + Number(i)
+    if (imglen == 9) {
+      wx.showToast({
+        icon: 'none',
+        title: '最多可上传九张'
+      })
+      return
+    }
+    // console.log(img1)
+    wx.uploadFile({
+      url: app.IPurl, //仅为示例，非真实的接口地址
+      filePath: imgs[i],
+      name: 'upfile',
+      formData: {
+        'apipage': 'uppic',
+      },
+      success(res) {
+        // console.log(res.data)
+        var ndata = JSON.parse(res.data)
+        if (ndata.error == 0) {
+          console.log(imgs[i], i, ndata.url)
+          var newdata = that.data.imgb
+          console.log(i)
+          newdata.push(ndata.url)
+          that.setData({
+            imgb: newdata
+          })
+          i++
+          that.upimg(imgs, i)
+        } else {
+          wx.showToast({
+            icon: "none",
+            title: "上传失败"
+          })
+        }
+      }
+    })
+  },
 	formSubmit: function(e) {
 		var that =this
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
@@ -393,8 +398,8 @@ Page({
 						data:{
               apipage:'smwx',
               op:'orderpub_user',  //用户下单
-              shopid: that.data.type1[that.data.index1].id,//(按需传递)
-              name: '',
+              shopid: '',//(按需传递)
+              name: fs.fw_name,
               description: fs.wt,
               addressid: that.data.address.ID,//(地址id)
               pics: imbox,//(描述图片)

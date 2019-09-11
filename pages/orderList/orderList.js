@@ -56,13 +56,13 @@ Page({
 		
   },
 	onShow(){
-		// var pages=[1,1,1,1,1]
-		// var goods=[ [],[],[],[],[], ]
-		// this.data.goods=goods
-		// this.setData({
-		// 	pages:pages,
-		// 	goods:this.data.goods
-		// })
+    var pages = [1, 1, 1, 1, 1, 1]
+    var goods = [[], [], [], [], [], [],]
+		this.data.goods=goods
+		this.setData({
+			pages:pages,
+			goods:this.data.goods
+		})
 		if (this.data.btnkg==1){
 			that.setData({
 				btnkg:0
@@ -72,6 +72,13 @@ Page({
 		this.getOrderList('onshow')
 	},
 	retry(){
+    var pages = [1, 1, 1, 1, 1, 1]
+    var goods = [[], [], [], [], [], [],]
+    this.data.goods = goods
+    this.setData({
+      pages: pages,
+      goods: this.data.goods
+    })
 		this.getOrderList()
 	},
 	onReady(){
@@ -132,6 +139,7 @@ Page({
 			dataType:'json',
 			method:'get',
 			success(res) {
+        console.log(res)
 				if(res.data.error==0){   //成功
 						console.log(ttype)
 						let resultd=res.data.list

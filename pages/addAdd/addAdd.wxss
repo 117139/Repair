@@ -41,15 +41,16 @@ page{
 }
 .msgtit{
 	width: 138rpx;
+  line-height: 1;
 }
 .addmsg1 .msgtit{
-	/* line-height: 90rpx; */
+	line-height: 90rpx;
 	padding-top: 30rpx;
 	padding-bottom: 30rpx;
-	line-height: 1;
 }
 .msgsrk{
 	flex: 1;
+  line-height: 90rpx;
 }
 .addmsg1 .msgsrk{
 	padding-top: 30rpx;

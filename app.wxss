@@ -347,15 +347,23 @@ view{
 .lh50{
 	line-height: 50rpx;
 }
+.sousuobtn{
+  width: 30rpx;
+  height: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15rpx;
+	position: relative;
+}
 .iconsousuo{
 	font-size: 28rpx;
 	color: #bbb;
-	position: relative;
-	margin-right: 15rpx;
+	
 }
-.iconsousuo button{
-	width: 100%;
-	height: 100%;
+.sousuobtn button{
+	width: 30rpx;
+  height: 30rpx;
 	position: absolute;
 	top: 0;
 	left: 0;

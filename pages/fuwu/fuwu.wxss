@@ -1,6 +1,8 @@
 /* page/DEST/DEST.wxss */
 page{
 	background-color: #fff;
+  overflow-y:auto!important;
+
 }
 .container{
 	width: 100%;

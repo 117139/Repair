@@ -64,7 +64,8 @@ Page({
 		],
 		dest_type:-1,
     page:1,
-    pagesize:10
+    pagesize:20,
+    keyword:''
   },
 
   /**
@@ -119,7 +120,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var that =this
+    if(that.data.dest_type==-1){
+      that.sousuo()
+    }else{
+      that.getgoods(that.data.dest_type, that.data.fw_data[that.data.dest_type].id)
+    }
   },
 
   /**
@@ -127,6 +133,87 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  formSubmit: function (e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    /*apipage=shop
+      op=indexlist
+      pageindex
+      pagesize
+      keyword  (搜索时用) */
+      
+    var keyword = e.detail.value.keyword
+    const htmlStatus1 = htmlStatus.default(this)
+    var that = this
+    that.setData({
+      dest_type:-1,
+      page:1,
+      keyword: keyword
+    })
+    that.sousuo()
+  },
+  sousuo(){
+    var that =this
+    wx.request({
+      url: app.IPurl,
+      data: {
+        "apipage": "shop",
+        "op": "indexlist",
+        "pageindex": that.data.page,
+        "pagesize": that.data.pagesize,
+        keyword: that.data.keyword
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'get',
+      success(res) {
+        console.log(res.data)
+        if (res.data.list2.length == 0) {  //数据为空
+
+          if (that.data.page==1) {
+            htmlStatus1.dataNull()    // 切换为空数据状态
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '已经到底了'
+            })
+          }
+
+
+        } else if (res.data.list2.length > 0) {                           //数据不为空
+          that.data.page++
+          that.data.type1 = that.data.type1.concat(res.data.list2)
+          that.setData({
+            type1: that.data.type1,
+            page: that.data.page
+          })
+          htmlStatus1.finish()    // 切换为finish状态
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '加载失败'
+          })
+          htmlStatus1.error()    // 切换为error状态
+        }
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '加载失败'
+        })
+        htmlStatus1.error()    // 切换为error状态
+      },
+      complete() {
+        wx.setNavigationBarTitle({
+          title: '服务',
+        })
+      }
+    })
+  },
+  bindconfirm(e){
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
   },
 	jump(e){
 		app.jump(e)
@@ -222,7 +309,7 @@ Page({
         console.log(res.data)
         if (res.data.list.length == 0) {  //数据为空
 
-          if(that.data.page){
+          if(that.data.page==1){
             htmlStatus1.dataNull()    // 切换为空数据状态
           }else{
             wx.showToast({
@@ -238,9 +325,11 @@ Page({
 
 
         } else if (res.data.list.length>0) {                           //数据不为空
-
+          that.data.page++
+          that.data.type1 = that.data.type1.concat(res.data.list)
           that.setData({
-            type1: res.data.list
+            type1: that.data.type1,
+            page:that.data.page
           })
           htmlStatus1.finish()    // 切换为finish状态
         }else {

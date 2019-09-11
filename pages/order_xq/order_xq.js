@@ -8,6 +8,7 @@ Page({
    */
   data: {
     xqData:'',
+    o_no:''
   },
 
   /**
@@ -18,6 +19,9 @@ Page({
       title: '加载中...',
     })
     if(options.id){
+      this.setData({
+        o_no: options.id
+      })
       this.getdata(options.id)
     }
   },
@@ -130,5 +134,80 @@ Page({
         })
       }
     })
+  },
+  sub(){
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '这是一个模态弹窗',
+    //   success(res) {
+    //     if (res.confirm) {
+    //       console.log('用户点击确定')
+    //     } else if (res.cancel) {
+    //       console.log('用户点击取消')
+    //     }
+    //   }
+    // })
+    var that= this
+    if(that.data.btnkg==1){
+      return
+    }else{
+      that.data.btnkg == 1
+    }
+    wx.request({
+      url: app.IPurl,
+      data: {
+        apipage: 'smwx',
+        op:'ordercomfirm_user',
+        out_trade_no: that.data.xqData.out_trade_no,
+        "tokenstr": wx.getStorageSync('tokenstr').tokenstr
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      dataType: 'json',
+      method: 'POST',
+      success(res) {
+        wx.hideLoading()
+        console.log(res.data)
+
+
+        if (res.data.error == 0) {
+
+          wx.showToast({
+            icon: 'none',
+            title: '确认成功',
+            duration: 2000
+          })
+          setTimeout(function () {
+            that.getdata(that.data.xqData.out_trade_no)
+
+          }, 1000)
+
+        } else {
+          if (res.data.returnstr) {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.returnstr
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '操作失败'
+            })
+          }
+        }
+
+
+      },
+      fail() {
+        wx.showToast({
+          icon: 'none',
+          title: '操作失败'
+        })
+      }
+    })
+  },
+  jump(e){
+    app.jump(e)
   }
 })

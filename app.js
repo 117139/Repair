@@ -3,6 +3,11 @@ App({
   IPurl: 'http://smwx.800123456.top/api.aspx',
   IPurl1:'http://smwx.800123456.top/',
   onLaunch: function () {
+    wx.removeStorageSync('userInfo')
+    wx.removeStorageSync('userWxmsg')
+    wx.removeStorageSync('tokenstr')
+    wx.removeStorageSync('member')
+    wx.removeStorageSync('kefu')
     let that=this
     // 获取用户信息
     wx.getSetting({

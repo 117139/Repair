@@ -6,10 +6,11 @@
 	<view class="ss_box">
 		<form bindsubmit="formSubmit" class="ss_box1">
 			<view class="dis_flex aic">
-				<text class="iconfont iconsousuo">
-					<button form-type="submit"></button>
-				</text>
-				<input type="text" class="search_int" placeholder="请输入商品名称搜索" />
+				<view class='sousuobtn'>
+          <text class="iconfont iconsousuo"></text>
+          <button form-type="submit"></button>
+        </view>
+				<input type="text" class="search_int" name="keyword" placeholder="请输入商品名称搜索" />
 			</view>
 		</form>
 	</view>
@@ -32,7 +33,7 @@
 				wx:key="idx"
 				data-url="/pages/details/details?id={{item.id}}"
 				bindtap="jump">
-				<image src="{{filter.getgimg(item.pics)}}"></image>
+				<image src="{{filter.getgimg(item.pics)}}" lazy-load='true'></image>
 				<view class="oh2">{{item.name}}</view>
 			</view>
 		</view>

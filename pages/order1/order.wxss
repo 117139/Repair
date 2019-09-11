@@ -63,14 +63,20 @@ page{
 	font-family: PingFang-SC-Regular;
 	font-size: 28rpx;
 	color: #666666;
-	/* height: 100rpx; */
+	height: 100rpx;
 	
+  margin-right: 10rpx;
 	display: flex;
 	align-items: center;
 	/* border: 0; */
 	/* line-height: 40rpx; */
 }
-
+.fz_int{
+  flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+}
 .wtms{
 	align-items: flex-start;
 	/* align-items: baseline; */
@@ -88,7 +94,7 @@ page{
 	flex: 1;
 	padding-top: 34rpx;
 	padding-bottom: 36rpx;
-	padding-left: 10rpx;
+	/* padding-left: 10rpx; */
 	border: 0;
 	
   font-size: 28rpx;

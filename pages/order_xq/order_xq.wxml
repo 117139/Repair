@@ -21,7 +21,7 @@
 	</view>
 	<view class="o_address">
 		<text class="iconfont icontubiaozhizuomoban_fuzhi"></text>
-		<view class="fz28">{{xqData.address_str}}</view>
+		<view class="fz28 oh1">{{xqData.address_str}}</view>
 	</view>
 	<view class="o_msg1">订单编号：{{xqData.out_trade_no}}</view>
 	<view class="o_msg1">下单时间：{{filter.getTime(xqData.addtime)}}</view>
@@ -33,15 +33,18 @@
 	<view class="o_msg" wx:if="{{xqData.status>1}}">
 		<view class="dis_flex w100 ju_b fz28 c6">
 			<view>配件</view>
-			<view>¥50</view>
+			<view>¥{{xqData.price1}}</view>
 		</view>
 		<view class="dis_flex w100 ju_b fz28 c6">
 			<view>维修费</view>
-			<view>¥80</view>
+			<view>¥{{xqData.price2}}</view>
 		</view>
 	</view>
 	<view class="w100 dis_flex ju_c" wx:if="{{xqData.status==2}}">
-		<view class="sub_btn">确定</view>
+		<view class="sub_btn" bindtap='sub'>确认交易信息</view>
+	</view>
+	<view class="w100 dis_flex ju_c" wx:if="{{xqData.status==4&&xqData.ispingjia==0}}">
+		<view class="sub_btn" data-url="/pages/orderpl/orderpl?o_no={{xqData.out_trade_no}}" bindtap='jump'>去评价</view>
 	</view>
 </view>
  

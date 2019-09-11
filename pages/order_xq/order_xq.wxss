@@ -4,6 +4,8 @@ page{
 }
 .container{
 	width: 100%;
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
 	background-color: #f4f4f4;
 }
 .o_tit{
@@ -65,7 +67,7 @@ page{
 .o_address{
 	width: 100%;
 	height: 110rpx;
-	padding-left: 24rpx;
+	padding:0 24rpx;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -109,5 +111,11 @@ font-family:PingFang-SC-Medium;
 font-size:28rpx;
 font-weight:bold;
 color:#ffffff;
+
+}
+.imgbox {
+  display:flex;
+  flex-wrap:wrap;
+  width:100%;
 
 }

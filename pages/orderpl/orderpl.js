@@ -9,14 +9,19 @@ Page({
 		content:'',
 		fw:0,
 		zy:0,
-		plf:[1,2,3,4,5]
+		plf:[1,2,3,4,5],
+    o_no:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (options.o_no){
+      this.setData({
+        o_no: options.o_no
+      })
+    }
   },
 
   /**
@@ -93,6 +98,8 @@ Page({
 		console.log(that.data.content)
 		console.log(that.data.fw)
 		console.log(that.data.zy)
+    
+    // return
 		if(that.data.content==''){
 			wx.showToast({
 				icon:'none',
@@ -108,9 +115,16 @@ Page({
 			return
 		}
 		wx.request({
-			url:  app.IPurl+'/api/coupon/1',
+			url:  app.IPurl,
 			data:{
-				token:wx.getStorageSync('token')
+        apipage: 'smwx',
+        op:'pingjia',
+        out_trade_no: that.data.o_no,
+        description: that.data.content,
+        isn:0,        // 0不匿名, 1匿名
+        p1: that.data.fw,//(1 - 5)
+        p2: that.data.zy,//(1- 5)
+        "tokenstr": wx.getStorageSync('tokenstr').tokenstr
 			},
 			header: {
 				'content-type': 'application/x-www-form-urlencoded' 
@@ -119,8 +133,19 @@ Page({
 			method:'post',
 			success(res) {
 				console.log(res.data)
-				if(res.data.code==1){
-						
+				if(res.data.error==0){
+          wx.showToast({
+            icon: 'none',
+            title: '提交成功'
+          })
+          setTimeout(function(){
+            // wx.redirectTo({
+            //   url: '/pages/orderList/orderList'
+            // })
+            wx.navigateBack({
+              delta: 2
+            })
+          },1000)
 				}else{
 					wx.showToast({
 						icon:'none',
