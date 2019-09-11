@@ -79,12 +79,13 @@ App({
               // wx.setStorageSync('morenaddress', res.data.user_member_shopping_address)
               // wx.setStorageSync('appcode', rcode)
 							if(type=='shouquan'){
-								wx.reLaunch({
-								  url: '/pages/index/index',
-								  fail: (err) => {
-								    console.log("失败: " + JSON.stringify(err));
-								  }
-								})
+								// wx.reLaunch({
+								//   url: '/pages/index/index',
+								//   fail: (err) => {
+								//     console.log("失败: " + JSON.stringify(err));
+								//   }
+								// })
+                wx.navigateBack()
 							}
 							
 							

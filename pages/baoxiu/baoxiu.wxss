@@ -61,6 +61,7 @@ page{
 }
 .msg_name text{
 	width: 4em;
+  
 	text-align:justify;   
 	text-justify:distribute-all-lines;  
 	text-align-last:justify;     

@@ -5,7 +5,7 @@
 <!-- <view wx:if="{{htmlReset==1}}" class="chongshi" bindtap='cload'>重试</view> -->
 <view class="container">
 	<!-- <view class="hengxian"></view> -->
-	<view class='dis_flex ju_a w100 pb40 pt20 bgfff'>
+	<view class='olist_tit'>
 		<block wx:for="{{datalist}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
 			<view class="{{type==idx?'fz28 typecur':'c9 fz28'}}" data-type="{{idx}}" bindtap='bindcur'>{{item}}</view>
 		</block>

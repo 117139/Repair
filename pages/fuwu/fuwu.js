@@ -151,6 +151,9 @@ Page({
       type1:[],
       keyword: keyword
     })
+    wx.setNavigationBarTitle({
+      title: '加载中...',
+    })
     that.sousuo()
   },
   sousuo(){
@@ -216,6 +219,16 @@ Page({
   },
   bindconfirm(e){
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    var keyword = e.detail.value.keyword
+
+    var that = this
+    that.setData({
+      dest_type: -1,
+      page: 1,
+      type1: [],
+      keyword: keyword
+    })
+    that.sousuo()
   },
 	jump(e){
 		app.jump(e)
@@ -292,7 +305,9 @@ Page({
   getgoods(index, id) {
     const htmlStatus1 = htmlStatus.default(this)
     var that= this
-    
+    wx.setNavigationBarTitle({
+      title: '加载中...',
+    })
     wx.request({
       url: app.IPurl,
       data: {

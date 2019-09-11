@@ -11,7 +11,7 @@
 			<text class="fz28">{{item.Telephone}}</text>
 		</view>
 		<view class="addp2 oh2"data-idx="{{idx}}"
-					bindtap="toback">{{item.Province}}{{item.City}}{{item.County}}{{item.Description}}</view>
+					bindtap="toback">{{item.County}}{{item.City}}{{item.Province}}{{item.Description}}</view>
 		<view class="addsetting">
 			<view class="setting1 flex_1 c3" data-id="{{item.ID}}" bindtap="selecmr">
 				<view class="mricon">

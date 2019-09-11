@@ -72,7 +72,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (wx.getStorageSync('userInfo').nickName !== undefined) {
+      app.dologin()
+    }
   },
 
   /**

@@ -68,7 +68,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.retry()
   },
 
   /**
@@ -114,6 +114,8 @@ Page({
 			dataType:'json',
 			method:'get',
 			success(res) {
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
 				console.log(res.data)
 				
 				if(res.data.error==0){

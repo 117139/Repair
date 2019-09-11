@@ -2,10 +2,27 @@
 	min-height: 100vh;
 	background: #eeeeee;
 	border-top: 1px solid #eee;
-	/* padding-top: 17rpx; */
+	padding-top: 100rpx;
 }
-.typecur{
-  padding-bottom: 12rpx;
+.olist_tit{
+  border-top: 1px solid #eee;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  background-color: #fff;
+}
+.olist_tit view{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 3rpx solid transparent;
+}
+.olist_tit .typecur{
   border-bottom: 3rpx solid #3ea5ff;
 	color: #3ea5ff;
 }

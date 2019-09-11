@@ -36,10 +36,10 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
-    wx.showToast({
-      icon: 'none',
-      title: '调用重试方法'
-    })
+    // wx.showToast({
+    //   icon: 'none',
+    //   title: '调用重试方法'
+    // })
     if (getCurrentPages().length != 0) {
       getCurrentPages()[getCurrentPages().length - 1].onLoad()
       getCurrentPages()[getCurrentPages().length - 1].onShow()
@@ -47,6 +47,11 @@ Page({
     wx.setNavigationBarTitle({
       title: '保修',
     })
+  },
+  onPullDownRefresh: function () {
+    console.log('下拉')
+
+    this.retry()
   },
 	jump(e){
 		app.jump(e)
@@ -119,6 +124,8 @@ Page({
       dataType: 'json',
       method: 'get',
       success(res) {
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
         console.log(res.data)
         if (res.data.list.length == 0) {  //数据为空
           htmlStatus1.dataNull()    // 切换为空数据状态

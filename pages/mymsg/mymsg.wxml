@@ -47,7 +47,7 @@
 		<view class="dis_flex aic msg_val">{{member.Country}} {{member.City}} {{member.Province}}</view>
 	</view>
 	<view class="msg_box msg_box1">
-		<text class="msg_name">详细地址</text>
+		<!-- <text class="msg_name">详细地址</text> -->
 		<textarea wx:if="{{!member.RealName}}" class="msgsrk" name="xxaddress" 
      placeholder="街道、楼牌号等" auto-height="true"></textarea>
 		<textarea wx:if="{{member.RealName}}" class="msgsrk" name="xxaddress" disabled='' value='{{member.Address}}' auto-height="true"></textarea>

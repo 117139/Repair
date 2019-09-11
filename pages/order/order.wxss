@@ -6,7 +6,7 @@ page{
 .container{
 	width: 750rpx;
 	min-height: 100vh;
-	padding: 16rpx 24rpx;
+	padding: 16rpx 24rpx 100rpx;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -80,7 +80,7 @@ page{
 .wtms{
   align-items: flex-start;
 	/* align-items: baseline; */
-	border-bottom: 1px solid #eee;
+	/* border-bottom: 1px solid #eee; */
 	font-size: 28rpx;
 }
 .wtms .fuwu_type{

@@ -1,6 +1,14 @@
 <!--pages/order_xq/order_xq.wxml-->
 <wxs src="../../utils/filter.wxs" module="filter" />
 <view wx:if="{{xqData!==''}}" class="container">
+  <view wx:if="{{xqData.task_userid}}" class="o_header">
+		<image class="user_tx" src="{{xqData.task_userpic}}"></image>
+		<view class="user_msg">
+			<view class="user_name">{{xqData.task_username}}</view>
+			<view class="fz28 c6">订单状态：{{xqData.statusname}}</view>
+		</view>
+		<image class="tel_icon" src="../../static/images/tel_03.png"  data-tel="{{xqData.task_userphone}}" bindtap="call"></image>
+	</view>
 	<view class="o_tit">
 		订单信息
 	</view>
