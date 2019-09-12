@@ -7,61 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-		fw_data: [{
-				pic: '../../static/images/index_07.png',
-				name: '管道疏通',
-        id:1
-			},
-			{
-				pic: '../../static/images/index_09.png',
-        name: '家电维修',
-        id: 1
-			},
-			{
-				pic: '../../static/images/index_11.png',
-        name: '灯具电路',
-        id: 1
-			},
-			{
-				pic: '../../static/images/index_13.png',
-        name: '卫浴洁具',
-        id: 1
-			},
-			{
-				pic: '../../static/images/index_19.png',
-        name: '门窗维修',
-        id: 1
-			},
-			{
-				pic: '../../static/images/index_20.png',
-        name: '门锁开换',
-        id: 1
-			},
-			{
-				pic: '../../static/images/index_21.png',
-        name: '家具安装',
-        id: 1
-			},
-			{
-				pic: '../../static/images/index_22.png',
-        name: '家电清洗',
-        id: 1
-			},
-		],
-		type1:[
-			{
-				pic:'../../static/images/fuwu_03.jpg',
-				name:'房屋电路维修'
-			},
-			{
-				pic:'../../static/images/fuwu_05.jpg',
-				name:'灯具维修'
-			},
-			{
-				pic:'../../static/images/fuwu_07.jpg',
-				name:'灯具安装'
-			},
-		],
+		fw_data: [],
+		type1:[],
 		dest_type:-1,
     page:1,
     pagesize:20,
@@ -113,7 +60,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    var that = this
+    this.setData({
+      page:1
+    })
+    if (that.data.dest_type == -1) {
+      that.sousuo()
+    } else {
+      that.getgoods(that.data.dest_type, that.data.fw_data[that.data.dest_type].id)
+    }
   },
 
   /**
@@ -174,6 +129,8 @@ Page({
       dataType: 'json',
       method: 'get',
       success(res) {
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
         console.log(res.data)
         if (res.data.list2.length == 0) {  //数据为空
 
@@ -219,7 +176,7 @@ Page({
   },
   bindconfirm(e){
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
-    var keyword = e.detail.value.keyword
+    var keyword = e.detail.value
 
     var that = this
     that.setData({
@@ -249,6 +206,7 @@ Page({
       dataType: 'json',
       method: 'get',
       success(res) {
+        
         console.log(res.data)
         if (res.data.list.length == 0) {  //数据为空
           htmlStatus1.dataNull()    // 切换为空数据状态
@@ -324,6 +282,8 @@ Page({
       dataType: 'json',
       method: 'get',
       success(res) {
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
         console.log(res.data)
         if (res.data.list.length == 0) {  //数据为空
 

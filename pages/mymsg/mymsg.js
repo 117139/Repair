@@ -56,7 +56,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      'member': wx.getStorageSync('member'),
+    })
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
   },
 
   /**

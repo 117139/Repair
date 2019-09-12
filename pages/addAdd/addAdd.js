@@ -10,6 +10,13 @@ Page({
   onLoad: function () {
     
   },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
+  },
 	morenfuc(){
 		this.setData({
 		  moren: !this.data.moren

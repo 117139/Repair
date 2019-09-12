@@ -62,7 +62,8 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -326,8 +327,13 @@ Page({
           that.setData({
             imgb: newdata
           })
-          i++
-          that.upimg(imgs, i)
+          // i++
+          // that.upimg(imgs, i)
+          var news1 = that.data.imgb.length
+          if (news1 < 9) {
+            i++
+            that.upimg(imgs, i)
+          }
         } else {
           wx.showToast({
             icon: "none",

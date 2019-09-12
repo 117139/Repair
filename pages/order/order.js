@@ -71,7 +71,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    var that = this
+    that.gettype1()
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -307,8 +310,13 @@ Page({
           that.setData({
             imgb: newdata
           })
-          i++
-          that.upimg(imgs, i)
+          // i++
+          // that.upimg(imgs, i)
+          var news1 = that.data.imgb.length
+          if (news1 < 9) {
+            i++
+            that.upimg(imgs, i)
+          }
         } else {
           wx.showToast({
             icon: "none",

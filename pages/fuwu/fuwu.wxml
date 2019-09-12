@@ -10,7 +10,7 @@
           <text class="iconfont iconsousuo"></text>
           <button form-type="submit"></button>
         </view>
-				<input type="text" class="search_int" name="keyword" confirm-type="search" placeholder="请输入商品名称搜索" />
+				<input type="text" class="search_int" name="keyword" bindconfirm="bindconfirm" confirm-type="search" placeholder="请输入商品名称搜索" />
 			</view>
 		</form>
 	</view>

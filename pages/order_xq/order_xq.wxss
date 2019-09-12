@@ -99,6 +99,24 @@ page{
 	color: #666;
 	margin-bottom: 2rpx;
 }
+.order_msg{
+	width: 100%;
+	padding: 0 20rpx;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: #fff;
+	border-radius: 10rpx;
+	box-shadow: 0px 1px 3px 0px 
+		rgba(153, 153, 153, 0.19);
+	/* margin-bottom: 18rpx; */
+}
+.scimg_tip{
+	font-family: PingFang-SC-Regular;
+	font-size: 24rpx;
+	color: #999999;
+	line-height: 80rpx;
+}
 .o_address{
 	width: 100%;
 	height: 110rpx;

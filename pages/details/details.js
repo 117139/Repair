@@ -63,7 +63,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getDetails(this.data.goods_id)
   },
 
   /**
@@ -95,6 +95,8 @@ Page({
       dataType: 'json',
       method: 'get',
       success(res) {
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
         console.log(res.data)
        if (res.data.error==0) {                           //数据不为空
          var picarr = res.data.model.pics
@@ -131,6 +133,9 @@ Page({
         }
       },
       fail() {
+        wx.setNavigationBarTitle({
+          title: '详情页',
+        })
         wx.showToast({
           icon: 'none',
           title: '加载失败'

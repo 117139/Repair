@@ -25,7 +25,13 @@ Page({
       this.getdata(options.id)
     }
   },
-
+  retry() {
+    wx.setNavigationBarTitle({
+      title: '加载中...'
+    })
+    this.getdata(this.data.o_no)
+    // app.retry('保修')
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -58,7 +64,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.retry()
   },
 
   /**
@@ -93,6 +99,8 @@ Page({
       dataType: 'json',
       method: 'get',
       success(res) {
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
         if (res.data.error == 0) {   //成功
           console.log(res.data)
             that.setData({
@@ -209,5 +217,16 @@ Page({
   },
   jump(e){
     app.jump(e)
+  },
+  call(e) {
+    console.log(e.currentTarget.dataset.tel)
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.tel
+    })
+  },
+  pveimg(e) {
+    var curr = e.currentTarget.dataset.src
+    var urls = e.currentTarget.dataset.array
+    app.pveimg(curr, urls)
   }
 })

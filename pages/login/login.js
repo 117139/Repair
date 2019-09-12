@@ -8,6 +8,13 @@ Page({
   onLoad: function() {
     var that = this;
   },
+  /**
+  * 页面上拉触底事件的处理函数
+  */
+  onReachBottom: function () {
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
+  },
   bindGetUserInfo: function(e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮后需要处理的逻辑方法体

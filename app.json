@@ -21,7 +21,7 @@
   ],
   "window": {
     "enablePullDownRefresh": true,
-    "backgroundColor": "#f7f7f7",
+    "backgroundColor": "#f4f4f4",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "上门维修",

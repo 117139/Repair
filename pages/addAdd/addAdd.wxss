@@ -56,7 +56,9 @@ page{
 	padding-top: 30rpx;
 	padding-bottom: 30rpx;
 	line-height: 1;
-	/* height: 200rpx; */
+  height: 90rpx;
+	min-height: 90rpx;
+  box-sizing: border-box;
 }
 .definebtn{
 	margin-top: 140rpx;

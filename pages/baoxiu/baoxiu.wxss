@@ -1,7 +1,7 @@
 /* pages/baoxiu/baoxiu.wxss */
 page{
 	overflow-y: auto!important;
-	background: #f7f7f7;
+	background: #f4f4f4;
 }
 .container{
 	width: 100%;
@@ -10,7 +10,7 @@ page{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	background: #f7f7f7;
+	background: #f4f4f4;
 }
 .baoxiu_box{
 	position: relative;

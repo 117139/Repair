@@ -114,6 +114,19 @@ App({
 			url:e.currentTarget.dataset.url
 		})
 	},
+  pveimg(current, urls) {
+    let urls1 = []
+    if (urls) {
+      urls1 = urls
+
+    } else {
+      urls1[0] = current
+    }
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接
+      urls: urls1 // 需要预览的图片http链接列表
+    })
+  },
 	retry(tit){
 		wx.setNavigationBarTitle({
 		  title: '加载中...',

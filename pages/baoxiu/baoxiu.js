@@ -10,8 +10,7 @@ Page({
     kefu:'',
 		page:1,
 		pagesize:10,
-		bx_data:[
-		]
+		bx_data:[]
   },
 
   /**
@@ -31,6 +30,10 @@ Page({
 		wx.setNavigationBarTitle({
 			title:'加载中...'
 		})
+    this.setData({
+      page:1,
+      bx_data: []
+    })
 		this.getdata()
 		// app.retry('保修')
 	},
@@ -90,7 +93,13 @@ Page({
 		let that =this
     console.log(wx.getStorageSync('tokenstr'))
     if (!wx.getStorageSync('userInfo')){
+      console.log(1)
+      // 停止下拉动作
+      wx.stopPullDownRefresh();
       htmlStatus1.dataNull()
+      wx.setNavigationBarTitle({
+        title: '保修'
+      })
       return
     }
     /*0 未接单   （用户刚发布）

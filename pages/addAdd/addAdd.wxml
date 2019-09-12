@@ -24,7 +24,7 @@
   </picker>
   <view class="addmsg1">
 		<!-- <view class="msgtit">详细地址</view> -->
-		<textarea class="msgsrk"  name="xxaddress" type="text" auto-height placeholder="街道、楼牌号等"></textarea>
+		<textarea class="msgsrk"  name="xxaddress" type="text" auto-height placeholder="请填写街道、楼牌号等"></textarea>
 		<!-- <input class="msgsrk" name="xxaddress" type="text" placeholder="街道、楼牌号等"/> -->
 	</view>
 	<!-- <view class="addmsg mt15" bindtap="morenfuc">

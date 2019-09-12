@@ -35,6 +35,16 @@ var getgimgarr = function (img) {
   // console.log(img1[0])
   return img1
 }
+
+var getgimgarrIP = function (img) {
+  var img1 = img.split(",")
+  // console.log(img1[0])
+  for (var i = 0; i < img1.length; i++) {
+    img1[i] = imgip + img1[i]
+
+  }
+  return img1
+}
 var getTime = function(time){
   var date = time.split(" ")
   // console.log(date[0])
@@ -84,6 +94,7 @@ module.exports = {
   getTime:getTime,
 	imgIP:imgIP,
 	getgimgarr:getgimgarr,
+  getgimgarrIP: getgimgarrIP,
 	getDateTime: getDateTime,
 	arrtostr:arrtostr
 

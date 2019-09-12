@@ -6,13 +6,7 @@ Page({
 		btnkg:0,   //0ok  1off
     region: [],
 		moren:false,
-		editaddress:{
-			name: "aaa", 
-			tel: "18300000000", 
-			address: "北京市北京市东城区", 
-			xxaddress: "街道街道街道", 
-			moren: "true",
-		}
+		editaddress:{}
   },
   onLoad: function (option) {
     if(option.address){
@@ -33,6 +27,13 @@ Page({
 			console.log(this.data.region)
 		}
 		
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
   },
 	//选择地区
 	bindRegionChange(e) {

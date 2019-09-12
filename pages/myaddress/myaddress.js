@@ -5,21 +5,7 @@ const app = getApp()
 Page({
   data: {
 		btnkg:0,
-		addresslist:[
-			{
-				user_name:'包小橙',
-				phone:'18300000000',
-				address:'此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情',
-				id:1,
-			},
-			{
-				is_default:1,
-				user_name:'包小橙',
-				phone:'18300000000',
-				address:'此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情此处地址详情',
-				id:2,
-			}
-		],
+		addresslist:[],
     mridx:0
   },
   onLoad: function (option) {
@@ -44,12 +30,20 @@ Page({
 	},
 	
 	retry(){
+    this.setData({
+      btnkg:0
+    })
 		wx.setNavigationBarTitle({
 			title:'加载中...'
 		})
 		this.getaddlist()
 		// app.retry('保修')
 	},
+   /* 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.retry()
+  },
 	toback(e){
 		var that =this
 		if(that.data.addresback==true){
@@ -103,6 +97,8 @@ Page({
 			dataType:'json',
       method:'get',
 			success(res) {
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
 				console.log(res.data)
 				that.setData({
 					btnkg:0

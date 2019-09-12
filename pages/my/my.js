@@ -72,6 +72,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      'member': wx.getStorageSync('member'),
+      userInfo: wx.getStorageSync('userInfo')
+    })
     if (wx.getStorageSync('userInfo').nickName !== undefined) {
       app.dologin()
     }
@@ -95,7 +99,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    if (wx.getStorageSync('userInfo').nickName !== undefined) {
+      app.dologin()
+    }
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
   },
 
   /**

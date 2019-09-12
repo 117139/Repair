@@ -5,10 +5,8 @@ const app = getApp()
 
 Page({
 	data: {
-		bannerimg: [
-		],
-		fw_data: [
-		],
+		bannerimg: [],
+		fw_data: [],
     page:1,
 		hot_data: [],
 		cai_data:[
@@ -45,7 +43,7 @@ Page({
       getCurrentPages()[getCurrentPages().length - 1].onShow()
     }
     wx.setNavigationBarTitle({
-      title: '保修',
+      title: '首页',
     })
   },
   onPullDownRefresh: function () {
@@ -81,7 +79,7 @@ Page({
             title: '暂无banner'
           })
         } else if (res.data.datalist.length > 0) {                           //数据不为空
-         
+          that.data.bannerimg=[]
           for (var i = 0; i < res.data.datalist.length; i++) {
             that.data.bannerimg.push(res.data.datalist[i].Image1)
           }
@@ -156,7 +154,7 @@ Page({
       },
       complete() {
         wx.setNavigationBarTitle({
-          title: '上门服务',
+          title: '首页',
         })
       }
     })

@@ -2,7 +2,7 @@
 <import src="/utils/htmlStatus/index.wxml" />
 <wxs src="../../utils/filter.wxs" module="filter" />
 <template is="htmlStatus" data="{{...htmlStatus}}" />
-<view class="container">
+<view wx:if="{{fw_data.length!=0}}" class="container">
 	<view class="main">
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
 		 indicator-active-color='#fff' circular="{{circular}}">
