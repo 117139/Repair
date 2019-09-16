@@ -27,3 +27,14 @@
   margin-top: 30rpx;
   width: 100%;
 }
+.goback{
+  margin-top:30rpx;
+  width:100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12rpx;
+  border: 1px solid #ddd;
+  background: #f4f4f4;
+}

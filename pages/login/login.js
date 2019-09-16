@@ -39,6 +39,8 @@ Page({
       })
     }
   },
-
+  goback(){
+    wx.navigateBack()
+  }
 })
 

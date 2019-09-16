@@ -27,7 +27,7 @@
 		</view>
 		<view class="w100">
 			<view class="hot_tit">热门服务</view>
-			<swiper class="swiper swiper1" display-multiple-items='3' duration="300">
+			<swiper class="swiper swiper1" display-multiple-items='3' duration="300"  bindchange="handleChange">
 				<block wx:for="{{hot_data}}" 
 					wx:for-index="idx" 
 					wx:for-item="item" 

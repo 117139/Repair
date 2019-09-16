@@ -7,6 +7,7 @@ Page({
 	data: {
 		bannerimg: [],
 		fw_data: [],
+    currentIndex:'',
     page:1,
 		hot_data: [],
 		cai_data:[
@@ -54,6 +55,17 @@ Page({
 	jump(e){
 		app.jump(e)
 	},
+  handleChange: function (e) {
+    var that = this
+    console.log(e.detail.current)
+    that.setData({
+      currentIndex: e.detail.current
+    })
+    if (e.detail.current == that.data.tuijian.length - 1) {
+      // console.log('ajax')
+      that.getHot()
+    }
+  },
   getbanner(){
     /* "apipage": "imagelist",
           "type": 1 */
