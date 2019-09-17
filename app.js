@@ -91,6 +91,11 @@ App({
 							
 							
 						}else{
+              wx.removeStorageSync('userInfo')
+              wx.removeStorageSync('userWxmsg')
+              wx.removeStorageSync('tokenstr')
+              wx.removeStorageSync('member')
+              wx.removeStorageSync('zprice')
               wx.showToast({
                 icon:'none',
                 title: '登录失败',
