@@ -2,13 +2,13 @@
   
   "pages": [
     "pages/index/index",
+    "pages/orderpl/orderpl",
     "pages/my/my",
     "pages/orderList/orderList",
     "pages/order/order",
 		"pages/myaddress/myaddress",
 		"pages/addAdd/addAdd",
     "pages/order1/order",
-    "pages/orderpl/orderpl",
     "pages/baoxiu/baoxiu",
     "pages/mymsg/mymsg",
     "pages/order_xq/order_xq",

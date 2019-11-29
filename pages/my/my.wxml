@@ -26,4 +26,11 @@
 		</view>
 		<text class="iconfont iconnext"></text>
 	</view>
+	<view class="my_list" data-tel="13524650819" bindtap="call">
+		<view class="list_name">
+			<image class="list_icon" style='width:49rpx;margin-right:21rpx;' src="../../static/images/tousu.png"></image>
+			投诉电话
+		</view>
+		<view class='c9'>13524650819</view>
+	</view>
 </view>

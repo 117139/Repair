@@ -56,15 +56,27 @@
 
     </view>
     <view class="order_address">
-      <picker class="w100" mode="date" bindchange="bindTimeChange" value="{{date}}">
+      <picker class="w100" mode="date" bindchange="binddateChange" value="{{date}}">
         <view class="order_fw">
-          <view class="fuwu_type">预约时间</view>
+          <view class="fuwu_type">预约日期</view>
           <view class="dis_flex aic">
             <text class="fz28 c6">{{date}}</text>
             <text class="iconfont iconnext"></text>
           </view>
         </view>
-        <input class="hidden" type="text" name="yytime" value="{{date}}" />
+        
+      </picker>
+    </view>
+    <view class="order_address">
+      <picker class="w100" mode="time" bindchange="bindTimeChange" value="{{dtime}}" start="10:00" end="20:00">
+        <view class="order_fw">
+          <view class="fuwu_type">预约时间</view>
+          <view class="dis_flex aic">
+            <text class="fz28 c6">{{dtime}}</text>
+            <text class="iconfont iconnext"></text>
+          </view>
+        </view>
+        <input class="hidden" type="text" name="yytime" value="{{date+' '+dtime}}" />
       </picker>
     </view>
     <view class="w100 dis_flex ju_c">

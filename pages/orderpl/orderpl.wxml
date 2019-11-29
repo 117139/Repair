@@ -1,7 +1,7 @@
 <!--pages/orderpl/orderpl.wxml-->
 <view class="container">
 	<view class="plbox">
-		<textarea name="" id="" placeholder="说说哪里好，鼓励一下师傅吧~" bindblur="bindTextAreaBlur"></textarea>
+		<textarea name="" id="" placeholder="说说哪里好，鼓励一下师傅吧~" bindinput="bindTextAreaBlur"></textarea>
 		<text class="iconfont iconbianji1"></text>
 	</view>
 	<view class="pl_tit">师傅维修评分</view>

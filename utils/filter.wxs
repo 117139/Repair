@@ -49,8 +49,8 @@ var getTime = function(time){
   var date = time.split(" ")
   // console.log(date[0])
   var date1 = date[0].split("/")
-  // date = date1[2] + '-' + date1[0] + '-' + date1[1] + " " + date[1]
-  date = date1[2] + '-' + date1[0] + '-' + date1[1] 
+  date = date1[2] + '-' + date1[0] + '-' + date1[1] + " " + date[1]
+  // date = date1[2] + '-' + date1[0] + '-' + date1[1] 
   // console.log(date)
   return date
 }

@@ -119,6 +119,11 @@ App({
 			url:e.currentTarget.dataset.url
 		})
 	},
+  call(e){
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.tel
+    })
+  },
   pveimg(current, urls) {
     let urls1 = []
     if (urls) {

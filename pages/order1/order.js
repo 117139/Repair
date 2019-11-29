@@ -16,7 +16,8 @@ Page({
     page:1,
     pagesize:20,
 		imgb:[],
-		date:'',
+		date:'',     //日期
+		dtime:'',    //时间
 		address:''
   },
 
@@ -117,12 +118,18 @@ Page({
       index1: e.detail.value
     })
   },
+	binddateChange: function(e) {
+	  console.log('picker发送选择改变，携带值为', e.detail.value)
+	  this.setData({
+	    date: e.detail.value
+	  })
+	},
 	bindTimeChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      date: e.detail.value
-    })
-  },
+	  console.log('picker发送选择改变，携带值为', e.detail.value)
+	  this.setData({
+	    dtime: e.detail.value
+	  })
+	},
 
   gettype(id) {
     var that = this
@@ -398,13 +405,27 @@ Page({
       })
       return
     }
-    if (!fs.yytime) {
-      wx.showToast({
-        icon: 'none',
-        title: '请选择预约时间'
-      })
-      return
-    }
+    // if (!fs.yytime) {
+    //   wx.showToast({
+    //     icon: 'none',
+    //     title: '请选择预约时间'
+    //   })
+    //   return
+    // }
+		if(!that.data.date){
+			wx.showToast({
+				icon:'none',
+				title:'请选择预约日期'
+			})
+			return
+		}
+		if(!that.data.dtime){
+			wx.showToast({
+				icon:'none',
+				title:'请选择预约时间'
+			})
+			return
+		}
     wx.showModal({
       title: '提示',
       content: '是否要提交该订单',
@@ -428,7 +449,8 @@ Page({
               description: fs.wt,
               addressid: that.data.address.ID,//(地址id)
               pics: imbox,//(描述图片)
-              yuyuetime: fs.yytime,  //（预约时间，标准时间格式2019-9 - 9）
+              // yuyuetime: fs.yytime,  //（预约时间，标准时间格式2019-9 - 9）
+              yuyuetime: that.data.date+' '+that.data.dtime,  //（预约时间，标准时间格式2019-9 - 9）
               shopgroupid: that.data.fw_data[that.data.index].id,  //（分类id）
               "tokenstr": wx.getStorageSync('tokenstr').tokenstr
             },

@@ -158,7 +158,9 @@ view{
     background-color: #fff;
     margin-right: 5px;
 }
-
+.wxParse-table{
+    max-width: 100%;
+}
 /*.wxParse-table{
     width: 100%;
     height: 400px;

@@ -127,5 +127,8 @@ Page({
     } else {
       app.jump(e)
     }
-	}
+	},
+  call(e){
+    app.call(e)
+  }
 })

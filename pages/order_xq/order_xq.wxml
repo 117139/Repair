@@ -34,7 +34,8 @@
 		<view class="fz28 oh1">{{xqData.address_str}}</view>
 	</view>
 	<view class="o_msg1">订单编号：{{xqData.out_trade_no}}</view>
-	<view class="o_msg1">下单时间：{{filter.getTime(xqData.addtime)}}</view>
+	<view wx:if="{{xqData.addtime}}" class="o_msg1">下单时间：{{filter.getTime(xqData.addtime)}}</view>
+  <view wx:if="{{xqData.yuyuetime}}" class="o_msg1">预约时间：{{filter.getTime(xqData.yuyuetime)}}</view>
 	<view class="o_msg1">订单状态：{{xqData.statusname}}</view>
 	<view class="o_msg1 mb20">维修师傅：{{xqData.task_username?xqData.task_username:'无'}}</view>
   	<view wx:if="{{xqData.task_address}}" class="order_msg mt20">
